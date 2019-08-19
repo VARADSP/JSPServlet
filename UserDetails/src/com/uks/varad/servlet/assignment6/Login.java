@@ -1,4 +1,4 @@
-package com.uks.varad.servlet.assignment5;
+package com.uks.varad.servlet.assignment6;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,7 +20,7 @@ import com.uks.varad.servlet.DatabaseConnection;
 /**
  * Servlet implementation class Login
  */
-@WebServlet("/assignment5/Login")
+@WebServlet("/assignment6/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	// Intializing the connection
@@ -69,8 +69,16 @@ public class Login extends HttpServlet {
 		//checking is user already logged in
 		HttpSession session = request.getSession();
 
-
 		String isLoggedIn = (String) session.getAttribute("loggedIn");
+
+
+
+
+		System.out.println("In login " + isLoggedIn);
+
+
+
+
 		if(isLoggedIn != null){
 
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("error/error.jsp");
@@ -83,9 +91,20 @@ public class Login extends HttpServlet {
 		// Getting data from user inputs and stored in local variables
 				PrintWriter out = response.getWriter();
 
+				String username = null;
+				String password = null;
 
-				String username = request.getParameter("username");
-				String password = request.getParameter("password");
+
+				if(request.getSession().getAttribute("fromUpdate") != null){
+					username = (String) request.getSession().getAttribute("username");
+					password = (String) request.getSession().getAttribute("password");
+					request.getSession().removeAttribute("fromUpdate");
+				}
+				else{
+					 username = request.getParameter("username");
+					 password = request.getParameter("password");
+
+				}
 
 
 				// connecting to database and returning the con object
@@ -120,12 +139,14 @@ public class Login extends HttpServlet {
 						//wrong user id
 
 						request.getSession().setAttribute("authentication", "notAuthenticated");
-						response.sendRedirect(request.getContextPath() + "/assignment5/Login.jsp");
+						response.sendRedirect(request.getContextPath() + "/assignment6/Login.jsp");
 
 					}
 
 					while (rs.next()) {
 						if (username.equals(rs.getString(10)) && password.equals(rs.getString(11))) {
+							session.setAttribute("loggedIn", "true");
+							request.getSession().setAttribute("authentication", "authenticated");
 							out.println("<html>");
 							out.println("<head>");
 							out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/table.css\"");
@@ -139,7 +160,7 @@ public class Login extends HttpServlet {
 
 							out.println("</div>");
 
-							out.println("<div style=\"margin-top:100px;clear:both\" class=\"table-wrapper\">");
+							out.println("<div style=\"margin-left:0;margin-top:100px;left:0;clear:both\" class=\"table-wrapper\">");
 							out.println("<table class=\"fl-table\">");
 							out.println("<thead>");
 
@@ -181,6 +202,9 @@ public class Login extends HttpServlet {
 							out.println("</th>");
 							out.println("<th>");
 							out.println("Other Interests");
+							out.println("</th>");
+							out.println("<th>");
+							out.println("Action");
 							out.println("</th>");
 
 							out.println("</tr>");
@@ -234,6 +258,9 @@ public class Login extends HttpServlet {
 							}
 							out.println("</td>");
 
+							out.println("<td>");
+							out.println("<a type=\"button\" class=\"button\" href=\"EditUserDetails?uid="+rs.getString(1)+"\" style=\"text-decoration: none;position:relative;float:right; background: green;color:fff;padding: 1em 2em;border: 0;\">Edit</a>");
+							out.println("</td>");
 							out.println("</tr>");
 
 							out.println("</tbody>");
@@ -244,7 +271,7 @@ public class Login extends HttpServlet {
 							out.print("<h2 align=\"center\">Successfully logged In </h2>");
 
 							out.println("<div style=\" background-color: #577;padding: 10px;text-align: center;color: white;bottom:0;left:0;position:fixed;width:100%;clear:both;\">");
-							out.println("<h1>Unikaihatsu Software Pvt Ltd. Copyright , All rights reserved</h1>");
+							out.println("<h1>Unikaihatsu Software Pvt Ltd. Copyright &copy; All rights reserved</h1>");
 							out.println("</div>");
 
 
@@ -265,12 +292,12 @@ public class Login extends HttpServlet {
 							// wrong password but right user id
 
 							request.getSession().setAttribute("authentication", "notAuthenticated");
-							response.sendRedirect(request.getContextPath() + "/assignment5/Login.jsp");
+							response.sendRedirect(request.getContextPath() + "/assignment6/Login.jsp");
 						}
 					}
 
 				} catch (Exception e) {
-					out.print("We cant able to process your request");
+					out.print("We are unable to process your request !");
 					System.out.println(e);
 				}
 

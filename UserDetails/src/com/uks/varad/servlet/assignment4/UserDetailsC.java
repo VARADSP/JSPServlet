@@ -54,7 +54,11 @@ public class UserDetailsC extends HttpServlet {
 		String lname = request.getParameter("lastName");
 		String sex = request.getParameter("gender");
 		String email = request.getParameter("emailId");
-		String dob = request.getParameter("date");
+		String dobYear = request.getParameter("year");
+		String dobMonth = request.getParameter("month");
+		String dobDay = request.getParameter("day");
+		String dob = dobYear+"/"+dobMonth+"/"+dobDay;
+
 		String address = request.getParameter("address");
 		String uname = request.getParameter("uname");
 		String pass = request.getParameter("pass");
@@ -136,13 +140,114 @@ public class UserDetailsC extends HttpServlet {
 			// printing the info on the webpage
 			out.print("<h1 align=\"center\"><b>Submitted User Details</b></h1>");
 
-			out.println("<html><body align=\"center\">\n" + "<h4>Your Salutation is: " + sal + "</h4>\n" + "<h4>Your First Name is: "
-					+ fname + "</h4>\n" + "<h4>Your Middle Name is: " + mname + "</h4>\n" + "<h4>Your Last Name is: " + lname
-					+ "</h4>\n" + "<h4>Your Gender is: " + sex + "</h4>\n" + "<h4>Your Email id is: " + email
-					+ "</h4>\n" + "<h4>Your Date of Birth is: " + dob + "</h4>\n" + "<h4>Your Address is: " + address
-					+ "</h4>\n" + "<h4>Your Username is: " + uname + "</h4>\n" + "<h4>Your Password is: " + pass
-					+ "</h4>\n" + "<h4>Your Interests are: " + allIneterest + "</h4>\n" + "<h4>Your Other Interests are: "
-					+ othInterest + "</h4>\n" + "</body></html>\n");
+			out.println("<html>");
+			out.println("<head>");
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"table.css\"");
+			out.println("</head>");
+
+			out.println("<body>");
+			out.println("<div style=\"margin-top:100px;\" class=\"table-wrapper\">");
+			out.println("<table class=\"fl-table\">");
+			out.println("<thead>");
+
+
+			out.println("<tr>");
+			out.println("<th>");
+			out.println("Salutation");
+			out.println("</th>");
+			out.println("<th>");
+			out.println("FirstName");
+			out.println("</th>");
+			out.println("<th>");
+			out.println("MiddleName");
+			out.println("</th>");
+			out.println("<th>");
+			out.println("LastName");
+			out.println("</th>");
+			out.println("<th>");
+			out.println("Gender");
+			out.println("</th>");
+			out.println("<th>");
+			out.println("Email");
+			out.println("</th>");
+			out.println("<th>");
+			out.println("Date Of Birth");
+			out.println("</th>");
+
+			out.println("<th>");
+			out.println("Address");
+			out.println("</th>");
+			out.println("<th>");
+			out.println("Username");
+			out.println("</th>");
+			out.println("<th>");
+			out.println("Password");
+			out.println("</th>");
+			out.println("<th>");
+			out.println("Interests");
+			out.println("</th>");
+			out.println("<th>");
+			out.println("Other Interests");
+			out.println("</th>");
+
+			out.println("</tr>");
+
+
+
+			out.println("</thead>");
+			out.println("</tbody>");
+			out.println("<tr>");
+
+			out.println("<td>");
+			out.println(sal);
+			out.println("</td>");
+			out.println("<td>");
+			out.println(fname);
+			out.println("</td>");
+			out.println("<td>");
+			out.println(mname);
+			out.println("</td>");
+			out.println("<td>");
+			out.println(lname);
+			out.println("</td>");
+			out.println("<td>");
+			out.println(sex);
+			out.println("</td>");
+			out.println("<td>");
+			out.println(email);
+			out.println("</td>");
+			out.println("<td>");
+			out.println(dob);
+			out.println("</td>");
+			out.println("<td>");
+			out.println(address);
+			out.println("</td>");
+			out.println("<td>");
+			out.println(uname);
+			out.println("</td>");
+			out.println("<td>");
+			out.println(pass);
+			out.println("</td>");
+			out.println("<td>");
+			out.println(allIneterest);
+			out.println("</td>");
+			out.println("<td>");
+			if(!othInterest.isEmpty()){
+				out.println(othInterest);
+
+			}
+			else{
+				out.println("");
+			}
+			out.println("</td>");
+
+			out.println("</tr>");
+
+			out.println("</tbody>");
+			out.println("</table>");
+			out.println("</div>");
+
+			out.println("</html>");
 
 
 

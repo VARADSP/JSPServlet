@@ -45,7 +45,10 @@ public class UserDetails extends HttpServlet {
 				String lname = request.getParameter("lastName");
 				String sex = request.getParameter("gender");
 				String email = request.getParameter("emailId");
-				String dob = request.getParameter("date");
+				String dobYear = request.getParameter("year");
+				String dobMonth = request.getParameter("month");
+				String dobDay = request.getParameter("day");
+				String dob = dobYear+"/"+dobMonth+"/"+dobDay;
 				String address = request.getParameter("address");
 				String uname = request.getParameter("uname");
 				String pass = request.getParameter("pass");

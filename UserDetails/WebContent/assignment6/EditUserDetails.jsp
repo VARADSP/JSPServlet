@@ -1,8 +1,10 @@
-<!-- JSP page UserDetailsB used to save user details using servlet with japanese language support
+<!--
+ JSP page EditUserDetails used to edit user details using servlet with japanese language support
 @author:varad paralikar
-Created Date: 2019/8/14
+Created Date: 2019/8/19
 -->
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE HTML utf-8>
 <html>
   <head>
@@ -12,14 +14,15 @@ Created Date: 2019/8/14
    <meta http-equiv="Content-Type"content="text/html;charset=utf-8">
  <title>User Details</title>
   </head>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
   <!--javascript to validate form data-->
-  <script src="UserDetailsB.js"></script>
+  <script src="js/EditUserDetails.js"></script>
   <body>
     <!--Container-->
     <div class="container">
       <!--Creating form-->
-    <form name="loginForm" accept-charset="utf-8" action="UserDetailsB" method="post" onSubmit="return validateForm(event);">
+    <form name="loginForm" accept-charset="utf-8" action="UpdateUserDetails" method="post" onSubmit="return validateForm(event);">
+   <input type="hidden" name="userId" value="${sessionScope.userId}" />
     <table cellspacing="5">
         <tr>
           <td class="header"><b>Personal Details</b></td>
@@ -27,7 +30,7 @@ Created Date: 2019/8/14
         <tr> <!--input for salutation-->
           <td class="field_name"><b>Salutation</b></td>
           <td>
-            <input list="sal" name="sal1" id="salutation" placeholder="Select salutation">
+            <input list="sal" name="sal1" id="salutation" placeholder="Select salutation" value="${sessionScope.salutation}">
           						<datalist id="sal">
           							<option value="Mr.">
           							<option value="Miss">
@@ -38,7 +41,7 @@ Created Date: 2019/8/14
         <tr> <!--input for first name-->
           <td class="field_name"><b>First Name</b><i id="symbol">*</i></td>
           <td>
-          <input type="text" id="fname" name="firstName" maxlength="50" placeholder="Enter your first name">
+          <input type="text" id="fname" name="firstName" maxlength="50" placeholder="Enter your first name" value="${sessionScope.fname} ">
 			<br>
 		 <span id="errorname"></span>
 		  </td>
@@ -46,13 +49,13 @@ Created Date: 2019/8/14
         <tr> <!--input for middle name-->
           <td class="field_name"><b>Middle Name</b></td>
           <td>
-          <input type="text" id="mname" name="middleName" maxlength="50" placeholder="Enter your middle name">
+          <input type="text" id="mname" name="middleName" maxlength="50" placeholder="Enter your middle name" value="${sessionScope.middle} ">
           </td>
         </tr>
         <tr> <!--input for last name-->
           <td class="field_name"><b>Last Name</b><i id="symbol">*</i></td>
           <td>
-          <input type="text" id="lname" name="lastName" maxlength="50" placeholder="Enter your last name">
+          <input type="text" id="lname" name="lastName" maxlength="50" placeholder="Enter your last name" value="${sessionScope.lname} ">
 		  <br>
 		  <span id="errorlname"></span>
           </td>
@@ -61,8 +64,17 @@ Created Date: 2019/8/14
          <!--input for gender-->
           <td class="field_name"><b>Sex</b><i id="symbol">*</i></td>
           <td>
-            <input type="radio" name="gender" id="male" value="male"> Male
+          				<c:choose>
+					<c:when test="${sessionScope.sex == 'male'}">
+			<input type="radio" name="gender" id="male" value="male" checked> Male
             <input type="radio" name="gender" id="female" value="female"> Female
+        		</c:when>
+        		<c:otherwise>
+        		<input type="radio" name="gender" id="male" value="male"> Male
+            <input type="radio" name="gender" id="female" value="female" checked> Female
+        		</c:otherwise>
+          	</c:choose>
+
 			<br>
 		  <span id="gender_error"></span>
           </td>
@@ -72,7 +84,7 @@ Created Date: 2019/8/14
          <!--input for email id-->
           <td class="field_name"><b>Email Id</b></td>
           <td>
-          <input type="email" name="emailId" id="emailid" maxlength="50" placeholder="Enter your email id">
+          <input type="email" name="emailId" id="emailid" maxlength="50" placeholder="Enter your email id" value="${sessionScope.email} ">
             <br>
              <span id="erroremail"></span>
           </td>
@@ -84,8 +96,8 @@ Created Date: 2019/8/14
           </td>
         <td>
             <!-- <input type="date" id="date" > -->
-            <select name="year" id="date" size="1">
-              <option value="" disabled selected>Year</option>
+            <select name="year" id="date" size="1" >
+              <option>${sessionScope.year}</option>
               <option value="1960">1960</option>
               <option value="1961">1961</option>
                               <option value="1962">1962</option>
@@ -148,7 +160,7 @@ Created Date: 2019/8/14
                 <option value="2019">2019</option>
             </select>
               <select name="month" id="month" size="1" >
-                <option value="" disabled selected>Month</option>
+                <option>${sessionScope.month }</option>
                 <option value="1">January</option>
                 <option value="2">February</option>
                 <option value="3">March</option>
@@ -164,7 +176,7 @@ Created Date: 2019/8/14
               </select>
 
                   <select name="day" id="day" size="1">
-              <option value="" disabled selected>Date</option>
+              <option>${sessionScope.day}</option>
               <option></option>
             </select>
 
@@ -204,21 +216,21 @@ Created Date: 2019/8/14
         <tr>
           <td class="field_name"><b>Address</b></td>
           <td>
-          <textarea rows="4" cols="25" id="address" name="address" maxlength="50" placeholder="Enter your address"></textarea>
+          <textarea rows="4" cols="25" id="address" name="address" maxlength="50" placeholder="Enter your address">${sessionScope.address }</textarea>
           </td>
         </tr>
          <!--input for username-->
         <td><label for="uname"><b>UserName</b></label><span>*</span></td>
 					<td><input type="text" name="uname" id="uname" maxlength="50"
-						 placeholder="Enter your user name" /><br>
+						 placeholder="Enter your user name" value="${sessionScope.uname }" /><br>
 						  <span id="erroruname"></span>
 						  </td>
 				</tr>
 				<tr>
 				 <!--input for password-->
 					<td><label for="pass"><b>Password</b></label><span>*</span></td>
-					<td><input type="password" name="pass" class="pass" id="pass"
-						maxlength="50" placeholder="Enter your password" /><br>
+					<td><input type="text" name="pass" class="pass" id="pass"
+						maxlength="50" placeholder="Enter your password" value="${sessionScope.password}" /><br>
 						 <span id="errorpass"></span>
 						 </td>
 				</tr>
@@ -235,10 +247,58 @@ Created Date: 2019/8/14
 		  <br>
 		   <!--input check boxes-->
           <td>
-            <input id="wp" type="checkbox" name="interests" value="webProgramming">Web Programming<br>
-            <input id="dp" type="checkbox" name="interests" value="databaseProgramming">Database Programming<br>
-            <input id="sp" type="checkbox" name="interests" value="swingProgramming">Swing Programming<br>
-            <input  id="mp" type="checkbox" name="interests" value="mobileProgramming">Mobile Programming<br>
+          <c:set var="wp" value="false"/>
+          <c:set var="sp" value="false"/>
+          <c:set var="dp" value="false"/>
+          <c:set var="mp" value="false"/>
+
+
+		<c:forEach var="areaOfInterest" items="${sessionScope.interest}">
+
+			<c:choose>
+			<c:when test="${areaOfInterest.equals('webProgramming')}">
+			<c:set var="wp" value="true"/>
+			     <input id="wp" type="checkbox" name="interests" value="webProgramming" checked>Web Programming<br>
+			</c:when>
+
+			<c:when test="${areaOfInterest == 'databaseProgramming'}">
+			<c:set var="dp" value="true"/>
+			 <input id="dp" type="checkbox" name="interests" value="databaseProgramming" checked>Database Programming<br>
+			</c:when>
+
+			<c:when test="${areaOfInterest == 'swingProgramming'}">
+			<c:set var="sp" value="true"/>
+			      <input id="sp" type="checkbox" name="interests" value="swingProgramming" checked>Swing Programming<br>
+			</c:when>
+
+			<c:when test="${areaOfInterest == 'mobileProgramming'}">
+			<c:set var="mp" value="true"/>
+			    <input  id="mp" type="checkbox" name="interests" value="mobileProgramming" checked>Mobile Programming<br>
+			</c:when>
+
+
+
+			</c:choose>
+		</c:forEach>
+
+<c:if test="${wp==false}">
+ <input id="wp" type="checkbox" name="interests" value="webProgramming">Web Programming<br>
+</c:if>
+<c:if test="${dp==false}">
+		 <input id="dp" type="checkbox" name="interests" value="databaseProgramming" >Database Programming<br>
+</c:if>
+<c:if test="${sp==false}">
+   <input id="sp" type="checkbox" name="interests" value="swingProgramming" >Swing Programming<br>
+</c:if>
+<c:if test="${mp==false}">
+    <input  id="mp" type="checkbox" name="interests" value="mobileProgramming" >Mobile Programming<br>
+</c:if>
+
+
+
+
+
+
           </td>
 
         </tr>
@@ -247,14 +307,14 @@ Created Date: 2019/8/14
         </tr>
         <tr style="float:left">
         <td>
-          <textarea  rows="4" cols="25" style="overflow-y:scroll;" maxlength="100" name="otherInterests"></textarea>
+          <textarea  rows="4" cols="25" style="overflow-y:scroll;" maxlength="100" name="otherInterests">${sessionScope.othinterest }</textarea>
             </td>
           </tr>
 
         <!--table row for buttons-->
         <tr>
-        <td colspan="2" align="center"><button class="submit" onclick="validateForm();return false" type="submit"><b>Submit</b>
-          <button class="clear" type="reset" onclick="reseting()">Clear</button>
+        <td colspan="2" align="center"><button class="submit" onclick="validateForm();return false" type="submit"><b>Update</b>
+
             </td>
         </tr>
       </table>
