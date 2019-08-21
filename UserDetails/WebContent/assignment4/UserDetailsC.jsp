@@ -16,7 +16,7 @@ Created Date: 2019/8/14
   </head>
   <link rel="stylesheet" type="text/css" href="style.css">
   <!--javascript to validate form data-->
-  <script src="UserDetailsC.js"></script>
+  <script src="ValidateC.js"></script>
   <body>
     <!--Container-->
     <div class="container">

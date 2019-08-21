@@ -15,6 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.uks.varad.servlet.DatabaseConnection;
+/**
+ * @author: 	Varad Paralikar
+ * Created Date:19/08/2019
+ * Assignment:  Day 1
+ * Task: 		Jsp & servlet
+ *
+ */
 
 /**
  * Servlet implementation class EditUserDetails
@@ -36,6 +43,14 @@ public class EditUserDetails extends HttpServlet {
     public void init() throws ServletException {
   	   // Initialization code...
   	connection = null;
+ // connecting to database and returning the con object
+ 		DatabaseConnection databaseConnection = new DatabaseConnection();
+ 		try {
+ 			connection = databaseConnection.connect();
+ 		} catch (Exception e) {
+
+ 			System.out.println(e);
+ 		}
   	}
 
     /*
@@ -69,58 +84,38 @@ public class EditUserDetails extends HttpServlet {
 
 		//checking is user already logged in
 		HttpSession session = request.getSession();
-
-		String isLoggedIn = (String) session.getAttribute("loggedIn");
-
-
-		// connecting to database and returning the con object
-		DatabaseConnection dBConnection = new DatabaseConnection();
-		try {
-			connection = dBConnection.connect();
-		} catch (Exception e) {
-
-			System.out.println(e);
-			  out.println("<script type=\"text/javascript\">");
-	       	   out.println("alert('Error occurred while submitting data, Please try again!');");
-	       	   out.println("location='Login.jsp';");
-	       	   out.println("</script>");
-		}
-
+		// For Japanese letter unicode
+		request.setCharacterEncoding("utf-8");
 
 		try {
-
-
 			// Query fire for insertion operation with column name and values
-			PreparedStatement prepStmt = connection.prepareStatement("SELECT * from userdetails where uid =?");
+			PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from userdetails where uid =?");
 
-			prepStmt.setString(1, userId);
-
+			preparedStatement.setString(1, userId);
 
 			// executing the query for prapared statment
-			ResultSet rs = prepStmt.executeQuery();
+			ResultSet resultSet = preparedStatement.executeQuery();
 
-			if(getRowCount(rs) == 0){
+			if(getRowCount(resultSet) == 0){
 				//wrong user id
 				request.getSession().setAttribute("authentication", "notAuthenticated");
 				response.sendRedirect(request.getContextPath() + "/assignment6/Login.jsp");
 
 			}
-
-			while (rs.next()) {
+			//entering user information into session variables
+			while (resultSet.next()) {
 
 			session.setAttribute("userId", userId);
+			session.setAttribute("uname", resultSet.getString("userid"));
+			session.setAttribute("password",resultSet.getString("password"));
+			session.setAttribute("salutation", resultSet.getString("salulation"));
+			session.setAttribute("fname", resultSet.getString("firstname"));
+			session.setAttribute("middle", resultSet.getString("middleinitial"));
+			session.setAttribute("lname", resultSet.getString("lastname"));
+			session.setAttribute("sex", resultSet.getString("gender"));
+			session.setAttribute("email", resultSet.getString("email"));
 
-			session.setAttribute("uname", rs.getString("userid"));
-			session.setAttribute("password",rs.getString("password"));
-
-			session.setAttribute("salutation", rs.getString("salulation"));
-			session.setAttribute("fname", rs.getString("firstname"));
-			session.setAttribute("middle", rs.getString("middleinitial"));
-			session.setAttribute("lname", rs.getString("lastname"));
-			session.setAttribute("sex", rs.getString("gender"));
-			session.setAttribute("email", rs.getString("email"));
-
-			String dateOfBirth = rs.getString("dob");
+			String dateOfBirth = resultSet.getString("dob");
 
 			String dateNumbers[] = dateOfBirth.split("-|/");
 
@@ -131,60 +126,39 @@ public class EditUserDetails extends HttpServlet {
 
 			int m = Integer.parseInt(dateNumbers[1]);
 			String month = null;
-			if(m == 1){
-			    month = "January";
-			}else if(m == 2){
-			    month  = "February";
-			}else if(m == 3){
-			   month  = "March";
-			}else if(m == 4){
-			   month  = "April";
-			}else if(m == 5){
-			   month  = "May";
-			}else if(m == 6){
-			   month  = "June";
-			}else if(m == 7){
-			   month  = "July";
-			}else if(m == 8){
-			   month  = "August";
-			}else if(m == 9){
-			   month  = "September";
-			}else if(m == 10){
-			   month  = "October";
-			}else if(m == 11){
-			   month  = "November";
-			}else if(m == 12){
-			   month  = "December";
+
+
+			switch(m){
+			case 1: month = "January";break;
+			case 2 : month  = "February";break;
+			case 3 :  month  = "March";break;
+			case 4 :  month  = "April";break;
+			case 5 : month  = "May";break;
+			case 6 :month  = "June";break;
+			case 7 : month  = "July";break;
+			case 8 :month  = "August";break;
+			case 9 :month  = "September";break;
+			case 10 :month  = "October";break;
+			case 11 : month  = "November";break;
+			case 12 :month  = "December";break;
+			default:month  = "December";break;
 			}
 
 
 			session.setAttribute("month", month);
-
-
-
 			session.setAttribute("day", dateNumbers[2]);
+			session.setAttribute("birth", resultSet.getString("dob"));
+			session.setAttribute("address", resultSet.getString("address"));
 
 
-			session.setAttribute("birth", rs.getString("dob"));
-			session.setAttribute("address", rs.getString("address"));
-
-
-			String areaOfInterestsArray  = rs.getString("areaofinterest");
+			String areaOfInterestsArray  = resultSet.getString("areaofinterest");
 
 			String[] areaOfInterests = areaOfInterestsArray.split(",");
 			System.out.println(areaOfInterests[0]);
 			System.out.println(areaOfInterests[1]);
-			;
 
 			session.setAttribute("interest", areaOfInterests);
-			session.setAttribute("othinterest", rs.getString("otherinterest"));
-
-
-
-
-
-
-
+			session.setAttribute("othinterest", resultSet.getString("otherinterest"));
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/assignment6/EditUserDetails.jsp");
 			requestDispatcher.forward(request, response);
 			}
@@ -192,12 +166,7 @@ public class EditUserDetails extends HttpServlet {
 		} catch (Exception e) {
 			out.print("We are unable to process your request !");
 			e.printStackTrace();
-
-
 		}
-
-
-
 	}
 
 	/**
@@ -207,7 +176,6 @@ public class EditUserDetails extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 
 	public void destroy() {
 		try {

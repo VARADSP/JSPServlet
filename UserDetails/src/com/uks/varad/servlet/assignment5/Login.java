@@ -16,6 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.uks.varad.servlet.DatabaseConnection;
+/**
+ * @author: 	Varad Paralikar
+ * Created Date:14/08/2019
+ * Assignment:  Day 1
+ * Task: 		Jsp & servlet
+ *
+ */
 
 /**
  * Servlet implementation class Login
@@ -24,19 +31,28 @@ import com.uks.varad.servlet.DatabaseConnection;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	// Intializing the connection
-		Connection connection;
+		private Connection connection;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Login() {
         super();
-        // TODO Auto-generated constructor stub
+
     }
 
     public void init() throws ServletException {
  	   // Initialization code...
  	connection = null;
+
+	// connecting to database and returning the con object
+	DatabaseConnection databaseConnection = new DatabaseConnection();
+	try {
+		connection = databaseConnection.connect();
+	} catch (Exception e) {
+		System.out.println(e);
+	}
+
  	}
 
     /*
@@ -62,8 +78,8 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
+		// For Japanese letter unicode
+		request.setCharacterEncoding("utf-8");
 
 
 		//checking is user already logged in
@@ -76,191 +92,54 @@ public class Login extends HttpServlet {
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("error/error.jsp");
 			requestDispatcher.forward(request,response);
 		}
-
-
-		String cssUrl = request.getContextPath() + "/css/table.css";
-
 		// Getting data from user inputs and stored in local variables
 				PrintWriter out = response.getWriter();
-
-
 				String username = request.getParameter("username");
 				String password = request.getParameter("password");
-
-
-				// connecting to database and returning the con object
-				DatabaseConnection dBConnection = new DatabaseConnection();
-				try {
-					connection = dBConnection.connect();
-				} catch (Exception e) {
-
-					System.out.println(e);
-					  out.println("<script type=\"text/javascript\">");
-			       	   out.println("alert('Error occurred while submitting data, Please try again!');");
-			       	   out.println("location='Login.jsp';");
-			       	   out.println("</script>");
-				}
-
-
-
 				try {
 					request.getSession().setAttribute("authentication", null);
 
-
-
 					// Query fire for insertion operation with column name and values
-					PreparedStatement prepStmt = connection.prepareStatement("SELECT * from userdetails where userid =?");
+					PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from userdetails where userid =?");
 
-					prepStmt.setString(1, username);
+					preparedStatement.setString(1, username);
 
 					// executing the query for prapared statment
-					ResultSet rs = prepStmt.executeQuery();
+					ResultSet resultSet = preparedStatement.executeQuery();
 
-					if(getRowCount(rs) == 0){
+					if(getRowCount(resultSet) == 0){
 						//wrong user id
 
 						request.getSession().setAttribute("authentication", "notAuthenticated");
 						response.sendRedirect(request.getContextPath() + "/assignment5/Login.jsp");
 
 					}
-
-					while (rs.next()) {
-						if (username.equals(rs.getString(10)) && password.equals(rs.getString(11))) {
-							out.println("<html>");
-							out.println("<head>");
-							out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/table.css\"");
-
-							out.println("</head>");
-
-							out.println("<body>");
-							out.println("<div style=\"background-color: #333;position:fixed;left:0;overflow: hidden;white-space: nowrap;top:0;width:100%\">");
-
-							out.println("<a type=\"button\" class=\"button\" href=\"Logout\" style=\"text-decoration: none;position:relative;float:right; background: coral;padding: 1em 2em;color: #fff;border: 0;margin:20px;text-decoration:none;display:inline-block;\">Logout</a>");
-
-							out.println("</div>");
-
-							out.println("<div style=\"margin-top:100px;clear:both\" class=\"table-wrapper\">");
-							out.println("<table class=\"fl-table\">");
-							out.println("<thead>");
-
-
-							out.println("<tr>");
-							out.println("<th>");
-							out.println("Salutation");
-							out.println("</th>");
-							out.println("<th>");
-							out.println("FirstName");
-							out.println("</th>");
-							out.println("<th>");
-							out.println("MiddleName");
-							out.println("</th>");
-							out.println("<th>");
-							out.println("LastName");
-							out.println("</th>");
-							out.println("<th>");
-							out.println("Gender");
-							out.println("</th>");
-							out.println("<th>");
-							out.println("Email");
-							out.println("</th>");
-							out.println("<th>");
-							out.println("Date Of Birth");
-							out.println("</th>");
-
-							out.println("<th>");
-							out.println("Address");
-							out.println("</th>");
-							out.println("<th>");
-							out.println("Username");
-							out.println("</th>");
-							out.println("<th>");
-							out.println("Password");
-							out.println("</th>");
-							out.println("<th>");
-							out.println("Interests");
-							out.println("</th>");
-							out.println("<th>");
-							out.println("Other Interests");
-							out.println("</th>");
-
-							out.println("</tr>");
-
-
-
-							out.println("</thead>");
-							out.println("</tbody>");
-							out.println("<tr>");
-
-							out.println("<td>");
-							out.println(rs.getString(2));
-							out.println("</td>");
-							out.println("<td>");
-							out.println(rs.getString(3));
-							out.println("</td>");
-							out.println("<td>");
-							out.println(rs.getString(4));
-							out.println("</td>");
-							out.println("<td>");
-							out.println(rs.getString(5));
-							out.println("</td>");
-							out.println("<td>");
-							out.println(rs.getString(6));
-							out.println("</td>");
-							out.println("<td>");
-							out.println(rs.getString(7));
-							out.println("</td>");
-							out.println("<td>");
-							out.println(rs.getString(8));
-							out.println("</td>");
-							out.println("<td>");
-							out.println(rs.getString(9));
-							out.println("</td>");
-							out.println("<td>");
-							out.println(rs.getString(10));
-							out.println("</td>");
-							out.println("<td>");
-							out.println(rs.getString(11));
-							out.println("</td>");
-							out.println("<td>");
-							out.println(rs.getString(12));
-							out.println("</td>");
-							out.println("<td>");
-							if(!rs.getString(4).isEmpty()){
-								out.println(rs.getString(13));
-
+					//displaying user information from database
+					while (resultSet.next()) {
+						if (username.equals(resultSet.getString(10)) && password.equals(resultSet.getString(11))) {
+							session.setAttribute("salutation", resultSet.getString(2));
+							session.setAttribute("firstName", resultSet.getString(3));
+							session.setAttribute("middleName", resultSet.getString(4));
+							session.setAttribute("lastName", resultSet.getString(5));
+							session.setAttribute("gender", resultSet.getString(6));
+							session.setAttribute("email", resultSet.getString(7));
+							session.setAttribute("dateOfBirth", resultSet.getString(8));
+							session.setAttribute("address", resultSet.getString(9));
+							session.setAttribute("username", resultSet.getString(10));
+							session.setAttribute("password", resultSet.getString(11));
+							session.setAttribute("interest", resultSet.getString(12));
+							if(!resultSet.getString(13).isEmpty()){
+								session.setAttribute("otherInterest", resultSet.getString(13));
 							}
 							else{
-								out.println("");
+								session.setAttribute("otherInterest", "");
 							}
-							out.println("</td>");
-
-							out.println("</tr>");
-
-							out.println("</tbody>");
-							out.println("</table>");
-							// printing the information on web page
-
-							out.println("</div>");
-							out.print("<h2 align=\"center\">Successfully logged In </h2>");
-
-							out.println("<div style=\" background-color: #577;padding: 10px;text-align: center;color: white;bottom:0;left:0;position:fixed;width:100%;clear:both;\">");
-							out.println("<h1>Unikaihatsu Software Pvt Ltd. Copyright , All rights reserved</h1>");
-							out.println("</div>");
-
-
-
-
-
-
-							out.println("</html>");
-
-
-
-
-
-
+							//setting session variables
 							session.setAttribute("loggedIn", "true");
 							request.getSession().setAttribute("authentication", "authenticated");
+
+							RequestDispatcher requetsDispatcherObj =request.getRequestDispatcher("Display.jsp");
+							requetsDispatcherObj.forward(request, response);
 						} else {
 							// wrong password but right user id
 
@@ -273,19 +152,15 @@ public class Login extends HttpServlet {
 					out.print("We cant able to process your request");
 					System.out.println(e);
 				}
-
-
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		doGet(request, response);
 	}
-
-
 	public void destroy() {
 		try {
 			connection.close();

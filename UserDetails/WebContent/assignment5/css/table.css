@@ -47,9 +47,10 @@
 /* Responsive */
 
 @media (max-width: 767px) {
-    .fl-table {
+    .fl-table,.navbar,.footer {
         display: block;
         width: 100%;
+        margin:auto;
     }
     .table-wrapper:before{
         content: "Scroll horizontally >";
@@ -70,7 +71,7 @@
     }
     .fl-table tbody {
         width: auto;
-        position: relative;
+
         overflow-x: auto;
     }
     .fl-table td, .fl-table th {

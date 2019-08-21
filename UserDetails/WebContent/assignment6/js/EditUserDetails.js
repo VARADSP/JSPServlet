@@ -207,7 +207,7 @@ function validateForm(event) {
           return false;
         }
         document.loginForm.submit();// fire submit event
-        alert("sucessfully submitted");
+        alert("Data updated successfully !");
         reset();
         clear();
       }

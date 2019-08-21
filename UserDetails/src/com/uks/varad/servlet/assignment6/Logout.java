@@ -6,7 +6,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+/**
+ * @author: 	Varad Paralikar
+ * Created Date:19/08/2019
+ * Assignment:  Day 1
+ * Task: 		Jsp & servlet
+ *
+ */
 /**
  * Servlet implementation class logout
  */
@@ -28,12 +34,13 @@ public class Logout extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().setAttribute("authentication", "notAuthenticated");
 		request.getSession().removeAttribute("loggedIn");
+		request.getSession().removeAttribute("isUpdated");
 		request.getSession().invalidate();
 		response.setHeader("Cache-Control","no-cache");
 		response.setHeader("Cache-Control","no-store");
 		response.setHeader("Pragma","no-cache");
 		response.setDateHeader ("Expires", 0);
-        response.sendRedirect("Login.jsp");
+        response.sendRedirect("Login.jsp"); // calling login page again
 	}
 
 	/**

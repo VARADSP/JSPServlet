@@ -12,7 +12,8 @@ Created Date: 2019/8/14
   </head>
   <link rel="stylesheet" type="text/css" href="style.css">
   <!--javascript to validate form data-->
-  <script src="UserDetails.js"></script>
+
+   <script src="../assignment1/Validate.js"></script>
   <body>
     <!--Container-->
     <div class="container">
@@ -206,7 +207,7 @@ Created Date: 2019/8/14
           </td>
         </tr>
          <!--input for username-->
-        <td><label for="uname"><b>UserName</b></label><span>*</span></td>
+        <td class="field_name"><label for="uname"><b> UserName</b></label><span>*</span></td>
 					<td><input type="text" name="uname" id="uname" maxlength="50"
 						 placeholder="Enter your user name" /><br>
 						  <span id="erroruname"></span>
@@ -214,7 +215,7 @@ Created Date: 2019/8/14
 				</tr>
 				<tr>
 				 <!--input for password-->
-					<td><label for="pass"><b>Password</b></label><span>*</span></td>
+					<td class="field_name"><label for="pass"><b> Password</b></label><span>*</span></td>
 					<td><input type="password" name="pass" class="pass" id="pass"
 						maxlength="50" placeholder="Enter your password" /><br>
 						 <span id="errorpass"></span>
@@ -251,7 +252,7 @@ Created Date: 2019/8/14
 
         <!--table row for buttons-->
         <tr>
-        <td colspan="2" align="center"><button class="submit" onclick="validateForm();return false" type="submit"><b>Submit</b>
+        <td colspan="2" align="center"><button class="submit" onclick="validateForm(event);return false" type="submit"><b>Submit</b>
           <button class="clear" type="reset" onclick="reseting()">Clear</button>
             </td>
         </tr>

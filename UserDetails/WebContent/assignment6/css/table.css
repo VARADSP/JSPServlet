@@ -23,11 +23,13 @@
 .fl-table td, .fl-table th {
     text-align: center;
     padding: 8px;
+    word-wrap: break-word;
 }
 
 .fl-table td {
     border-right: 1px solid #f8f8f8;
     font-size: 12px;
+    word-wrap: break-word;
 }
 
 .fl-table thead th {
@@ -48,7 +50,7 @@
 /* Responsive */
 
 @media (max-width: 767px) {
-    .fl-table {
+    .fl-table , .navbar , .footer{
         display: block;
         width: 100%;
     }
@@ -71,7 +73,7 @@
     }
     .fl-table tbody {
         width: auto;
-        position: relative;
+
         overflow-x: auto;
     }
     .fl-table td, .fl-table th {

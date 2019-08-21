@@ -15,24 +15,41 @@ import javax.servlet.http.HttpServletResponse;
 import com.uks.varad.servlet.DatabaseConnection;
 
 /**
+ * @author: 	Varad Paralikar
+ * Created Date:14/08/2019
+ * Assignment:  Day 1
+ * Task: 		Jsp & servlet
+ *
+ */
+
+/**
  * Servlet implementation class SaveUserDetailsIntoDatabase
  */
 @WebServlet("/assignment2/UserDetailsA")
 public class UserDetailsA extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Connection connection;
+	private Connection connection;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
     public UserDetailsA() {
         super();
-        // TODO Auto-generated constructor stub
+
     }
 
     public void init() throws ServletException {
     	   // Initialization code...
     	connection = null;
+
+
+    	DatabaseConnection databaseConnection = new DatabaseConnection();
+		try {
+			 connection  = databaseConnection.connect();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
     	}
 
 	/**
@@ -41,20 +58,20 @@ public class UserDetailsA extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// getting the user input data from jsp pages using PrintWriter
 		PrintWriter out = response.getWriter();
-		String sal = request.getParameter("sal1");
-		String fname = request.getParameter("firstName");
-		String mname = request.getParameter("middleName");
-		String lname = request.getParameter("lastName");
+		String salutation = request.getParameter("sal1");
+		String firstName = request.getParameter("firstName");
+		String middleName = request.getParameter("middleName");
+		String lastName = request.getParameter("lastName");
 		String sex = request.getParameter("gender");
 		String email = request.getParameter("emailId");
 		String dobYear = request.getParameter("year");
 		String dobMonth = request.getParameter("month");
 		String dobDay = request.getParameter("day");
-		String dob = dobYear+"/"+dobMonth+"/"+dobDay;
+		String dateOfBirth = dobYear+"/"+dobMonth+"/"+dobDay;
 
 		String address = request.getParameter("address");
-		String uname = request.getParameter("uname");
-		String pass = request.getParameter("pass");
+		String userName = request.getParameter("uname");
+		String password = request.getParameter("pass");
 		// Storing multiple interest in array
 		String[] interest = request.getParameterValues("interests");
 		// Storing interest in local variable
@@ -64,37 +81,28 @@ public class UserDetailsA extends HttpServlet {
 				}
 		String othInterest = request.getParameter("otherInterests");
 
-		DatabaseConnection databaseConnection = new DatabaseConnection();
-		try {
-			 connection  = databaseConnection.connect();
-		} catch (Exception e) {
-			  out.println("<script type=\"text/javascript\">");
-       	   out.println("alert('Error occurred while submitting data, Please try again!');");
-       	   out.println("location='UserDetailsA.jsp';");
-       	   out.println("</script>");
-		}
 
 
 		try {
 			// Query fire for insertion operation with column name and values
-			PreparedStatement prepStmt = connection.prepareStatement(
+			PreparedStatement preparedStatement = connection.prepareStatement(
 					"insert into userdetails(salulation,firstname,middleinitial,lastname,gender,email,dob,address,userid,password,areaofinterest,otherinterest) values(?,?,?,?,?,?,?,?,?,?,?,?)");
 			// Set all variable values in prepared statment
-			prepStmt.setString(1, sal);
-			prepStmt.setString(2, fname);
-			prepStmt.setString(3, mname);
-			prepStmt.setString(4, lname);
-			prepStmt.setString(5, sex);
-			prepStmt.setString(6, email);
-			prepStmt.setString(7, dob);
-			prepStmt.setString(8, address);
-			prepStmt.setString(9, uname);
-			prepStmt.setString(10, pass);
-			prepStmt.setString(11, allIneterest);
-			prepStmt.setString(12, othInterest);
+			preparedStatement.setString(1, salutation);
+			preparedStatement.setString(2, firstName);
+			preparedStatement.setString(3, middleName);
+			preparedStatement.setString(4, lastName);
+			preparedStatement.setString(5, sex);
+			preparedStatement.setString(6, email);
+			preparedStatement.setString(7, dateOfBirth);
+			preparedStatement.setString(8, address);
+			preparedStatement.setString(9, userName);
+			preparedStatement.setString(10, password);
+			preparedStatement.setString(11, allIneterest);
+			preparedStatement.setString(12, othInterest);
 
 			// executing the query
-			int i = prepStmt.executeUpdate();
+			int i = preparedStatement.executeUpdate();
 			if (i > 0) {
 				out.println("<h1 align=\"center\"><b>You are successfully registered</b></h1>");
 			} else {
@@ -103,31 +111,17 @@ public class UserDetailsA extends HttpServlet {
 
 			}
 
-			// Show Data on Console
-			System.out.println();
-			System.out.println("================================================");
-			System.out.println("Salutation is: " + sal);
-			System.out.println("First Name is: " + fname);
-			System.out.println("Middle Initial is: " + mname);
-			System.out.println("Lastname is: " + lname);
-			System.out.println("Sex is: " + sex);
-			System.out.println("Email Id is: " + email);
-			System.out.println("Birth Date is: " + dob);
-			System.out.println("Address is: " + address);
-			System.out.println("username is: " + uname);
-			System.out.println("password is: " + pass);
+
 			// printing the interest info on console
 			if (interest != null) {
 				System.out.println("Interests are: ");
 				for (String inter : interest) {
-					System.out.println("\t" + inter);
+
 				}
 			}
-			System.out.println("Other Interest is: " + othInterest);
-			System.out.println("================================================");
 
-			// printing the info on the webpage
-			out.print("<h1 align=\"center\"><b>User Details are printed on the console !</b></h1>");
+
+
 		  	out.println("<a type=\"button\" class=\"button\" href=\"UserDetailsA.jsp\" style=\"text-decoration: none;position:relative;left:45%; background: coral;padding: 1em 2em;color: #fff;border: 0;margin:20px;text-decoration:none;display:inline-block;\">Go Back</a>");
 
 		} catch (Exception e) {
@@ -145,7 +139,7 @@ public class UserDetailsA extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		doGet(request, response);
 	}
 	public void destroy() {

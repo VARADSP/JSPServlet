@@ -16,7 +16,7 @@ Created Date: 2019/8/19
   </head>
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <!--javascript to validate form data-->
-  <script src="js/EditUserDetails.js"></script>
+  <script src="js/ValidateEditUserDetails.js"></script>
   <body>
     <!--Container-->
     <div class="container">
@@ -252,7 +252,7 @@ Created Date: 2019/8/19
           <c:set var="dp" value="false"/>
           <c:set var="mp" value="false"/>
 
-
+ <!--JSTL tag to generate checkboxes which are checked-->
 		<c:forEach var="areaOfInterest" items="${sessionScope.interest}">
 
 			<c:choose>
