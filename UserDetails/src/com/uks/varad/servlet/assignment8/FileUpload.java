@@ -28,7 +28,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext;
 public class FileUpload extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private final String UPLOAD_DIRECTORY = "D:/Test";
+	private final String UPLOAD_DIRECTORY = "D:\\PRTOT\\NEWWSPRTOT\\UserDetails\\WebContent\\assignment8\\FilesAvailable";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -42,17 +42,6 @@ public class FileUpload extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// response.getWriter().append("Served at:
-		// ").append(request.getContextPath());
-		doPost(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		//if directory does not exist
@@ -89,6 +78,17 @@ public class FileUpload extends HttpServlet {
 		}
 		// redirect to the next jsp page
 		request.getRequestDispatcher("Output.jsp").forward(request, response);
+
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request,response);
 	}
 
 }

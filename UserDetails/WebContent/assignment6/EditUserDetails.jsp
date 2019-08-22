@@ -16,7 +16,13 @@ Created Date: 2019/8/19
   </head>
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <!--javascript to validate form data-->
-  <script src="js/ValidateEditUserDetails.js"></script>
+  <script src="js/ValidateEditUserDetails1.js"></script>
+  <style>
+  	.header{
+  	width:180%;
+  	}
+
+  </style>
   <body>
     <!--Container-->
     <div class="container">
@@ -159,8 +165,8 @@ Created Date: 2019/8/19
                 <option value="2018">2018</option>
                 <option value="2019">2019</option>
             </select>
-              <select name="month" id="month" size="1" >
-                <option>${sessionScope.month }</option>
+              <select name="month" id="dateMonth" size="1" >
+                <option id="firstMonthField">${sessionScope.month }</option>
                 <option value="1">January</option>
                 <option value="2">February</option>
                 <option value="3">March</option>
@@ -175,13 +181,14 @@ Created Date: 2019/8/19
                 <option value="12">December</option>
               </select>
 
-                  <select name="day" id="day" size="1">
+                  <select name="day" id="dateDay" size="1">
               <option>${sessionScope.day}</option>
               <option></option>
             </select>
 
             <script>
               function daysInMonth(month, year) {
+            	  document.getElementById('firstMonthField').innerHTML = "Month";
                 var dd = new Date(year, month, 0);
                 return dd.getDate();
               }
@@ -189,7 +196,7 @@ Created Date: 2019/8/19
                 var year = dyear.options[dyear.selectedIndex].value;
                 var month = dmonth.options[dmonth.selectedIndex].value;
                 var day = dday.options[dday.selectedIndex].value;
-                console.log(daysInMonth(month,year));
+
                 var days = (year == ' ' || month == ' ') ? 31 : daysInMonth(month, year);
                 dday.options.length = 0;
                 dday.options[dday.options.length] = new Option('Day',' ');
@@ -200,13 +207,14 @@ Created Date: 2019/8/19
 
               function setDay() {
                 var year = document.getElementById('date');
-                var month = document.getElementById('month');
-                var day = document.getElementById('day');
-                console.log(day);
+                var month = document.getElementById('dateMonth');
+                var day = document.getElementById('dateDay');
+                console.log(month.value);
                 setDayDrop(year, month, day);
               }
-              document.getElementById('month').onchange = setDay;
+              document.getElementById('dateMonth').onchange = setDay;
               document.getElementById('date').onchange = setDay;
+
             </script>
 			 <br>
 	  <span id="errorday" ></span>
@@ -220,7 +228,7 @@ Created Date: 2019/8/19
           </td>
         </tr>
          <!--input for username-->
-        <td><label for="uname"><b>UserName</b></label><span>*</span></td>
+        <td class="field_name"><label for="uname"><b>UserName</b></label><span>*</span></td>
 					<td><input type="text" name="uname" id="uname" maxlength="50"
 						 placeholder="Enter your user name" value="${sessionScope.uname }" /><br>
 						  <span id="erroruname"></span>
@@ -228,8 +236,8 @@ Created Date: 2019/8/19
 				</tr>
 				<tr>
 				 <!--input for password-->
-					<td><label for="pass"><b>Password</b></label><span>*</span></td>
-					<td><input type="text" name="pass" class="pass" id="pass"
+					<td class="field_name"><label for="pass"><b>Password</b></label><span>*</span></td>
+					<td><input type="password" name="pass" class="pass" id="pass"
 						maxlength="50" placeholder="Enter your password" value="${sessionScope.password}" /><br>
 						 <span id="errorpass"></span>
 						 </td>
@@ -252,52 +260,56 @@ Created Date: 2019/8/19
           <c:set var="dp" value="false"/>
           <c:set var="mp" value="false"/>
 
- <!--JSTL tag to generate checkboxes which are checked-->
+
 		<c:forEach var="areaOfInterest" items="${sessionScope.interest}">
-
-			<c:choose>
-			<c:when test="${areaOfInterest.equals('webProgramming')}">
-			<c:set var="wp" value="true"/>
-			     <input id="wp" type="checkbox" name="interests" value="webProgramming" checked>Web Programming<br>
-			</c:when>
-
-			<c:when test="${areaOfInterest == 'databaseProgramming'}">
-			<c:set var="dp" value="true"/>
-			 <input id="dp" type="checkbox" name="interests" value="databaseProgramming" checked>Database Programming<br>
-			</c:when>
-
-			<c:when test="${areaOfInterest == 'swingProgramming'}">
-			<c:set var="sp" value="true"/>
-			      <input id="sp" type="checkbox" name="interests" value="swingProgramming" checked>Swing Programming<br>
-			</c:when>
-
-			<c:when test="${areaOfInterest == 'mobileProgramming'}">
-			<c:set var="mp" value="true"/>
-			    <input  id="mp" type="checkbox" name="interests" value="mobileProgramming" checked>Mobile Programming<br>
-			</c:when>
-
-
-
-			</c:choose>
+         <c:if test="${areaOfInterest.equals('webProgramming')}">
+  			<c:set var="wp" value="true"/>
+			<input id="wp" type="checkbox" name="interests" value="webProgramming" checked>Web Programming<br>
+		</c:if>
 		</c:forEach>
 
-<c:if test="${wp==false}">
- <input id="wp" type="checkbox" name="interests" value="webProgramming">Web Programming<br>
-</c:if>
-<c:if test="${dp==false}">
-		 <input id="dp" type="checkbox" name="interests" value="databaseProgramming" >Database Programming<br>
-</c:if>
-<c:if test="${sp==false}">
-   <input id="sp" type="checkbox" name="interests" value="swingProgramming" >Swing Programming<br>
-</c:if>
-<c:if test="${mp==false}">
-    <input  id="mp" type="checkbox" name="interests" value="mobileProgramming" >Mobile Programming<br>
-</c:if>
+		<c:if test="${wp == false}">
+		<c:set var="wp" value="false"/>
+		 <input id="wp" type="checkbox" name="interests" value="webProgramming">Web Programming<br>
+		</c:if>
 
 
 
+		<c:forEach var="areaOfInterest" items="${sessionScope.interest}">
+		<c:if test="${areaOfInterest.equals('databaseProgramming')}">
+  			<c:set var="dp" value="true"/>
+			<input id="dp" type="checkbox" name="interests" value="databaseProgramming" checked>Database Programming<br>
+		</c:if>
+		</c:forEach>
+
+		<c:if test="${!dp}">
+		<c:set var="dp" value="false"/>
+				 <input id="dp" type="checkbox" name="interests" value="databaseProgramming">Database Programming<br>
+		</c:if>
+
+		<c:forEach var="areaOfInterest" items="${sessionScope.interest}">
+		<c:if test="${areaOfInterest.equals('swingProgramming')}">
+  			<c:set var="sp" value="true"/>
+			<input id="sp" type="checkbox" name="interests" value="swingProgramming" checked>Swing Programming<br>
+		</c:if>
+		</c:forEach>
+		<c:if test="${!sp}">
+					<c:set var="sp" value="false"/>
+				 <input id="sp" type="checkbox" name="interests" value="swingProgramming">Swing Programming<br>
+		</c:if>
 
 
+		<c:forEach var="areaOfInterest" items="${sessionScope.interest}">
+		<c:if test="${areaOfInterest.equals('mobileProgramming')}">
+  			<c:set var="mp" value="true"/>
+			<input id="mp" type="checkbox" name="interests" value="mobileProgramming" checked>Mobile Programming<br>
+		</c:if>
+		</c:forEach>
+
+		<c:if test="${!mp}">
+		<c:set var="mp" value="false"/>
+				 <input id="mp" type="checkbox" name="interests" value="mobileProgramming">Mobile Programming<br>
+		</c:if>
 
           </td>
 
@@ -307,13 +319,13 @@ Created Date: 2019/8/19
         </tr>
         <tr style="float:left">
         <td>
-          <textarea  rows="4" cols="25" style="overflow-y:scroll;" maxlength="100" name="otherInterests">${sessionScope.othinterest }</textarea>
+          <textarea id="otherInterest"  rows="4" cols="25" style="overflow-y:scroll;" maxlength="100" name="otherInterests">${sessionScope.othinterest }</textarea>
             </td>
           </tr>
 
         <!--table row for buttons-->
         <tr>
-        <td colspan="2" align="center"><button class="submit" onclick="validateForm();return false" type="submit"><b>Update</b>
+        <td colspan="2" align="center"><button class="submit" onclick="validateForm(event);return false" type="submit"><b>Update</b>
 
             </td>
         </tr>

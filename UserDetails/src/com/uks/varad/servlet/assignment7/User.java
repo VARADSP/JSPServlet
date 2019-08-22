@@ -1,5 +1,10 @@
 package com.uks.varad.servlet.assignment7;
 
+/*
+ * User class is used to manage data of user, this acts as POJO Class
+ * @author: Varad Paralikar
+ * @Created Date : 2019/08/21
+ */
 public class User {
 	private String uid;
 	private String salutation;

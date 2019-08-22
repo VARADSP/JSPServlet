@@ -57,15 +57,15 @@ function validateForm(event) {
         document.getElementById('erroruname').innerText = "Please enter username";
         document.getElementById('errorpass').innerText = "Please enter password";
 
-        console.log("In 1");
+        console.log("In 1 asdasdsa");
       }
 
       else if(fname==0 && lname==0 && ( document.getElementById("wp").checked==false
     	        && document.getElementById("dp").checked==false &&  document.getElementById("sp").checked==false &&
     	        document.getElementById("mp").checked==false )& email==0 &&  document.getElementById("date").value==0 && uname!=0 && password!=0){
 
-    	  document.getElementById('errorlname').innerHTML="Please enter first name";
-          document.getElementById('errorname').innerHTML="Please enter last name";
+    	  document.getElementById('errorlname').innerHTML="Please enter last name";
+          document.getElementById('errorname').innerHTML="Please enter first name";
           document.getElementById('gender_error').innerText="please select gender";
 
 
@@ -235,18 +235,19 @@ function validateForm(event) {
     	  console.log("In 16 last");
 
 
-        //performing check for correct salutation
-        if((sex == "male" && (document.getElementById('salutation').value == "Mrs." || document.getElementById('salutation').value == "Miss"))){
 
-          document.getElementById('gender_error').innerText="please select correct gender";
+          //performing check for correct salutation
+          if((sex == "male" && (document.getElementById('salutation').value == "Mrs." || document.getElementById('salutation').value == "Miss"))){
 
-          return false;
-        }
-        if(sex=="female" && document.getElementById('salutation').value == "Mr."){
+            document.getElementById('gender_error').innerText="please select correct gender";
 
-          document.getElementById('gender_error').innerText="please select correct gender";
-          return false;
-        }
+            return false;
+          }
+          if(sex=="female" && document.getElementById('salutation').value == "Mr."){
+
+            document.getElementById('gender_error').innerText="please select correct gender";
+            return false;
+          }
         document.loginForm.submit();// fire submit event
 
         reset();

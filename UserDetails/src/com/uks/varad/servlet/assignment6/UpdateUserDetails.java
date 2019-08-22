@@ -3,9 +3,12 @@ package com.uks.varad.servlet.assignment6;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,8 +16,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.websocket.Session;
 
+
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 import com.uks.varad.servlet.DatabaseConnection;
 
 /**
@@ -107,21 +111,46 @@ public class UpdateUserDetails extends HttpServlet {
 				case "December" : month = 12;break;
 				}
 				String dobDay = request.getParameter("day");
-				String dateOfBirth = dobYear+"/"+month+"/"+dobDay;
+				String dateOfBirth = dobYear+"-"+month+"-"+dobDay;
+
+				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				java.util.Date date = null;
+				try {
+				    date =  dateFormat.parse(dateOfBirth);
+				    System.out.println(date.toString()); // Wed Dec 04 00:00:00 CST 2013
+
+				    String output = dateFormat.format(date);
+				    System.out.println(output); // 2013-12-04
+				}
+				catch (ParseException | java.text.ParseException e) {
+				    e.printStackTrace();
+				}
+
+
+				final String stringDate= dateFormat.format(date);
+				final java.sql.Date sqlDate=  java.sql.Date.valueOf(stringDate);
 
 				String address = request.getParameter("address");
 				String userName = request.getParameter("uname");
 				String password = request.getParameter("pass");
 
 			//	Reader reader = new InputStreamReader(get.openStream(), "UTF-8");
-
+				String[] interest = {};
 				// Storing multiple interest in array
-				String[] interest = request.getParameterValues("interests");
+				if( request.getParameterValues("interests") != null){
+					interest = request.getParameterValues("interests");
+
+				}
 				// Storing interest in local variable
-						String allIneterest = "";
-						for (int i = 0; i < interest.length; i++) {
-							allIneterest += interest[i] + ",".trim();
-						}
+				String allIneterest = "";
+
+				if(interest.length != 0){
+
+					for (int i = 0; i < interest.length; i++) {
+						allIneterest += interest[i] + ",".trim();
+					}
+
+				}
 				String othInterest = request.getParameter("otherInterests");
 
 				try {
@@ -137,7 +166,7 @@ public class UpdateUserDetails extends HttpServlet {
 					preparedStatement.setString(4, lastName);
 					preparedStatement.setString(5, sex);
 					preparedStatement.setString(6, email);
-					preparedStatement.setString(7, dateOfBirth);
+					preparedStatement.setDate(7, sqlDate);
 					preparedStatement.setString(8, address);
 					preparedStatement.setString(9, userName);
 					preparedStatement.setString(10, password);

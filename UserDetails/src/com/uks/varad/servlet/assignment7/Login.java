@@ -116,7 +116,7 @@ public class Login extends HttpServlet {
 
 						session.setAttribute("admin", "true");
 
-						session.setAttribute("username", "Admin");
+						session.setAttribute("username", "admin");
 
 						// Query fire for insertion operation with column name and values
 						PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from userdetails");

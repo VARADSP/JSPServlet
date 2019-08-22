@@ -3,9 +3,12 @@ package com.uks.varad.servlet.assignment7;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +16,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.Session;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 import com.uks.varad.servlet.DatabaseConnection;
 
 /**
@@ -49,7 +54,7 @@ public class UpdateUserDetails extends HttpServlet {
 	} catch (Exception e) {
 		System.out.println(e);
 	}
-   }
+  	}
 
     /*
    	 * method getRowCount returns total number of rows in a table.
@@ -105,23 +110,49 @@ public class UpdateUserDetails extends HttpServlet {
 				case "November" : month = 11;break;
 				case "December" : month = 12;break;
 				}
-
 				String dobDay = request.getParameter("day");
-				String dateOfBirth = dobYear+"/"+month+"/"+dobDay;
+				String dateOfBirth = dobYear+"-"+month+"-"+dobDay;
+
+				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				java.util.Date date = null;
+				try {
+				    date =  dateFormat.parse(dateOfBirth);
+				    System.out.println(date.toString()); // Wed Dec 04 00:00:00 CST 2013
+
+				    String output = dateFormat.format(date);
+				    System.out.println(output); // 2013-12-04
+				}
+				catch (ParseException | java.text.ParseException e) {
+				    e.printStackTrace();
+				}
+
+
+				final String stringDate= dateFormat.format(date);
+				final java.sql.Date sqlDate=  java.sql.Date.valueOf(stringDate);
+
 				String address = request.getParameter("address");
 				String userName = request.getParameter("uname");
 				String password = request.getParameter("pass");
 
 			//	Reader reader = new InputStreamReader(get.openStream(), "UTF-8");
-
+				String[] interest = {};
 				// Storing multiple interest in array
-				String[] interest = request.getParameterValues("interests");
+				if( request.getParameterValues("interests") != null){
+					interest = request.getParameterValues("interests");
+
+				}
 				// Storing interest in local variable
-						String allIneterest = "";
-						for (int i = 0; i < interest.length; i++) {
-							allIneterest += interest[i] + ",".trim();
-						}
+				String allIneterest = "";
+
+				if(interest.length != 0){
+
+					for (int i = 0; i < interest.length; i++) {
+						allIneterest += interest[i] + ",".trim();
+					}
+
+				}
 				String othInterest = request.getParameter("otherInterests");
+
 				try {
 					// Query fire for insertion operation with column name and values
 					String query = "UPDATE userdetails SET salulation=?,firstname=?,middleinitial=?,lastname=?,gender=?,email=?,dob=?,address=?,userid=?,password=?,areaofinterest=?,otherinterest=? WHERE uid=?";
@@ -135,7 +166,7 @@ public class UpdateUserDetails extends HttpServlet {
 					preparedStatement.setString(4, lastName);
 					preparedStatement.setString(5, sex);
 					preparedStatement.setString(6, email);
-					preparedStatement.setString(7, dateOfBirth);
+					preparedStatement.setDate(7, sqlDate);
 					preparedStatement.setString(8, address);
 					preparedStatement.setString(9, userName);
 					preparedStatement.setString(10, password);
@@ -143,31 +174,32 @@ public class UpdateUserDetails extends HttpServlet {
 					preparedStatement.setString(12, othInterest);
 					preparedStatement.setString(13, userId);
 
-
 					// executing the query
 					int i = preparedStatement.executeUpdate();
 					if (i > 0) {
 						out.println("<h1 align=\"center\"><b>User Details updated successfully !</b></h1>");
 
-						request.getSession().setAttribute("isUpdated", "true");
 
-						if(request.getSession().getAttribute("admin") != null){
+						if(request.getSession().getAttribute("username").equals("admin")){
+
 							request.getSession().setAttribute("username", "admin");
 					       	request.getSession().setAttribute("password", "admin");
 
-						}else{
+						}
+						else{
 							request.getSession().setAttribute("username", userName);
 					       	request.getSession().setAttribute("password", password);
-						}
 
-				       	request.getSession().setAttribute("fromUpdate", "true");
+						}
+						request.getSession().setAttribute("fromUpdate", "true");
 				       	request.getSession().removeAttribute("loggedIn");
 
+				       	request.getSession().setAttribute("isUpdated", "true");
+				       	request.getSession().setAttribute("admin", "true");
 
-					//	out.println("<a type=\"button\" class=\"button\" href=\"Logout\" style=\"text-decoration: none;position:relative;float:right; background: coral;padding: 1em 2em;color: #fff;border: 0;margin:20px;text-decoration:none;display:inline-block;\">Logout</a>");
+				   //	out.println("<a type=\"button\" class=\"button\" href=\"Logout\" style=\"text-decoration: none;position:relative;float:right; background: coral;padding: 1em 2em;color: #fff;border: 0;margin:20px;text-decoration:none;display:inline-block;\">Logout</a>");
 				    	RequestDispatcher requestDispatcher = request.getRequestDispatcher("Login");
 						requestDispatcher.forward(request, response);
-
 					} else {
 						out.println("<div style=\"background-color: #333;position:fixed;left:0;overflow: hidden;white-space: nowrap;top:0;width:100%\">");
 						out.println("<a type=\"button\" class=\"button\" href=\"Logout\" style=\"text-decoration: none;position:relative;float:right; background: coral;padding: 1em 2em;color: #fff;border: 0;margin:20px;text-decoration:none;display:inline-block;\">Logout</a>");
@@ -175,21 +207,17 @@ public class UpdateUserDetails extends HttpServlet {
 						out.println("</div>");
 					}
 
+
 				} catch (Exception e) {
 					out.println("<div style=\"background-color: #333;position:fixed;left:0;overflow: hidden;white-space: nowrap;top:0;width:100%\">");
-
 					out.println("<a type=\"button\" class=\"button\" href=\"Logout\" style=\"text-decoration: none;position:relative;float:right; background: coral;padding: 1em 2em;color: #fff;border: 0;margin:20px;text-decoration:none;display:inline-block;\">Logout</a>");
 					out.print("<h1 align=\"center\" style=\"color:red;\"><b>We cant able to process your request!</b></h1>");
-
 					out.println("</div>");
 					System.out.println(e);
-
-
 				}
 				out.close();
 
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -197,8 +225,6 @@ public class UpdateUserDetails extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
-
 
 	public void destroy() {
 		try {

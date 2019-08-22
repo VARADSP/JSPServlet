@@ -12,7 +12,7 @@ Created Date: 2019/8/21
 <title>File Output</title>
 
  <link href="css/bootstrap.min.css" rel="stylesheet">
- <link href="css/style.css" rel="stylesheet">
+ <link href="css/style1.css" rel="stylesheet">
 
 </head>
 <script>

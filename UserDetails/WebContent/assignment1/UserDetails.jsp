@@ -10,7 +10,7 @@ Created Date: 2019/8/14
    <meta http-equiv="Content-Type"content="text/html;charset=utf-8">
  <title>User Details</title>
   </head>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="style1.css">
   <!--javascript to validate form data-->
 
    <script src="../assignment1/Validate.js"></script>

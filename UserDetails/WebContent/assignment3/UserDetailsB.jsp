@@ -12,7 +12,7 @@ Created Date: 2019/8/14
    <meta http-equiv="Content-Type"content="text/html;charset=utf-8">
  <title>User Details</title>
   </head>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="style3.css">
   <!--javascript to validate form data-->
   <script src="ValidateB.js"></script>
   <body>
@@ -253,7 +253,7 @@ Created Date: 2019/8/14
 
         <!--table row for buttons-->
         <tr>
-        <td colspan="2" align="center"><button class="submit" onclick="validateForm();return false" type="submit"><b>Submit</b>
+        <td colspan="2" align="center"><button class="submit" onclick="validateForm(event);return false" type="submit"><b>Submit</b>
           <button class="clear" type="reset" onclick="reseting()">Clear</button>
             </td>
         </tr>

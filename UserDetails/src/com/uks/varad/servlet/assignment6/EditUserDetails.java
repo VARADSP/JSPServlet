@@ -154,8 +154,7 @@ public class EditUserDetails extends HttpServlet {
 			String areaOfInterestsArray  = resultSet.getString("areaofinterest");
 
 			String[] areaOfInterests = areaOfInterestsArray.split(",");
-			System.out.println(areaOfInterests[0]);
-			System.out.println(areaOfInterests[1]);
+
 
 			session.setAttribute("interest", areaOfInterests);
 			session.setAttribute("othinterest", resultSet.getString("otherinterest"));

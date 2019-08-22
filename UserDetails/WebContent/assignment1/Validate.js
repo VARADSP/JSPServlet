@@ -64,8 +64,8 @@ function validateForm(event) {
     	        && document.getElementById("dp").checked==false &&  document.getElementById("sp").checked==false &&
     	        document.getElementById("mp").checked==false )& email==0 &&  document.getElementById("date").value==0 && uname!=0 && password!=0){
 
-    	  document.getElementById('errorlname').innerHTML="Please enter first name";
-          document.getElementById('errorname').innerHTML="Please enter last name";
+    	  document.getElementById('errorlname').innerHTML="Please enter last name";
+          document.getElementById('errorname').innerHTML="Please enter first name";
           document.getElementById('gender_error').innerText="please select gender";
 
 
