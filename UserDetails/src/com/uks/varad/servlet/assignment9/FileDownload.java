@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -25,11 +26,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/assignment9/FileDownload")
 public class FileDownload extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	private final String DOWNLOAD_DIRECTORY = "D:\\PRTOT\\NEWWSPRTOT\\UserDetails\\WebContent\\assignment9\\FilesAvailable";
-
 	private ArrayList<Files> files;
-
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -39,13 +37,10 @@ public class FileDownload extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-
-
 	@Override
 	public void init() throws ServletException {
 		super.init();
 		files = new ArrayList<Files>();
-
 	}
 
 	/**
@@ -59,11 +54,12 @@ public class FileDownload extends HttpServlet {
         //get all the files from a directory
         File[] fileList = directory.listFiles();
         Files fileObject = null;
+        int count=0;
         for (File file : fileList){
             if (file.isFile()){
                 System.out.println(file.getAbsolutePath());
-
-                fileObject = new Files(file.getName(), file.getAbsolutePath(), Long.toString(file.length()));
+                count++;
+                fileObject = new Files(Integer.toString(count),file.getName(), file.getAbsolutePath(), Long.toString(file.length()));
                 files.add(fileObject);
 
 
@@ -71,7 +67,6 @@ public class FileDownload extends HttpServlet {
                 listFiles(file.getAbsolutePath());
             }
         }
-
     }
 
 	/**
@@ -83,21 +78,21 @@ public class FileDownload extends HttpServlet {
 		    if (! directory.exists()){
 		    	request.getRequestDispatcher("Error.jsp").forward(request, response);
 		    }
-
-
-
 		    String fileUrl = request.getParameter("fileUrl");
-
-
 		    if(fileUrl == null){
 		    	//listing files
 			    listFiles(DOWNLOAD_DIRECTORY);
-
-
-
 		    }
 		    else{
-		    	 String fileName = request.getParameter("fileName");
+		    	// For Japanese letter unicode
+				request.setCharacterEncoding("utf-8");
+				response.setCharacterEncoding("utf-8");
+
+		    	 String fileName1 = request.getParameter("fileName");
+
+		    	 String fileName = URLEncoder.encode(fileName1, "UTF-8");
+		    	 response.setHeader("Content-Disposition","attachment; filename="+fileName );
+
 		    	// set the content type
 				response.setContentType("APPLICATION/OCTET-STREAM");
 				// setting the file content with the header and file name
@@ -115,7 +110,6 @@ public class FileDownload extends HttpServlet {
 				fileInputStream.close();
 		    }
 		    request.getSession().setAttribute("fileList", files);
-
 	}
 
 	/**
@@ -123,14 +117,10 @@ public class FileDownload extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-
 	}
-
 	@Override
 	public void destroy() {
 		super.destroy();
 		files.clear();
 	}
-
 }

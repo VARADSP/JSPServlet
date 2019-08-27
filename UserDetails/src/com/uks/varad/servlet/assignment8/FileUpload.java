@@ -78,10 +78,7 @@ public class FileUpload extends HttpServlet {
 		}
 		// redirect to the next jsp page
 		request.getRequestDispatcher("Output.jsp").forward(request, response);
-
-
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -90,5 +87,4 @@ public class FileUpload extends HttpServlet {
 			throws ServletException, IOException {
 		doGet(request,response);
 	}
-
 }

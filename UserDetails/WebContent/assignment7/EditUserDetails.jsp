@@ -183,7 +183,7 @@ Created Date: 2019/8/19
 
                   <select name="day" id="dateDay" size="1">
               <option>${sessionScope.day}</option>
-              <option></option>
+              <option>Day</option>
             </select>
 
             <script>
@@ -212,8 +212,27 @@ Created Date: 2019/8/19
                 console.log(month.value);
                 setDayDrop(year, month, day);
               }
+
+              function setDays(){
+            	  var day = document.getElementById('dateDay');
+            	  var year = document.getElementById('date');
+                  var month = document.getElementById('dateMonth');
+					console.log('in set days');
+            	  console.log(day.value);
+            	  if(day.value == "Day"){
+
+            		  setDayDrop(year, month, day);
+            	  }
+
+
+
+              }
               document.getElementById('dateMonth').onchange = setDay;
               document.getElementById('date').onchange = setDay;
+              document.getElementById('dateDay').onchange = setDays;
+
+
+
 
             </script>
 			 <br>

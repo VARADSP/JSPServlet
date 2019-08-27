@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+
+
+
+	<welcome-file-list>
+		<welcome-file>Home</welcome-file>
+	</welcome-file-list>
+
+
+	<servlet>
+		<servlet-name>Home</servlet-name>
+		<jsp-file>/WEB-INF/jsp/Home.jsp</jsp-file>
+	</servlet>
+
+
+	<servlet-mapping>
+		<servlet-name>Home</servlet-name>
+		<url-pattern>/Home</url-pattern>
+	</servlet-mapping>
+
+	<!-- 1st assignment -->
+
+	<servlet>
+		<servlet-name>_doPost</servlet-name>
+		<jsp-file>/WEB-INF/jsp/ass1/UserdetailsPost.jsp</jsp-file>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>_doPost</servlet-name>
+		<url-pattern>/_doPost</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>_doGet</servlet-name>
+		<jsp-file>/WEB-INF/jsp/ass1/UserdetailsGet.jsp</jsp-file>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>_doGet</servlet-name>
+		<url-pattern>/_doGet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>UserDetailsservlet</servlet-name>
+		<servlet-class>com.uks.kishan.web.assignment1.UserDetailsservlet</servlet-class>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UserDetailsservlet</servlet-name>
+		<url-pattern>/UserDetailsservlet</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- 2nd assignment -->
+
+	<servlet>
+		<servlet-name>Assignment2</servlet-name>
+		<jsp-file>/WEB-INF/jsp/ass2/UserdetailsA.jsp</jsp-file>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Assignment2</servlet-name>
+		<url-pattern>/Assignment2</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>UserDetailsAservlet</servlet-name>
+		<servlet-class>com.uks.kishan.web.assignment2.UserDetailsAservlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UserDetailsAservlet</servlet-name>
+		<url-pattern>/UserDetailsAservlet</url-pattern>
+	</servlet-mapping>
+
+	<!-- 3rd assignment -->
+
+	<servlet>
+		<servlet-name>Assignment3</servlet-name>
+		<jsp-file>/WEB-INF/jsp/ass3/UserDetailsB.jsp</jsp-file>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Assignment3</servlet-name>
+		<url-pattern>/Assignment3</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>UserDetailsBservlet</servlet-name>
+		<servlet-class>com.uks.kishan.web.assignment3.UserDetailsBservlet</servlet-class>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UserDetailsBservlet</servlet-name>
+		<url-pattern>/UserDetailsBservlet</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- 5th assignment -->
+
+	<servlet>
+		<servlet-name>Assignment5</servlet-name>
+		<jsp-file>/WEB-INF/jsp/ass5/LoginJsp.jsp</jsp-file>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Assignment5</servlet-name>
+		<url-pattern>/Assignment5</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>com.uks.kishan.web.assignment5.LoginServlet</servlet-class>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/LoginServlet</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- 4th assignment -->
+
+	<servlet>
+		<servlet-name>Assignment4</servlet-name>
+		<jsp-file>/WEB-INF/jsp/ass4/UserDetailsC.jsp</jsp-file>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Assignment4</servlet-name>
+		<url-pattern>/Assignment4</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>UserDetailsCservlet</servlet-name>
+		<servlet-class>com.uks.kishan.web.assignment4.UserDetailsCservlet</servlet-class>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UserDetailsCservlet</servlet-name>
+		<url-pattern>/UserDetailsCservlet</url-pattern>
+	</servlet-mapping>
+
+
+
+
+	<!-- 6th assignment -->
+
+	<servlet>
+		<servlet-name>Assignment6</servlet-name>
+		<jsp-file>/WEB-INF/jsp/ass6/Login.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Assignment6</servlet-name>
+		<url-pattern>/Assignment6</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>LoginServletTwo</servlet-name>
+		<servlet-class>com.uks.kishan.web.assignment6.LoginServletTwo</servlet-class>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>LoginServletTwo</servlet-name>
+		<url-pattern>/LoginServletTwo</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>EditUserDetailsServlet</servlet-name>
+		<servlet-class>com.uks.kishan.web.assignment6.EditUserDetailsServlet</servlet-class>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>EditUserDetailsServlet</servlet-name>
+		<url-pattern>/EditUserDetailsServlet</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>UpdateUserDetailsServlet</servlet-name>
+		<servlet-class>com.uks.kishan.web.assignment6.UpdateUserDetailsServlet</servlet-class>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UpdateUserDetailsServlet</servlet-name>
+		<url-pattern>/UpdateUserDetailsServlet</url-pattern>
+	</servlet-mapping>
+
+
+
+	<!-- 7th assignment -->
+
+	<servlet>
+		<servlet-name>Assignment7</servlet-name>
+		<jsp-file>/WEB-INF/jsp/ass7/Login.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Assignment7</servlet-name>
+		<url-pattern>/Assignment7</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>LoginServletAssiSeven</servlet-name>
+		<servlet-class>com.uks.kishan.web.assignment7.LoginServletAssiSeven</servlet-class>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>LoginServletAssiSeven</servlet-name>
+		<url-pattern>/LoginServletAssiSeven</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>UpdateAssSeven</servlet-name>
+		<servlet-class>com.uks.kishan.web.assignment7.UpdateAssSeven</servlet-class>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UpdateAssSeven</servlet-name>
+		<url-pattern>/UpdateAssSeven</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>EditUserDetailServlet</servlet-name>
+		<servlet-class>com.uks.kishan.web.assignment7.EditUserDetailServlet</servlet-class>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>EditUserDetailServlet</servlet-name>
+		<url-pattern>/EditUserDetailServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>UserListServlet</servlet-name>
+		<servlet-class>com.uks.kishan.web.assignment7.UserListServlet</servlet-class>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UserListServlet</servlet-name>
+		<url-pattern>/UserListServlet</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- 8th assignment -->
+
+
+	<servlet>
+		<servlet-name>Assignment8</servlet-name>
+		<jsp-file>/WEB-INF/jsp/ass8/FileUpload.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Assignment8</servlet-name>
+		<url-pattern>/Assignment8</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>UploadServlet</servlet-name>
+		<servlet-class>com.uks.kishan.web.assignment8.UploadServlet</servlet-class>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UploadServlet</servlet-name>
+		<url-pattern>/UploadServlet</url-pattern>
+	</servlet-mapping>
+
+	<!-- 9th assignment -->
+
+	<servlet>
+		<servlet-name>Assignment9</servlet-name>
+		<servlet-class>com.uks.kishan.web.assignment9.DownloadFileListServlet</servlet-class>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Assignment9</servlet-name>
+		<url-pattern>/Assignment9</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DownloadFileList</servlet-name>
+		<servlet-class>com.uks.kishan.web.assignment9.DownloadFileListServlet</servlet-class>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>DownloadFileList</servlet-name>
+		<url-pattern>/DownloadFileList</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>FileDownloadServlet</servlet-name>
+		<servlet-class>com.uks.kishan.web.assignment9.FileDownloadServlet</servlet-class>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FileDownloadServlet</servlet-name>
+		<url-pattern>/FileDownloadServlet</url-pattern>
+	</servlet-mapping>
+
+	<!-- 10th assignment -->
+
+	<servlet>
+		<servlet-name>Assignment10</servlet-name>
+		<servlet-class>com.uks.kishan.web.assignment10.CsvFileDownloadServlet</servlet-class>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Assignment10</servlet-name>
+		<url-pattern>/Assignment10</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>CsvFileDownload</servlet-name>
+		<servlet-class>com.uks.kishan.web.assignment10.CsvFileDownloadServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CsvFileDownload</servlet-name>
+		<url-pattern>/CvsFileDownload</url-pattern>
+	</servlet-mapping>
+
+     <servlet>
+		<servlet-name>Error</servlet-name>
+		<jsp-file>/WEB-INF/jsp/Error.jsp</jsp-file>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Error</servlet-name>
+		<url-pattern>/Error</url-pattern>
+	</servlet-mapping>
+
+
+
+</web-app>

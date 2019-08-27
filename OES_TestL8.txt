@@ -1,0 +1,16 @@
+http://adiinternals.usindia.com:8094/StudentLogin.aspx
+
+Examination details are mentioned below:-
+UserName 	: 2 
+Password 	: 68c30b83c2 
+Class Name 	: N5-2 
+Test Name 	: MNNG L8 
+Examination Date 	: 2019-08-26 
+
+
+Examination details are mentioned below:-
+UserName 	: 2 
+Password 	: 179af6d5dd 
+Class Name 	: N5-2 
+Test Name 	: MNNV L8 
+Examination Date 	: 2019-08-26 

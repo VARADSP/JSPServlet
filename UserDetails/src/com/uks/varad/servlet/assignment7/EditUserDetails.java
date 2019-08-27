@@ -110,14 +110,14 @@ public class EditUserDetails extends HttpServlet {
 			//entering user information into session variables
 			while (resultSet.next()) {
 			session.setAttribute("userId", userId);
-			session.setAttribute("uname", resultSet.getString("userid"));
-			session.setAttribute("password",resultSet.getString("password"));
+			session.setAttribute("uname", resultSet.getString("userid").trim());
+			session.setAttribute("password",resultSet.getString("password").trim());
 			session.setAttribute("salutation", resultSet.getString("salulation"));
-			session.setAttribute("fname", resultSet.getString("firstname"));
-			session.setAttribute("middle", resultSet.getString("middleinitial"));
-			session.setAttribute("lname", resultSet.getString("lastname"));
-			session.setAttribute("sex", resultSet.getString("gender"));
-			session.setAttribute("email", resultSet.getString("email"));
+			session.setAttribute("fname", resultSet.getString("firstname").trim());
+			session.setAttribute("middle", resultSet.getString("middleinitial").trim());
+			session.setAttribute("lname", resultSet.getString("lastname").trim());
+			session.setAttribute("sex", resultSet.getString("gender").trim());
+			session.setAttribute("email", resultSet.getString("email").trim());
 
 			String dateOfBirth = resultSet.getString("dob");
 
@@ -151,7 +151,7 @@ public class EditUserDetails extends HttpServlet {
 			session.setAttribute("month", month);
 			session.setAttribute("day", dateNumbers[2]);
 			session.setAttribute("birth", resultSet.getString("dob"));
-			session.setAttribute("address", resultSet.getString("address"));
+			session.setAttribute("address", resultSet.getString("address").trim());
 
 			String areaOfInterestsArray  = resultSet.getString("areaofinterest");
 			String[] areaOfInterests = areaOfInterestsArray.split(",");

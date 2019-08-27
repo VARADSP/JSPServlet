@@ -11,11 +11,8 @@ Created Date: 2019/8/21
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>File Uploader</title>
-
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-
-
 <script>
 /*
 function validateForm is used to check if user has selected file to upload
@@ -73,9 +70,6 @@ return type:void
 
    	  fileLabel.style.color = "black";
 	}
-
-
-
 	/*
 	function buttonReset resets file input!
 	return type:void
@@ -86,58 +80,40 @@ return type:void
 		 fileLabel.innerHTML = "Select Your File";
    	  fileLabel.style.color = "black";
 	}
-
-
 </script>
-
 </head>
 <body>
-
     <div class="container">
       <header class="header clearfix">
         <nav>
-
-        </nav>
+       </nav>
         <!-- Uploader heading -->
         <h3 class="text-muted">File Uploader</h3>
       </header>
-
         <main role="main">
-
         <div class="jumbotron">
         <!-- form to upload file -->
           <h2 class="display-3">Upload Your Files</h2>
           <form id="myForm" action="FileUpload" ENCTYPE="multipart/form-data" method="post">
             <div class="form-group">
               <label id="fileLabel">Select Your File</label>
-
 		<input type="file" onchange="alertFileSize();"  class="form-control" name="file" id="file" /><br /> <input
 			type="submit" class="btn btn-success" value="Upload" onclick="validateForm()" name="submit" placeholder="Select File" />
 		<button type="button" value="Reset" name="Reset" class="btn btn-primary"
 			onclick="buttonReset();">Clear</button>
 	    </div>
-
           </form>
         </div>
-
         <div class="row marketing">
           <div class="col-lg-6">
             <div id="bookmarksResults"></div>
-
-
             </div>
-
-
         </div>
-
       </main>
       	<!-- Footer  -->
       <footer class="footer">
-
         <p>&copy; 2019 Unikaihatsu Software Pvt Ltd.</p>
       </footer>
-
     </div> <!-- /container -->
 </body>
-
 </html>

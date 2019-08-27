@@ -188,12 +188,41 @@ function validateForm(event) {
         console.log("In 9");
       }
       else if(fname==0){
-        document.getElementById('errorname').innerHTML="Please enter the name";
-        document.getElementById('errorday').innerText="please select date";
-        document.getElementById('gender_error').innerText="please select gender";
-        document.getElementById('erroremail').innerText="please enter email id";
+        document.getElementById('errorname').innerHTML="Please enter the first name";
+
 
         console.log("In 10");
+      }
+      else if(uname ==0 && password == 0){
+    	  document.getElementById('erroruname').innerText = "Please enter username";
+          document.getElementById('errorpass').innerText = "Please enter password";
+          document.getElementById('errorlname').innerHTML="";
+          document.getElementById('errorday').innerHTML="";
+          document.getElementById('errorname').innerHTML="";
+          document.getElementById('erroraoi').innerHTML="";
+          document.getElementById('erroremail').innerHTML="";
+          console.log("In uname n pass condition");
+      }
+      else if(uname ==0){
+    	  document.getElementById('erroruname').innerText = "Please enter username";
+          document.getElementById('errorpass').innerText = "";
+          document.getElementById('errorlname').innerHTML="";
+          document.getElementById('errorday').innerHTML="";
+          document.getElementById('errorname').innerHTML="";
+          document.getElementById('erroraoi').innerHTML="";
+          document.getElementById('erroremail').innerHTML="";
+          console.log("In uname condition");
+
+      }
+      else if(password == 0){
+    	  document.getElementById('erroruname').innerText = "";
+          document.getElementById('errorpass').innerText = "Please enter password";
+          document.getElementById('errorlname').innerHTML="";
+          document.getElementById('errorday').innerHTML="";
+          document.getElementById('errorname').innerHTML="";
+          document.getElementById('erroraoi').innerHTML="";
+          document.getElementById('erroremail').innerHTML="";
+          console.log("In pass condition");
       }
       //checking lastname only
       else if(lname==0){
@@ -241,6 +270,7 @@ function validateForm(event) {
         document.getElementById("errorday").innerHTML = "please select date";
         console.log("In 15");
       }
+
 
       else {
     	  console.log("In 16 last");

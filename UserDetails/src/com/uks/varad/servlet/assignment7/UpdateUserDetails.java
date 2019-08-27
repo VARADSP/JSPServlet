@@ -160,19 +160,19 @@ public class UpdateUserDetails extends HttpServlet {
 					PreparedStatement preparedStatement = connection.prepareStatement(query);
 
 					// Set all variable values in prepared statment
-					preparedStatement.setString(1, salutation);
-					preparedStatement.setString(2, firstName);
-					preparedStatement.setString(3, middleName);
-					preparedStatement.setString(4, lastName);
-					preparedStatement.setString(5, sex);
-					preparedStatement.setString(6, email);
+					preparedStatement.setString(1, salutation.trim());
+					preparedStatement.setString(2, firstName.trim());
+					preparedStatement.setString(3, middleName.trim());
+					preparedStatement.setString(4, lastName.trim());
+					preparedStatement.setString(5, sex.trim());
+					preparedStatement.setString(6, email.trim());
 					preparedStatement.setDate(7, sqlDate);
-					preparedStatement.setString(8, address);
-					preparedStatement.setString(9, userName);
-					preparedStatement.setString(10, password);
-					preparedStatement.setString(11, allIneterest);
-					preparedStatement.setString(12, othInterest);
-					preparedStatement.setString(13, userId);
+					preparedStatement.setString(8, address.trim());
+					preparedStatement.setString(9, userName.trim());
+					preparedStatement.setString(10, password.trim());
+					preparedStatement.setString(11, allIneterest.trim());
+					preparedStatement.setString(12, othInterest.trim());
+					preparedStatement.setString(13, userId.trim());
 
 					// executing the query
 					int i = preparedStatement.executeUpdate();
