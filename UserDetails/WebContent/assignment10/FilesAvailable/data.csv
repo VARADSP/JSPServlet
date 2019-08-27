@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 UserNo,Salutation,FirstName,MiddleName,LastName,Gender,Email,DateOfBirth,Address,Userid,Password,AreaOfInterest,OtherInterest
 1,Mr.,varad,sanja,paralikar,male,vsp1231@gmail.com,1963-01-03,ahmedabad gujrati,varad,varad,databaseProgramming,mobileProgramming,,PS4
 2,Mr.,varad,sanjay,paralikar,male,vsp@gmail.com,1961-01-04,ahmedabad,varad123,varad,webProgramming,databaseProgramming,,
@@ -29,3 +30,8 @@ UserNo,Salutation,FirstName,MiddleName,LastName,Gender,Email,DateOfBirth,Address
 28,Miss,asdsa,sadsa,sadsadsa,female,asdsa@gmail.com,1977-04-19,Ahmedabad,asdsadasd,Emp@1234asdsaddsadas,databaseProgramming,,
 29,Mr.,Vimal,asd,sadasd,male,sadsad@gmail.com,1961-01-02,Ahmedabad,sdasd,sdsad,databaseProgramming,,
 30,Mr.,Vimal,sadsa,asdsa,male,sadsad@gmail.com,1960-02-03,Ahmedabad,sadsa,sdasdasda,databaseProgramming,,
+=======
+Salutation,FirstName,MiddleName,LastName,Gender,Email,DateOfBirth,Address,Userid,Password,AreaOfInterest,OtherInterest
+1,Mr.,Varad,Sanjay,Paralikar,Male,vsp@gmail.com,1997-03-17,navrangpura,varad,varad123,webProgramming
+2,Mr.,vsp,vsp,vsp,male,vsp@gmail.com,1997-03-17,navrangpura,ahmedabad,vsp,vsp,swingProgramming
+>>>>>>> 719ac6aeedbbf9c130e8c58ddda737edeb250faf

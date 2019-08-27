@@ -6,10 +6,15 @@ Created Date: 2019/8/23
 <%@ page contentType="text/html; charset=utf-8" %>
 <!DOCTYPE HTML utf-8>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 719ac6aeedbbf9c130e8c58ddda737edeb250faf
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>CSV File Downloader</title>
+<<<<<<< HEAD
  <link href="css/bootstrap.min.css" rel="stylesheet">
  <link href="css/style1.css" rel="stylesheet">
 </head>
@@ -20,15 +25,41 @@ Created Date: 2019/8/23
         <!-- Downloader heading -->
         <h3 class="text-muted" style="color:gold">CSV File Downloader</h3>
       </header>
+=======
+
+ <link href="css/bootstrap.min.css" rel="stylesheet">
+ <link href="css/style1.css" rel="stylesheet">
+
+</head>
+
+<body>
+<!-- Include files from servlet -->
+<c:import url="/assignment10/CSVFileDownloader" />
+
+
+      <header class="header clearfix">
+
+        <!-- Downloader heading -->
+        <h3 class="text-muted" style="color:gold">CSV File Downloader</h3>
+      </header>
+    
+>>>>>>> 719ac6aeedbbf9c130e8c58ddda737edeb250faf
 <section>
   <a type="button" class="btn btn-primary" href="CSVFileDownloader?download=download" style="text-decoration: none; padding: 1em 2em;border: 0;position:relative;left:40%;">Download CSV File</a>
     <br/>
     <br/>
   <div class="tbl-header">
+<<<<<<< HEAD
    <table cellpadding="0" cellspacing="0" border="0">
       <thead>
         <tr>
           <th>UserNo</th>
+=======
+  
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+>>>>>>> 719ac6aeedbbf9c130e8c58ddda737edeb250faf
           <th>Salutation</th>
           <th>First Name</th>
           <th>Middle Initial</th>
@@ -46,11 +77,20 @@ Created Date: 2019/8/23
     </table>
   </div>
   <div class="tbl-content">
+<<<<<<< HEAD
     <table>
       <tbody>
         <c:forEach items="${sessionScope.usersList}" var="user">
         <tr>
         <td>${user.userNo}</td>
+=======
+  
+    <table>
+    
+      <tbody>
+        <c:forEach items="${sessionScope.usersList}" var="user">
+        <tr>
+>>>>>>> 719ac6aeedbbf9c130e8c58ddda737edeb250faf
           <td>${user.salutation}</td>
           <td>${user.firstName}</td>
           <td>${user.middleName}</td>
@@ -69,13 +109,35 @@ Created Date: 2019/8/23
     </table>
   </div>
 </section>
+<<<<<<< HEAD
        	<div id="result">
 			</div>
 	<span id="totalSize"></span>
+=======
+
+
+
+
+       	<div id="result">
+
+			</div>
+	<span id="totalSize"></span>
+
+
+>>>>>>> 719ac6aeedbbf9c130e8c58ddda737edeb250faf
       	<!-- Footer  -->
       <footer class="footer" style="border:none;color:black">
         <p>&copy; 2019 Unikaihatsu Software Pvt Ltd.</p>
       </footer>
+<<<<<<< HEAD
 </body>
+=======
+
+
+</body>
+
+
+
+>>>>>>> 719ac6aeedbbf9c130e8c58ddda737edeb250faf
 </body>
 </html>
