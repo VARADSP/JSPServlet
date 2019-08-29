@@ -86,6 +86,7 @@ public class Login extends HttpServlet {
 		ArrayList<User> users = new ArrayList<User>();
 		// For Japanese letter unicode
 		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
 
 		if(isLoggedIn != null){
 

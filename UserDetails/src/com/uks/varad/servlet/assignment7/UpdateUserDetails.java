@@ -79,7 +79,8 @@ public class UpdateUserDetails extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// For Japanese letter unicode
-				request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
 
 				String userId = request.getParameter("userId");
 

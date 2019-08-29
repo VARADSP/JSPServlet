@@ -10,13 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-<<<<<<< HEAD
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-=======
-import java.util.ArrayList;
->>>>>>> 719ac6aeedbbf9c130e8c58ddda737edeb250faf
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -43,14 +39,7 @@ public class CSVFileDownloader extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	// Intializing the connection
 		Connection connection;
-<<<<<<< HEAD
 		private final String DOWNLOAD_DIRECTORY = "D:\\PRTOT\\NEWWSPRTOT\\UserDetails\\WebContent\\assignment10\\FilesAvailable";
-=======
-		
-		private final String DOWNLOAD_DIRECTORY = "C:\\Users\\Varad_Paralikar\\eclipse-workspace\\UserDetails\\WebContent\\assignment10\\FilesAvailable";
-
-
->>>>>>> 719ac6aeedbbf9c130e8c58ddda737edeb250faf
 		ArrayList<User> users;
 		/**
      * @see HttpServlet#HttpServlet()
@@ -59,19 +48,11 @@ public class CSVFileDownloader extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 719ac6aeedbbf9c130e8c58ddda737edeb250faf
     public void init() throws ServletException {
  	   // Initialization code...
  	connection = null;
  	users = new ArrayList<User>();
-<<<<<<< HEAD
 
-=======
- 	
->>>>>>> 719ac6aeedbbf9c130e8c58ddda737edeb250faf
 	// connecting to database and returning the con object
 	DatabaseConnection databaseConnection = new DatabaseConnection();
 	try {
@@ -81,10 +62,6 @@ public class CSVFileDownloader extends HttpServlet {
 		System.out.println(e);
 	}
  }
-<<<<<<< HEAD
-=======
-
->>>>>>> 719ac6aeedbbf9c130e8c58ddda737edeb250faf
     /*
 	 * method getRowCount returns total number of rows in a table.
 	 * return type : int
@@ -103,10 +80,6 @@ public class CSVFileDownloader extends HttpServlet {
 		return size;
 	}
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 719ac6aeedbbf9c130e8c58ddda737edeb250faf
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -114,17 +87,12 @@ public class CSVFileDownloader extends HttpServlet {
 		//checking is user already logged in
 		HttpSession session = request.getSession();
 		//List Of Users
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> 719ac6aeedbbf9c130e8c58ddda737edeb250faf
 		//if directory does not exist
 		 File directory = new File(DOWNLOAD_DIRECTORY);
 		    if (! directory.exists()){
 		    	request.getRequestDispatcher("Error.jsp").forward(request, response);
 		    }
-<<<<<<< HEAD
 		    Calendar cal = Calendar.getInstance();
 	        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 	        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
@@ -153,48 +121,6 @@ public class CSVFileDownloader extends HttpServlet {
 							User user = null;
 							while (resultSet.next()) {
 								count++;
-=======
-		
-		
-		// For Japanese letter unicode
-		request.setCharacterEncoding("utf-8");
-
-
-		// Getting data from user inputs and stored in local variables
-				PrintWriter out = response.getWriter();
-				
-				
-				
-				
-			    String isDownload = request.getParameter("download");
-
-
-			    if(isDownload == null){
-			    	//Display users
-			    	
-			    	users.clear();
-			    	
-			    	try {
-						request.getSession().setAttribute("authentication", null);
-						//displaying user information
-
-
-							// Query fire for insertion operation with column name and values
-							PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from userdetails");
-
-							// executing the query for prapared statment
-							ResultSet resultSet = preparedStatement.executeQuery();
-
-							if(getRowCount(resultSet) == 0){
-								//wrong user id
-								response.sendRedirect(request.getContextPath() + "/assignment10/Error.jsp");
-
-							}
-							//User object to store users
-							User user = null;
-
-							while (resultSet.next()) {
->>>>>>> 719ac6aeedbbf9c130e8c58ddda737edeb250faf
 
 								String uid = resultSet.getString(1);
 								String salutation = resultSet.getString(2);
@@ -214,32 +140,16 @@ public class CSVFileDownloader extends HttpServlet {
 									 otherInterest= resultSet.getString(13);
 								}
 
-<<<<<<< HEAD
 								user = new User(Integer.toString(count),uid,salutation,firstName,middleName,lastName,gender,email
 										,dateOfBirth,address,username1,password1,interest,otherInterest);
 
 								users.add(user);
 
 							}
-=======
-								user = new User(uid,salutation,firstName,middleName,lastName,gender,email
-										,dateOfBirth,address,username1,password1,interest,otherInterest);
-
-								users.add(user);
-									
-							}
-						
-						
-						
-
-
-
->>>>>>> 719ac6aeedbbf9c130e8c58ddda737edeb250faf
 				} catch (Exception e) {
 						out.print("We are unable to process your request !");
 						System.out.println(e);
 					}
-<<<<<<< HEAD
 			    }
 			    else{
 
@@ -250,22 +160,6 @@ public class CSVFileDownloader extends HttpServlet {
 			    	PrintWriter printWriter = new PrintWriter(fileWriter);
 			    	printWriter.print("UserNo");
 			    	printWriter.print(',');
-=======
-
-				    
-
-
-			    }
-			    else{
-			    	
-			    	//Download CSV File
-			  	
-			    	try
-			    	{
-			    	FileWriter fileWriter = new FileWriter(DOWNLOAD_DIRECTORY+"\\data.csv");
-			    	PrintWriter printWriter = new PrintWriter(fileWriter);
-			    	
->>>>>>> 719ac6aeedbbf9c130e8c58ddda737edeb250faf
 			    	printWriter.print("Salutation");
 			    	printWriter.print(',');
 			    	printWriter.print("FirstName");
@@ -290,7 +184,6 @@ public class CSVFileDownloader extends HttpServlet {
 			    	printWriter.print(',');;
 			    	printWriter.print("OtherInterest");
 			    	printWriter.println();
-<<<<<<< HEAD
 			    	String query = "select * from userdetails";
 
 			    	Statement statement = connection.createStatement();
@@ -348,88 +241,23 @@ public class CSVFileDownloader extends HttpServlet {
 
 					// setting the file content with the header and file name
 					response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
-=======
-			 
-			 
-			    	String query = "select * from userdetails";
-			    	
-			    	Statement statement = connection.createStatement();
-			    	ResultSet resultSet = statement.executeQuery(query);
-			    	while(resultSet.next())
-			    	{
-			    		printWriter.print(resultSet.getString(1));
-				    	printWriter.print(',');
-				    	printWriter.print(resultSet.getString(2));
-				    	printWriter.print(',');
-				    	printWriter.print(resultSet.getString(3));
-				    	printWriter.print(',');
-				    	printWriter.print(resultSet.getString(4));
-				    	printWriter.print(',');
-				    	printWriter.print(resultSet.getString(5));
-				    	printWriter.print(',');
-				    	printWriter.print(resultSet.getString(6));
-				    	printWriter.print(',');
-				    	printWriter.print(resultSet.getString(7));
-				    	printWriter.print(',');
-				    	printWriter.print(resultSet.getString(8));
-				    	printWriter.print(',');
-				    	printWriter.print(resultSet.getString(9));
-				    	printWriter.print(',');
-				    	printWriter.print(resultSet.getString(10));
-				    	printWriter.print(',');
-				    	printWriter.print(resultSet.getString(11));
-				    	printWriter.print(',');;
-				    	printWriter.print(resultSet.getString(12));
-				    	printWriter.println();
-				 
-			    	}
-			    	
-			    	
-			    	fileWriter.flush();
-			    	fileWriter.close();
-			    	
-			    	
-			    	// set the content type
-					response.setContentType("APPLICATION/OCTET-STREAM");
-					// setting the file content with the header and file name
-					response.setHeader("Content-Disposition", "attachment; filename=\"" + "data.csv" + "\"");
->>>>>>> 719ac6aeedbbf9c130e8c58ddda737edeb250faf
 
 					// creating writer object
 					PrintWriter out2 = response.getWriter();
 					// file input stream with file path
-<<<<<<< HEAD
 					FileInputStream fileInputStream = new FileInputStream(DOWNLOAD_DIRECTORY+"\\"+fileName);
-=======
-					FileInputStream fileInputStream = new FileInputStream(DOWNLOAD_DIRECTORY+"\\data.csv");
->>>>>>> 719ac6aeedbbf9c130e8c58ddda737edeb250faf
 					// Getting the file
 					int i;
 					while ((i = fileInputStream.read()) != -1) {
 						out2.write(i);
 					}
 					fileInputStream.close();
-<<<<<<< HEAD
-=======
-
-			    	
->>>>>>> 719ac6aeedbbf9c130e8c58ddda737edeb250faf
 			    	}
 			    	catch(Exception e) {
 			    		out.print("We are unable to process your request !");
 			    		System.out.println(e);
-<<<<<<< HEAD
 			    	}
 			    }
-=======
-			    		
-			    	}
-			    
-			    }
-			    
-			    
-
->>>>>>> 719ac6aeedbbf9c130e8c58ddda737edeb250faf
 				session.setAttribute("usersList", users);
 }
 
@@ -440,11 +268,6 @@ public class CSVFileDownloader extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 719ac6aeedbbf9c130e8c58ddda737edeb250faf
 	public void destroy() {
 		users.clear();
 		try {
@@ -453,8 +276,4 @@ public class CSVFileDownloader extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-<<<<<<< HEAD
-=======
-
->>>>>>> 719ac6aeedbbf9c130e8c58ddda737edeb250faf
 }

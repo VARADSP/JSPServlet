@@ -3,7 +3,7 @@
 @author:varad paralikar
 Created Date: 2019/8/19
 -->
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE HTML utf-8>
 <html>

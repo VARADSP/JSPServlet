@@ -90,6 +90,7 @@ public class EditUserDetails extends HttpServlet {
 
 		// For Japanese letter unicode
 		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
 
 		try {
 			// Query fire for insertion operation with column name and values
