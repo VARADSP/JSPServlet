@@ -1,3 +1,8 @@
+<!--
+ JSP page login.jsp page displays login form
+@author:varad paralikar
+Created Date: 2019/8/29
+-->
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
@@ -25,11 +30,16 @@ top:10%;
 }
 </style>
 <script>
+//removes warning messages
  function removeWarnings(){
 	document.getElementById('username').innerHTML = "Username";
 	document.getElementById('password').innerHTML = "Password";
 
 }
+// clears content of action messages
+ function clearcontent(elementID) {
+     document.getElementById(elementID).innerHTML = "";
+ }
 </script>
 </head>
 <body>
@@ -38,16 +48,16 @@ top:10%;
         <h3 class="text-muted" style="color:gold">Struts 2 Login Application</h3>
       </header>
 
-		<div class="logout-message">
+		<div id="errors" class="logout-message">
       <s:if test="hasActionMessages()">
 		<h3 class="text-muted" style="color:gold">
 			<s:actionmessage />
 		</h3>
 	</s:if>
-	</div>
-	<div class="logout-message">
+
+
 	<s:if test="hasActionErrors()">
-<h3 class="text-muted" style="color:gold">
+<h3 class="text-muted" style="color:red">
 		<s:iterator value="actionErrors">
   		<s:property/><br/>
 		</s:iterator>
@@ -65,17 +75,15 @@ top:10%;
 
 		</label>
 
-  <s:textfield cssClass="input" onchange="removeWarnings()" name="userName" onclick="removeWarnings()" placeholder="Username" />
+  <s:textfield cssClass="input" onchange="removeWarnings()" name="userName" onclick="removeWarnings();clearcontent('errors')" placeholder="Username" />
   <br>
   <br>
   <br>
 		<label id="password">
-
 		Password
-
 		</label>
 
-  <s:password cssClass="input" name="password" onchange="removeWarnings()" onclick="removeWarnings()" placeholder="Password" />
+  <s:password cssClass="input" name="password" onchange="removeWarnings()" onclick="removeWarnings();clearcontent('errors')" placeholder="Password" />
 
 	<s:submit cssClass="btn btn-primary btn-block btn-large" label="Login" name="submit" />
       </s:form>

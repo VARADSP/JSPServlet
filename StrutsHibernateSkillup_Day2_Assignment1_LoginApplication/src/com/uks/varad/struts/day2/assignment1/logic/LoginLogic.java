@@ -15,16 +15,15 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
 /**
  * @author: 	Varad Paralikar
- * Created Date:27/08/2019
- * Assignment:  Day 1
+ * Created Date:29/08/2019
+ * Assignment:  Day 2
  * Task: 		Struts And Hibernate Skillup
  *
  */
-
 /*
- * Class WelcomeLogic class contains logic for struts
+ * Class LogicLogin is used to implement login logic
  * @author: Varad Parlikar
- * Created Date: 2019/08/27
+ * Created Date: 2019/08/29
  */
 @SuppressWarnings("serial")
 public class LoginLogic extends AbstractInterceptor implements
@@ -34,35 +33,54 @@ StrutsStatics{
 	private static final String USER_HANDLE = "loggedInUser";
 
 
+	/*
+	 * method init called upon initialization
+	 * return type : void
+	 */
 	public void init() {
 		log.info("Intializing LoginInterceptor");
 	}
 
+	/*
+	 *	method destroy called upon destroying application
+	 * return type : void
+	 */
 	public void destroy() {
 	}
 
+
+	/*
+	 * method intercept is used as interceptor to validate the application
+	 * @ActionInvocation
+	 * return type : String
+	 */
 	public String intercept(ActionInvocation invocation) throws Exception {
+
+
 
 		final ActionContext context = invocation.getInvocationContext();
 		HttpServletRequest request = (HttpServletRequest) context
 				.get(HTTP_REQUEST);
 		HttpSession session = request.getSession(true);
 
-
-
-
 		// Is there a "user" object stored in the user's HttpSession?
 		Object user = session.getAttribute(USER_HANDLE);
+
 		if (user == null) {
 			// The user has not logged in yet.
+
+
 
 			/* The user is attempting to log in. */
 			if (invocation.getAction().getClass().equals(LoginAction.class))
 			{
+
 				return invocation.invoke();
 			}
+
 			return "login";
 		} else {
+
 			return invocation.invoke();
 		}
 	}

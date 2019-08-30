@@ -1,9 +1,10 @@
 package com.uks.varad.struts.day2.assignment1.action;
 
+
 /**
  * @author: 	Varad Paralikar
- * Created Date:27/08/2019
- * Assignment:  Day 1
+ * Created Date:29/08/2019
+ * Assignment:  Day 2
  * Task: 		Struts And Hibernate Skillup
  *
  */
@@ -14,11 +15,10 @@ import com.uks.varad.struts.day2.assignment1.bean.LoginBean;
 import org.apache.commons.lang.xwork.StringUtils;
 import org.apache.struts2.ServletActionContext;
 
-
 /*
- * Class WelcomeAction is used to implement action for struts
+ * Class LogicAction is used as action class for login
  * @author: Varad Parlikar
- * Created Date: 2019/08/27
+ * Created Date: 2019/08/29
  */
 @SuppressWarnings("serial")
 public class LoginAction extends ActionSupport implements ModelDriven<LoginBean>{
@@ -27,39 +27,75 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginBean>
 
 
 
+	/*
+	 * method getUserName is used to return user name
+	 * return type : String
+	 */
 	public String getUserName() {
 		return loginBean.getUserName();
 	}
 
+
+	/*
+	 * method setUserName is used to set user name
+	 * @String as username
+	 * return type : void
+	 */
 	public void setUserName(String userName) {
 		loginBean.setUserName(userName);
 	}
 
+
+	/*
+	 * method getPassword returns password
+	 * return type : String
+	 */
 	public String getPassword() {
 		return loginBean.getPassword();
 	}
 
+
+	/*
+	 * method setPassword sets the password
+	 * @String as password
+	 * return type : void
+	 */
 	public void setPassword(String password) {
 		loginBean.setPassword(password);
 	}
 
+
+	/*
+	 * method execute implemented method for struts action class
+	 * return type : String
+	 */
 	// all struts logic here
 	public String execute() {
 
+
+		//using session
 		ServletActionContext.getRequest().getSession().setAttribute("loggedInUser", loginBean.getUserName());
 		return "login-success";
 
 	}
 
+
+
+	/*
+	 * method validate validates the application form fields
+	 * return type : void
+	 */
 	// simple validation
 	public void validate() {
 
 
-
 		if (StringUtils.isNotEmpty(loginBean.getUserName())
 				&& StringUtils.isNotEmpty(loginBean.getPassword())) {
-			if(CommonLogic.login(loginBean.getUserName(), loginBean.getPassword())){
+			if(CommonLogic.login(loginBean.getUserName(), loginBean.getPassword()).equalsIgnoreCase("authenticated")){
 				addActionMessage("You are valid user!");
+			}
+			else if(CommonLogic.login(loginBean.getUserName(), loginBean.getPassword()).equalsIgnoreCase("exception")){
+				addActionError("Can not connect to database , Please try again !");
 			}
 			else{
 				addActionError("Username and password is invalid !");
@@ -67,19 +103,22 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginBean>
 
 		}
 		else if(StringUtils.isEmpty(loginBean.getUserName()) && StringUtils.isEmpty(loginBean.getPassword()) ) {
-			addActionError("Username and Password can not be blank !");
+			addActionError("Please enter username and password !");
 		}
 		else if(StringUtils.isEmpty(loginBean.getUserName())) {
-			addActionError("Username can not be blank !");
+			addActionError("Please enter username !");
 		}
 		else if(StringUtils.isEmpty(loginBean.getPassword())) {
-			addActionError("Password can not be blank !");
+			addActionError("Please enter password !");
 		}
-
-
 
 	}
 
+
+	/*
+	 * method getModel returns logicBean
+	 * return type : LogicBean
+	 */
 	@Override
 	public LoginBean getModel() {
 		return loginBean;

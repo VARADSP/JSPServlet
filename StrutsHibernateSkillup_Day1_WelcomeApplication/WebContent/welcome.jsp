@@ -33,6 +33,8 @@ h1{
    <header class="header clearfix">
         <!--  heading -->
         <h3 class="text-muted" style="color:gold">Struts 2 Welcome Application</h3>
+        <a type="button" style="float:right;" href="index.jsp" class="btn btn-info btn-lg">Go Back</a>
+
       </header>
 
 <section>
@@ -52,7 +54,6 @@ h1{
 </h1>
 </div>
 </section>
-<a type="button" style="float:right;" href="index.jsp" class="btn btn-info btn-lg">Go Back</a>
 
     <footer class="footer" style="border:none">
         <p>&copy; 2019 Unikaihatsu Software Pvt Ltd.</p>
