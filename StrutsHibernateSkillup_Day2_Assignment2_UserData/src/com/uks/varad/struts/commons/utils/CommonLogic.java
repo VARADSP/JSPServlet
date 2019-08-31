@@ -4,6 +4,7 @@
 package com.uks.varad.struts.commons.utils;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -40,12 +41,68 @@ public class CommonLogic {
 				resultSet.beforeFirst();
 
 			} catch (Exception ex) {
-				ex.printStackTrace();
+
 			}
 			return size;
 		}
 
+		/*
+		 * method fetchData fetches all data of given username from table and returns resultSet
+		 * return type : ResultSet
+		 */
+		public static ResultSet fetchData(String name){
+			//connecting to database
+			connection = DbLogic.connect();
+			// Query fire for insertion operation with column name and values
+			PreparedStatement preparedStatement;
+			ResultSet resultSet;
 
+			try {
+			DatabaseMetaData databaseMetaData = connection.getMetaData();
+			// check if "employee" table is there
+			ResultSet tables = databaseMetaData.getTables(null, null, name, null);
+
+			if (tables.next()) {
+			  // Table exists
+				preparedStatement = connection.prepareStatement("SELECT * from "+name);
+
+				// executing the query for prapared statment
+				resultSet = preparedStatement.executeQuery();
+				if(getRowCount(resultSet) == 0){
+					return null;
+				}
+
+				//disconnecting the database
+				DbLogic.disconnect();
+				connection.close();
+				return resultSet;
+
+			}
+			else {
+			  // Table does not exist
+
+					preparedStatement = connection.prepareStatement("SELECT * from struts_userdetails where UserId = (SELECT userid from struts_users where username = ?)");
+
+					preparedStatement.setString(1, name.trim());
+				//	preparedStatement.setString(2, password.trim());
+					// executing the query for prapared statment
+					 resultSet = preparedStatement.executeQuery();
+					if(getRowCount(resultSet) == 0){
+						return null;
+					}
+
+					//disconnecting the database
+					DbLogic.disconnect();
+					connection.close();
+					return resultSet;
+
+			}
+			} catch (Exception e) {
+
+				return null;
+			}
+
+		}
 
 		/*
 		 * method login is used to login
@@ -58,10 +115,10 @@ public class CommonLogic {
 		// Query fire for insertion operation with column name and values
 		PreparedStatement preparedStatement;
 		try {
-			preparedStatement = connection.prepareStatement("SELECT * from struts_users where username = ? and password = ?");
+			preparedStatement = connection.prepareStatement("SELECT password from struts_users where username = ?");
 
 			preparedStatement.setString(1, userName.trim());
-			preparedStatement.setString(2, password.trim());
+		//	preparedStatement.setString(2, password.trim());
 			// executing the query for prapared statment
 			ResultSet resultSet = preparedStatement.executeQuery();
 			if(getRowCount(resultSet) == 0){
@@ -72,13 +129,22 @@ public class CommonLogic {
 			//disconnecting the database
 			DbLogic.disconnect();
 			connection.close();
+
 			//successfully authenticated user
-			return "authenticated";
+			if(resultSet.next() && resultSet.getString(1).trim().equals(password.trim())){
+				return "authenticated";
+			}
+			else{
+				return "passwordIncorrect";
+			}
+
 
 		} catch (Exception e) {
-			System.out.println(e);
+
 			return "exception";
 		}
 	}
+
+
 
 }

@@ -12,9 +12,9 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.uks.varad.struts.commons.utils.CommonLogic;
 import com.uks.varad.struts.day2.assignment2.bean.LoginBean;
-
+import java.util.Map;
 import org.apache.commons.lang.xwork.StringUtils;
-import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.SessionAware;
 
 /*
  * Class LogicAction is used as action class for login
@@ -22,9 +22,10 @@ import org.apache.struts2.ServletActionContext;
  * Created Date: 2019/08/29
  */
 @SuppressWarnings("serial")
-public class LoginAction extends ActionSupport implements ModelDriven<LoginBean>{
+public class LoginAction extends ActionSupport implements ModelDriven<LoginBean>,SessionAware{
 
 	private LoginBean loginBean = new LoginBean();
+	private Map<String, Object> session;
 
 
 
@@ -73,11 +74,12 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginBean>
 	// all struts logic here
 	public String execute() {
 
+		if(session.get("loggedInUser") == null){
 
-		//using session
-		ServletActionContext.getRequest().getSession().setAttribute("loggedInUser", loginBean.getUserName());
+			//using session
+			session.put("loggedInUser", loginBean.getUserName());
+		}
 		return "login-success";
-
 	}
 
 
@@ -93,13 +95,20 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginBean>
 		if (StringUtils.isNotEmpty(loginBean.getUserName())
 				&& StringUtils.isNotEmpty(loginBean.getPassword())) {
 			if(CommonLogic.login(loginBean.getUserName(), loginBean.getPassword()).equalsIgnoreCase("authenticated")){
+
 				addActionMessage("You are valid user!");
 			}
 			else if(CommonLogic.login(loginBean.getUserName(), loginBean.getPassword()).equalsIgnoreCase("exception")){
 				addActionError("Can not connect to database , Please try again !");
 			}
+			else if(CommonLogic.login(loginBean.getUserName(), loginBean.getPassword()).equalsIgnoreCase("usernameIncorrect")){
+				addActionError("Username and Password is invalid !");
+			}
+			else if(CommonLogic.login(loginBean.getUserName(), loginBean.getPassword()).equalsIgnoreCase("passwordIncorrect")){
+				addActionError("Password is invalid !");
+			}
 			else{
-				addActionError("Username and password is invalid !");
+				addActionError("Username and Password is invalid !");
 			}
 
 		}
@@ -123,6 +132,12 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginBean>
 	@Override
 	public LoginBean getModel() {
 		return loginBean;
+	}
+
+
+	@Override
+	public void setSession(Map<String, Object> session) {
+		 this.session = session;
 	}
 
 }

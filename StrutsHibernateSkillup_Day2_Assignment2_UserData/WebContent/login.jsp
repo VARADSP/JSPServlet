@@ -67,7 +67,7 @@ top:10%;
 
 
     <s:form cssClass="form" action="loginAuthentication.action" method="post">
-    	<s:hidden name="loginAttempt" value="%{'1'}" />
+
 
 		<label id="username">
 

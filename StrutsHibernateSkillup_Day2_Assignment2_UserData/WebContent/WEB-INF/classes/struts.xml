@@ -13,23 +13,46 @@
 			<interceptor-stack name="loginStack">
 			  <!-- calling login interceptor -->
 				<interceptor-ref name="loginInterceptor" />
+
 				  <!-- calling default interceptor -->
 				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="session" />
 			</interceptor-stack>
+
+			<interceptor name="session" class="com.uks.varad.struts.day2.assignment2.logic.SessionInterceptor" />
+			<interceptor-stack name="sessionExpirayStack">
+   			 <interceptor-ref name="defaultStack"/>
+   			 <interceptor-ref name="session"/>
+   			</interceptor-stack>
 		</interceptors>
+
 
   <!-- Setting default stack to loginStack -->
  		<default-interceptor-ref name="loginStack"/>
 
 		<global-results>
 			<result name="login">login.jsp</result>
+			 <result name="session">login.jsp</result>
 		</global-results>
   <!-- Actions  -->
 		<action class="com.uks.varad.struts.day2.assignment2.action.LoginAction"
 			name="loginAuthentication">
-			<result  name="login-success">/WEB-INF/pages/success.jsp</result>
+			<!-- Using Action Chaining  -->
+			<result  name="login-success" type="chain">
+			showUser
+			</result>
+			<result name="input">login.jsp</result>
+
+		</action>
+  <!-- Actions  -->
+		<action class="com.uks.varad.struts.day2.assignment2.action.UserDataAction"
+			name="showUser">
+			<result  name="success">/WEB-INF/pages/success.jsp</result>
 			<result name="input">login.jsp</result>
 		</action>
+
+
+
 
 		<action class="com.uks.varad.struts.day2.assignment2.action.LogoutAction"
 			name="logout">

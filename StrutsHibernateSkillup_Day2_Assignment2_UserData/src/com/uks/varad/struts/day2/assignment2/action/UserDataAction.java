@@ -1,6 +1,10 @@
 package com.uks.varad.struts.day2.assignment2.action;
 
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
+
 /**
  * @author: 	Varad Paralikar
  * Created Date:29/08/2019
@@ -10,12 +14,11 @@ package com.uks.varad.struts.day2.assignment2.action;
  */
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
-import com.uks.varad.struts.commons.utils.CommonLogic;
 import com.uks.varad.struts.day2.assignment2.bean.LoginBean;
 import com.uks.varad.struts.day2.assignment2.bean.UserDataBean;
+import com.uks.varad.struts.day2.assignment2.logic.UserLogic;
 
-import org.apache.commons.lang.xwork.StringUtils;
-import org.apache.struts2.ServletActionContext;
+
 
 /*
  * Class LogicAction is used as action class for login
@@ -28,6 +31,26 @@ public class UserDataAction extends ActionSupport implements ModelDriven<UserDat
 	private UserDataBean userDataBean = new UserDataBean();
 	private LoginBean loginBean = new LoginBean();
 
+
+
+	public UserDataBean getUserDataBean() {
+		return userDataBean;
+	}
+
+
+	public void setUserDataBean(UserDataBean userDataBean) {
+		this.userDataBean = userDataBean;
+	}
+
+
+	public LoginBean getLoginBean() {
+		return loginBean;
+	}
+
+
+	public void setLoginBean(LoginBean loginBean) {
+		this.loginBean = loginBean;
+	}
 
 
 	/*
@@ -49,23 +72,6 @@ public class UserDataAction extends ActionSupport implements ModelDriven<UserDat
 	}
 
 
-	/*
-	 * method getPassword returns password
-	 * return type : String
-	 */
-	public String getPassword() {
-		return loginBean.getPassword();
-	}
-
-
-	/*
-	 * method setPassword sets the password
-	 * @String as password
-	 * return type : void
-	 */
-	public void setPassword(String password) {
-		loginBean.setPassword(password);
-	}
 
 
 	/*
@@ -74,48 +80,13 @@ public class UserDataAction extends ActionSupport implements ModelDriven<UserDat
 	 */
 	// all struts logic here
 	public String execute() {
-
-
-		//using session
-		ServletActionContext.getRequest().getSession().setAttribute("loggedInUser", loginBean.getUserName());
-		return "login-success";
-
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		String username = session.getAttribute("loggedInUser").toString();
+		setUserDataBean(UserLogic.fetchUser(username));
+		return "success";
 	}
 
 
-
-	/*
-	 * method validate validates the application form fields
-	 * return type : void
-	 */
-	// simple validation
-	public void validate() {
-
-
-		if (StringUtils.isNotEmpty(loginBean.getUserName())
-				&& StringUtils.isNotEmpty(loginBean.getPassword())) {
-			if(CommonLogic.login(loginBean.getUserName(), loginBean.getPassword()).equalsIgnoreCase("authenticated")){
-				addActionMessage("You are valid user!");
-			}
-			else if(CommonLogic.login(loginBean.getUserName(), loginBean.getPassword()).equalsIgnoreCase("exception")){
-				addActionError("Can not connect to database , Please try again !");
-			}
-			else{
-				addActionError("Username and password is invalid !");
-			}
-
-		}
-		else if(StringUtils.isEmpty(loginBean.getUserName()) && StringUtils.isEmpty(loginBean.getPassword()) ) {
-			addActionError("Please enter username and password !");
-		}
-		else if(StringUtils.isEmpty(loginBean.getUserName())) {
-			addActionError("Please enter username !");
-		}
-		else if(StringUtils.isEmpty(loginBean.getPassword())) {
-			addActionError("Please enter password !");
-		}
-
-	}
 
 
 	/*

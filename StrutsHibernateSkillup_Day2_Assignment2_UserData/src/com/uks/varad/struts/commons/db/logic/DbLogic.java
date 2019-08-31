@@ -24,7 +24,6 @@ import com.uks.varad.struts.commons.utils.Constants;
 public class DbLogic {
 	static Connection connection = null;
 
-
 	/*
 	 * method connect makes connection to database
 	 * return type : Connection

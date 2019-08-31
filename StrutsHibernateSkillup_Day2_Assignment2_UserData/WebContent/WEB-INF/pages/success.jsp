@@ -54,7 +54,13 @@ padding:10px;
 
 <!-- Header -->
 <div style="background-color: #333;opacity:0.8;position:fixed;left:0;overflow: hidden;white-space: nowrap;top:0;width:100%">
-<h3 style="float:left;color:gold;position:absolute;left:43%;">Struts 2 Login Application</h3>
+<h3 style="float:left;color:gold;position:absolute;left:43%;">
+
+Welcome
+<s:if test="#session.loggedInUser != null">
+<s:property value="#session.loggedInUser"/>
+</s:if>
+</h3>
 
 <a type="button" class="btn-5" href="logout" style="text-decoration: none;position:relative;float:right; background: red;padding: 0.7em 2em;color: #fff;border: 0;margin:10px;text-decoration:none;display:inline-block;">Logout</a>
 </div>

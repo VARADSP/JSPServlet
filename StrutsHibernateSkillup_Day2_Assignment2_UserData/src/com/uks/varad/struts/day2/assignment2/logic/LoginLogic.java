@@ -1,5 +1,6 @@
 package com.uks.varad.struts.day2.assignment2.logic;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -56,10 +57,13 @@ StrutsStatics{
 	 */
 	public String intercept(ActionInvocation invocation) throws Exception {
 
+
 		final ActionContext context = invocation.getInvocationContext();
 		HttpServletRequest request = (HttpServletRequest) context
 				.get(HTTP_REQUEST);
 		HttpSession session = request.getSession(true);
+
+
 
 		// Is there a "user" object stored in the user's HttpSession?
 		Object user = session.getAttribute(USER_HANDLE);
@@ -70,13 +74,11 @@ StrutsStatics{
 			/* The user is attempting to log in. */
 			if (invocation.getAction().getClass().equals(LoginAction.class))
 			{
-
 				return invocation.invoke();
 			}
 
 			return "login";
 		} else {
-
 			return invocation.invoke();
 		}
 	}
