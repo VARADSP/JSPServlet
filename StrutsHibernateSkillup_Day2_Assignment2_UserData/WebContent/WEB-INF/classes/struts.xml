@@ -37,6 +37,7 @@
   <!-- Actions  -->
 		<action class="com.uks.varad.struts.day2.assignment2.action.LoginAction"
 			name="loginAuthentication">
+
 			<!-- Using Action Chaining  -->
 			<result  name="login-success" type="chain">
 			showUser
@@ -47,6 +48,7 @@
   <!-- Actions  -->
 		<action class="com.uks.varad.struts.day2.assignment2.action.UserDataAction"
 			name="showUser">
+
 			<result  name="success">/WEB-INF/pages/success.jsp</result>
 			<result name="input">login.jsp</result>
 		</action>

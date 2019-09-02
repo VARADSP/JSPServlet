@@ -6,10 +6,25 @@ import com.uks.varad.struts.day2.assignment2.bean.UserDataBean;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+/**
+ * @author: 	Varad Paralikar
+ * Created Date:29/08/2019
+ * Assignment:  Day 2
+ * Task: 		Struts And Hibernate Skillup
+ *
+ */
+/*
+ * Class UserLogic is used to implement user logic
+ * @author: Varad Parlikar
+ * Created Date: 2019/08/29
+ */
 public class UserLogic {
 
-
+	/*
+	 * method fetchUser fetches user details from the table by given user name
+	 * @String username of user
+	 * return type : UserDataBean
+	 */
 	public static UserDataBean fetchUser(String username){
 		UserDataBean userDataBean = new UserDataBean();
 		ResultSet resultSetOfUser = CommonLogic.fetchData(username);
@@ -20,10 +35,10 @@ public class UserLogic {
 				//setting user properties
 				userDataBean.setFirstName(resultSetOfUser.getString(2).trim());
 				userDataBean.setMiddleName(resultSetOfUser.getString(3).trim());
-				userDataBean.setLastName(resultSetOfUser.getString(3).trim());
-				userDataBean.setGender(resultSetOfUser.getString(4).trim());
-				userDataBean.setEmailId(resultSetOfUser.getString(5).trim());
-				userDataBean.setContactNo(resultSetOfUser.getString(6).trim());
+				userDataBean.setLastName(resultSetOfUser.getString(4).trim());
+				userDataBean.setGender(resultSetOfUser.getString(5).trim());
+				userDataBean.setEmailId(resultSetOfUser.getString(6).trim());
+				userDataBean.setContactNo(resultSetOfUser.getString(7).trim());
 
 
 			}
@@ -32,7 +47,10 @@ public class UserLogic {
 			return userDataBean;
 		}
 	}
-
+	/*
+	 * method fetchAllUsers fetches all users details from table
+	 * return type : ArrayList<UserDataBean>
+	 */
 	public static ArrayList<UserDataBean> fetchAllUsers(){
 
 		UserDataBean userDataBean;

@@ -14,11 +14,19 @@ Created Date: 2019/8/29
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Success page</title>
+<title>User Data</title>
 <link rel="stylesheet" type="text/css" href="css/style1.css" />
-
+<link rel="stylesheet" type="text/css" href="css/table.css" />
+<script type="text/javaScript">
+function disableBackButton()
+{
+window.history.forward();
+}
+setTimeout("disableBackButton()", 0);
+</script>
 </head>
 <style>
+
 label{
 display:block;
 color:gold;
@@ -50,7 +58,7 @@ padding:10px;
 }
 </style>
 
-<body>
+<body onload="disableBackButton()">
 
 <!-- Header -->
 <div style="background-color: #333;opacity:0.8;position:fixed;left:0;overflow: hidden;white-space: nowrap;top:0;width:100%">
@@ -59,6 +67,8 @@ padding:10px;
 Welcome
 <s:if test="#session.loggedInUser != null">
 <s:property value="#session.loggedInUser"/>
+
+
 </s:if>
 </h3>
 
@@ -69,18 +79,39 @@ Welcome
 
 <div class="content clearfix">
 
-		<h3>
-<label>
+<table>
+  <tr>
+    <th>FirstName</th>
+    <th>MiddleName</th>
+    <th>LastName</th>
+    <th>Gender</th>
+    <th>EmailId</th>
+    <th>Contact No</th>
+
+  </tr>
+
+   <s:iterator  var="i" step="1" value="users">
+
+  <tr>
+    <td data-th="Movie Title"> <s:property value="firstName" /></td>
+    <td data-th="Genre"><s:property value="middleName" /></td>
+    <td data-th="Year"><s:property value="lastName" /></td>
+    <td data-th="Gross"><s:property value="gender" /></td>
+      <td data-th="Gross"><s:property value="emailId" /></td>
+        <td data-th="Gross"><s:property value="contactNo" /></td>
+  </tr>
+
+ </s:iterator>
+</table>
 
 
-		<s:if test="hasActionMessages()">
-			<div class="welcome">
-				<s:actionmessage />
-			</div>
-		</s:if>
+ <s:iterator  var="i" step="1" value="users">
+ <s:property value="firstName" />
+ </s:iterator>
 
-</label>
-</h3>
+
+
+
 
 	</div>
 

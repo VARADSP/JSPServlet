@@ -9,7 +9,7 @@ package com.uks.varad.struts.day2.assignment2.bean;
  */
 
 /*
- * Class LogicBean is used as bean class
+ * Class LoginBean is used as bean class
  * @author: Varad Parlikar
  * Created Date: 2019/08/29
  */

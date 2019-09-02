@@ -1,5 +1,8 @@
 package com.uks.varad.struts.day2.assignment2.action;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -28,8 +31,15 @@ public class LogoutAction extends ActionSupport {
 	 */
 	// all struts logic here
 	public String execute() {
+		HttpServletResponse httpResponse= ServletActionContext.getResponse();
 
-		ServletActionContext.getRequest().getSession().invalidate();
+		httpResponse.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+		httpResponse.addHeader("Cache-Control", "post-check=0, pre-check=0");
+		httpResponse.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+		httpResponse.setDateHeader("Expires", 0); // Proxies.
+		 HttpSession session = ServletActionContext.getRequest().getSession(false);
+		  session.setAttribute("loggedInUser", null);
+          session.invalidate();
 		addActionMessage("You are successfully logout!");
 		return "logout";
 

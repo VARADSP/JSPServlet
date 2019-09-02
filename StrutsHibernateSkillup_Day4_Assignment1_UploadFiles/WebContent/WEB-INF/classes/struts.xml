@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<package extends="struts-default" name="default" namespace="/">
+  <!-- interceptors used to validate form and implement cross cutting -->
+		<interceptors>
+		<interceptor name="sessionInterceptor" class="com.uks.varad.struts.day4.assignment1.logic.SessionInterceptor" />
+		</interceptors>
+
+		<global-results>
+			<result name="input">uploadFiles.jsp</result>
+				<result name="success">/WEB-INF/pages/success.jsp</result>
+			 <result name="session">uploadFiles.jsp</result>
+		</global-results>
+  <!-- Actions  -->
+		<action class="com.uks.varad.struts.day4.assignment1.action.UploadAction"
+			name="choose*"><!-- Using wildcard -->
+
+			<!-- Using Action Chaining  -->
+			<result  name="choose-success" type="chain">
+			   <param name="show">show{1}</param>
+			   <param name="filePath">${filePath}</param>
+			</result>
+			<result name="input">uploadFiles.jsp</result>
+		</action>
+
+		<action class="com.uks.varad.struts.day4.assignment1.action.ShowAction"
+			name="showImage">
+			<interceptor-ref name="sessionInterceptor"></interceptor-ref>
+			<result  name="success">/WEB-INF/pages/success.jsp</result>
+		</action>
+
+
+		<action class="com.uks.varad.struts.day4.assignment1.action.LogoutAction"
+			name="logout">
+			<result name="logout">uploadFiles.jsp</result>
+		</action>
+
+	</package>
+</struts>

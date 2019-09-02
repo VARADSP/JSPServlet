@@ -1,9 +1,7 @@
 package com.uks.varad.struts.day2.assignment2.action;
 
 
-import javax.servlet.http.HttpSession;
-
-import org.apache.struts2.ServletActionContext;
+import java.util.ArrayList;
 
 /**
  * @author: 	Varad Paralikar
@@ -18,36 +16,82 @@ import com.uks.varad.struts.day2.assignment2.bean.LoginBean;
 import com.uks.varad.struts.day2.assignment2.bean.UserDataBean;
 import com.uks.varad.struts.day2.assignment2.logic.UserLogic;
 
+/**
+ * @author: 	Varad Paralikar
+ * Created Date:29/08/2019
+ * Assignment:  Day 2
+ * Task: 		Struts And Hibernate Skillup
+ *
+ */
 
 
 /*
- * Class LogicAction is used as action class for login
+ * Class UserDataAction is used to maintain user data action
  * @author: Varad Parlikar
  * Created Date: 2019/08/29
  */
 @SuppressWarnings("serial")
 public class UserDataAction extends ActionSupport implements ModelDriven<UserDataBean>{
 
+	//UserDataBean
 	private UserDataBean userDataBean = new UserDataBean();
+	//LoginBean
 	private LoginBean loginBean = new LoginBean();
+	// array of users data
+	private ArrayList<UserDataBean> users = new ArrayList<UserDataBean>();
 
 
+	/*
+	 * method getUsers returns array of user list
+	 * return type : ArrayList
+	 */
+	public ArrayList<UserDataBean> getUsers() {
+		return users;
+	}
 
+
+	/*
+	 * method setUsers sets user list
+	 * @users list of arraylist
+	 * return type : void
+	 */
+	public void setUsers(ArrayList<UserDataBean> users) {
+		this.users = users;
+	}
+
+
+	/*
+	 * method getUserDataBean returns user data bean
+	 * return type : UserDataBean
+	 */
 	public UserDataBean getUserDataBean() {
 		return userDataBean;
 	}
 
 
+	/*
+	 * method setUserDataBean sets user data bean
+	 * @userDataBean class object
+	 * return type : void
+	 */
 	public void setUserDataBean(UserDataBean userDataBean) {
 		this.userDataBean = userDataBean;
 	}
 
 
+	/*
+	 * method getloginBean returns login bean
+	 * return type : LoginBean
+	 */
 	public LoginBean getLoginBean() {
 		return loginBean;
 	}
 
-
+	/*
+	 * method setLoginBean sets login bean
+	 * @loginBean class object
+	 * return type : void
+	 */
 	public void setLoginBean(LoginBean loginBean) {
 		this.loginBean = loginBean;
 	}
@@ -80,9 +124,13 @@ public class UserDataAction extends ActionSupport implements ModelDriven<UserDat
 	 */
 	// all struts logic here
 	public String execute() {
-		HttpSession session = ServletActionContext.getRequest().getSession();
-		String username = session.getAttribute("loggedInUser").toString();
-		setUserDataBean(UserLogic.fetchUser(username));
+		if(loginBean.getUserName().equals("admin")){
+			users = UserLogic.fetchAllUsers();
+		}
+		else{
+			setUserDataBean(UserLogic.fetchUser(loginBean.getUserName()));
+			users.add(getUserDataBean());
+		}
 		return "success";
 	}
 
