@@ -28,7 +28,7 @@ public class Constants {
 	public static final String DB_password = "Password";
 
 	//file storage directory
-	public static final String fileStorage = "D:\\PRTOT\\NEWWSPRTOT\\StrutsHibernateSkillup_Day4_Assignment1_UploadFiles\\WebContent\\FilesStorage";
+	public static final String fileStorage = "D:\\PRTOT\\NEWWSPRTOT\\StrutsHibernateSkillup_Day4_Assignment1_UploadFiles\\WebContent\\WEB-INF\\FilesStorage";
 
 
 	public static String db_URL,db_username,db_password,db_driver;

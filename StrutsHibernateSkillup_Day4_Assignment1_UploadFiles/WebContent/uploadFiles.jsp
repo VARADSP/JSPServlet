@@ -3,8 +3,8 @@
 @author:varad paralikar
 Created Date: 2019/8/29
 -->
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=US-ASCII"
+    pageEncoding="US-ASCII"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!doctype html>
 <html lang="en">
@@ -12,7 +12,7 @@ Created Date: 2019/8/29
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
 <title>Upload Files</title>
 
 <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -87,11 +87,18 @@ return type:void
 		 fileLabel.innerHTML = "Select Your File";
    	  fileLabel.style.color = "black";
 	}
+
+
+	function removeErrors(x) {
+		  x.innerHTML = "";
+		}
+
+
 </script>
 <style>
 .chooseFileBtn{
  padding: 10px;
-    background: red;
+    background: #6B8E23;
     display: table;
     color: #fff;
 }
@@ -113,8 +120,16 @@ return type:void
         <main role="main">
         <div class="jumbotron">
         <!-- form to upload file -->
+
+	<div id="errors" onmouseover="removeErrors(this)" class="logout-message">
+      <s:if test="hasActionMessages()">
+		<h3 class="text-muted" style="color:gold">
+			<s:actionmessage />
+		</h3>
+	</s:if>
+	</div>
           <h3 class="display-3">Upload Your Files</h3>
-          <form id="myForm" action="FileUpload" ENCTYPE="multipart/form-data" method="post">
+          <form id="myForm" action="chooseImage" ENCTYPE="multipart/form-data" method="post">
             <div class="form-group">
               <label id="fileLabel">Select Your File</label>
               <label class="chooseFileBtn">
@@ -150,10 +165,7 @@ return type:void
       </footer>
     </div> <!-- /container -->
 
-    <script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 <script src="semantic/dist/semantic.min.js"></script>
 </body>
 </html>

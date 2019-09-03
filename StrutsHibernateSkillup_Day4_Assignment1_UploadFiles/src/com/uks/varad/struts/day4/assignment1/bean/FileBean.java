@@ -19,7 +19,6 @@ public class FileBean {
 	private String filePath;
 
 
-
 	public String getFileName() {
 		return fileName;
 	}

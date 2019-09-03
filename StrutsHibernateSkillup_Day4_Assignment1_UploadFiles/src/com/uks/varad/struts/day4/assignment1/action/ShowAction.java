@@ -10,12 +10,15 @@ package com.uks.varad.struts.day4.assignment1.action;
  */
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
-import com.uks.varad.struts.commons.utils.CommonLogic;
+import com.uks.varad.struts.commons.utils.Constants;
 import com.uks.varad.struts.day4.assignment1.bean.FileBean;
 
 import java.util.Map;
-import org.apache.commons.lang.xwork.StringUtils;
+
+import javax.servlet.ServletContext;
+
 import org.apache.struts2.interceptor.SessionAware;
+import org.apache.struts2.util.ServletContextAware;
 
 /*
  * Class LogicAction is used as action class for login
@@ -27,6 +30,19 @@ public class ShowAction extends ActionSupport implements ModelDriven<FileBean>,S
 
 	private FileBean fileBean = new FileBean();
 	private Map<String, Object> session;
+	private String fileStorage = Constants.fileStorage;
+
+
+
+	public String getFileStorage() {
+		return fileStorage;
+	}
+
+
+
+	public void setFileStorage(String fileStorage) {
+		this.fileStorage = fileStorage;
+	}
 
 
 
@@ -36,24 +52,23 @@ public class ShowAction extends ActionSupport implements ModelDriven<FileBean>,S
 	 */
 	// all struts logic here
 	public String execute() {
-
+		
 
 		return "success";
 	}
 
 
 
-	/*
-	 * method validate validates the application form fields
-	 * return type : void
-	 */
-	// simple validation
-	public void validate() {
-
-
-
-
+	public FileBean getFileBean() {
+		return fileBean;
 	}
+
+
+
+	public void setFileBean(FileBean fileBean) {
+		this.fileBean = fileBean;
+	}
+
 
 
 	/*
@@ -66,9 +81,12 @@ public class ShowAction extends ActionSupport implements ModelDriven<FileBean>,S
 	}
 
 
-	@Override
-	public void setSession(Map<String, Object> session) {
-		 this.session = session;
-	}
+	public Map<String, Object> getSession() {
+        return session;
+   }
+   public void setSession(Map<String, Object> session) {
+        this.session = session;
+   }
+
 
 }

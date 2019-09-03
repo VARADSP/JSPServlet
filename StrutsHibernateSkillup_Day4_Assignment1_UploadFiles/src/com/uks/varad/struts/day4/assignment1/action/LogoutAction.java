@@ -31,16 +31,22 @@ public class LogoutAction extends ActionSupport {
 	 */
 	// all struts logic here
 	public String execute() {
+		try{
+
+
 		HttpServletResponse httpResponse= ServletActionContext.getResponse();
 
 		httpResponse.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
 		httpResponse.addHeader("Cache-Control", "post-check=0, pre-check=0");
 		httpResponse.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 		httpResponse.setDateHeader("Expires", 0); // Proxies.
-		 HttpSession session = ServletActionContext.getRequest().getSession(false);
-		  session.setAttribute("loggedInUser", null);
+		 HttpSession session = ServletActionContext.getRequest().getSession();
           session.invalidate();
 		addActionMessage("You are successfully logout!");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 		return "logout";
 
 	}
