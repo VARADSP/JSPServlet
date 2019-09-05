@@ -55,13 +55,9 @@ public class CommonLogic {
 			// Query fire for insertion operation with column name and values
 			PreparedStatement preparedStatement;
 			ResultSet resultSet;
-
 			try {
-			  // Table does not exist
-
-				//admin and normal user query
-
-					preparedStatement = connection.prepareStatement("SELECT * FROM struts_userlist AS ul INNER JOIN struts_users AS u ON u.username = ? WHERE ul.UserId = u.userid OR 1 = EXISTS(SELECT Category FROM struts_userlist AS ul1 WHERE ul1.Category = 'Admin' AND ul1.UserId = u.userid)");
+				//admin and normal user query detects if admin returns all rows
+					preparedStatement = connection.prepareStatement("SELECT (SELECT username FROM struts_users WHERE userid = ul.UserId),ul.Name,ul.Category,ul.Sex,ul.Address,ul.EmailId FROM struts_userlist AS ul INNER JOIN struts_users AS u ON u.username = ? WHERE ul.UserId = u.userid OR 1 = EXISTS(SELECT Category FROM struts_userlist AS ul1 WHERE ul1.Category = 'Admin' AND ul1.UserId = u.userid)");
 
 					preparedStatement.setString(1, name.trim());
 				//	preparedStatement.setString(2, password.trim());
@@ -82,7 +78,6 @@ public class CommonLogic {
 			}
 
 		}
-
 		/*
 		 * method login is used to login
 		 * return type : String
@@ -116,14 +111,9 @@ public class CommonLogic {
 			else{
 				return "passwordIncorrect";
 			}
-
-
 		} catch (Exception e) {
 
 			return "exception";
 		}
 	}
-
-
-
 }
