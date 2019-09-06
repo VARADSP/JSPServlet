@@ -35,6 +35,8 @@
 			 <result name="session">login.jsp</result>
 			 <result name="error">login.jsp</result>
 		</global-results>
+
+
   <!-- Actions  -->
 		<action class="com.uks.varad.struts.day5_6.assignment.action.LoginAction"
 			name="loginAuthentication">
@@ -46,10 +48,18 @@
 			<result name="input">login.jsp</result>
 
 		</action>
+
+
+		 <action name = "add">
+         <result >/WEB-INF/pages/addUser.jsp</result>
+      </action>
+
+
+
   <!-- Actions  -->
 		<action class="com.uks.varad.struts.day5_6.assignment.action.UserListAction"
 			name="showUser">
-
+			<!-- Using Action Chaining  -->
 			<result  name="success">/WEB-INF/pages/userList.jsp</result>
 			<result name="input">login.jsp</result>
 		</action>
@@ -59,6 +69,18 @@
 			name="logout">
 			<result name="logout">login.jsp</result>
 		</action>
+
+		<action class="com.uks.varad.struts.day5_6.assignment.action.AddUserAction"
+			name="addUser" method="register">
+
+			<result name="add-success" type="chain">showUser</result>
+			<result name="addUserForm">
+			/WEB-INF/pages/addUser.jsp
+			</result>
+			<result name="error">login.jsp</result>
+
+		</action>
+
 
 	</package>
 </struts>

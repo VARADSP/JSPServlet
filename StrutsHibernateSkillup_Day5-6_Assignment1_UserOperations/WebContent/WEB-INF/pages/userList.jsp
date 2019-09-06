@@ -17,6 +17,8 @@ Created Date: 2019/8/29
 <!-- Semantic Ui -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <link rel="stylesheet" type="text/css" href="css/table.css" />
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
 <!-- Adding AJAX -->
 <sx:head/>
 <script type="text/javaScript">
@@ -36,10 +38,13 @@ function clearTable(){
     tr = table.getElementsByTagName("tr");
 
     document.getElementById('tableListHeaderId').innerHTML = "Table List";
+	document.getElementById('myTable').style.display = "";
+	document.getElementById('adminControls').style.display = "";
 
     for (i = 0; i < tr.length; i++) {
     	tr[i].style.display = "";
     }
+
      document.getElementById("searchId").value = "";
      document.getElementById("searchName").value="";
      document.getElementById("searchCategory").value="";
@@ -88,6 +93,38 @@ function searchTable() {
         for (j = 1; j < td.length; j++) {
 
 
+            if ((td[1].innerHTML.toUpperCase() == filterId) &&
+            		(td[4].innerText.toUpperCase() == filterSex)) {
+                found = true;
+              }
+            if((td[2].innerText.toUpperCase() == filterName) &&
+            		(td[4].innerText.toUpperCase() == filterSex)){
+            	found = true;
+            }
+            if((td[2].innerText.toUpperCase() == filterName) &&
+            		(td[4].innerText.toUpperCase() == filterSex) &&
+            		(td[1].innerHTML.toUpperCase() == filterId)){
+            	found = true;
+            }
+            if((td[3].innerText.toUpperCase() == filterCategory) &&
+            		(td[1].innerHTML.toUpperCase() == filterId)){
+        		found = true;
+        	}
+            if((td[3].innerText.toUpperCase() == filterCategory) &&
+            		(td[2].innerText.toUpperCase() == filterName)){
+        		found = true;
+        	}
+
+            if((td[3].innerText.toUpperCase() == filterCategory) &&
+            		(td[2].innerText.toUpperCase() == filterName) &&
+            		(td[1].innerHTML.toUpperCase() == filterId)){
+        		found = true;
+        	}
+
+
+
+
+
 
 
             if ((td[1].innerHTML.toUpperCase() == filterId)) {
@@ -131,8 +168,11 @@ function searchTable() {
     }
 	console.log(found);
     if(found == undefined){
-
 		document.getElementById('tableListHeaderId').innerHTML = "Table List No Records Found !";
+		document.getElementById('myTable').style.display = "none";
+		document.getElementById('adminControls').style.display = "none";
+
+
     }
 }
 
@@ -164,11 +204,69 @@ setTimeout("disableBackButton()", 0);
 }
 thead, tbody { display: block; }
 
-tbody {
-    height: 200px;       /* Just for the demo          */
-    overflow-y: auto;    /* Trigger vertical scroll    */
-    overflow-x: hidden;  /* Hide the horizontal scroll */
+td{
+  width: 140px;
+   word-break: break-all;
 }
+
+tbody {
+    height: 150px;       /* Just for the demo          */
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: auto;  /* Hide the horizontal scroll */
+}
+
+@media
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, td, tr {
+		display: block;
+	}
+	th{
+	display:none;
+	}
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	tr { border: 1px solid #ccc; }
+
+	td {
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee;
+		position: relative;
+		padding-left: 50%;
+	}
+
+	td:before {
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%;
+		padding-right: 10px;
+		white-space: nowrap;
+	}
+
+		/*
+	Label the data
+	*/
+	td:nth-of-type(1):before { content: "Select User"; }
+	td:nth-of-type(2):before { content: "User ID"; }
+	td:nth-of-type(3):before { content: "Name"; }
+	td:nth-of-type(4):before { content: "Category"; }
+	td:nth-of-type(5):before { content: "Sex"; }
+	td:nth-of-type(6):before { content: "Address"; }
+	td:nth-of-type(7):before { content: "EmailId"; }
+
+}
+
 </style>
 
 <body onload="disableBackButton()">
@@ -188,7 +286,9 @@ Welcome
 </s:if>
 </h3>
 
-<a type="button" class="btn-5" href="logout" style="text-decoration: none;position:relative;float:right; background: red;padding: 0.7em 2em;color: #fff;border: 0;margin:10px;text-decoration:none;display:inline-block;">Logout</a>
+<a type="button" class="btn-5" href="logout" style="text-decoration: none;position:relative;float:right; background: red;padding: 0.7em 2em;color: #fff;border: 0;margin:10px;text-decoration:none;display:inline-block;">
+<i class="fa fa-sign-out fa-lg" aria-hidden="true"></i>
+Logout</a>
 </div>
 
 <div class="clearfix"></div>
@@ -241,9 +341,14 @@ Welcome
     </div>
   </div>
  <div class="ui">
-   <button class="ui inverted primary button" onclick="searchTable()"  style="position:relative;left:20px;">Search</button>
+   <button class="ui inverted primary button" onclick="searchTable()"  style="position:relative;left:20px;">
+ <i class="fa fa-search fa-lg" aria-hidden="true"></i>
+   Search</button>
 
-    <button class="ui inverted red button" onclick="clearTable()" style="position:relative;left:50px;">Clear</button>
+    <button class="ui inverted red button" onclick="clearTable()" style="position:relative;left:50px;">
+        <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
+    Clear
+    </button>
  </div>
 
 </div>
@@ -260,29 +365,99 @@ Welcome
     <th>Sex</th>
     <th>Address</th>
     <th>EmailId</th>
+
+<s:if test="#session.loggedInUserType != null">
+<s:if test="#session.loggedInUserType == 'Admin' ">
+<th>Enable/Disable User</th>
+</s:if>
+</s:if>
+
   </tr>
 
    <s:iterator  var="i" step="1" value="users">
 
   <tr>
-   <td><input type="checkbox" name="<s:property value="name" />" /></td>
+   <td>
+<s:if test="#session.loggedInUserType != null">
+<s:if test="#session.loggedInUserType == 'User' ">
+   <input type="checkbox" checked name="<s:property value="id" />" />
+</s:if>
+<s:else>
+   <input type="checkbox" name="<s:property value="id" />" />
+</s:else>
+</s:if>
+
+   </td>
   <td data-th="Movie Title"><s:property value="userId" /></td>
     <td data-th="Movie Title"><s:property value="name" /></td>
     <td data-th="Genre"><s:property value="category" /></td>
     <td data-th="Year"><s:property value="sex" /></td>
     <td data-th="Gross"><s:property value="address" /></td>
       <td data-th="Gross"><s:property value="emailId" /></td>
+
+<s:if test="#session.loggedInUserType != null">
+<s:if test="#session.loggedInUserType == 'Admin' ">
+      <td data-th="Gross">
+    <button class="ui primary button" name="<s:property value="name" />" style="position:relative;left:30px;">
+        <i class="fa fa-ban fa-lg" aria-hidden="true"></i>
+    Disable
+    </button>
+
+      </td>
+
+</s:if>
+</s:if>
+
   </tr>
  </s:iterator>
  	</tbody>
 </table>
+
+<s:if test="#session.loggedInUserType != null">
+<s:if test="#session.loggedInUserType == 'Admin' ">
+<div class="ui buttons" id="adminControls" style="position:relative;left:59%;">
+   <a class="ui green button" href="add" style="position:relative;left:10px;">
+ <i class="fa fa-plus fa-lg" aria-hidden="true"></i>
+   Register</a>
+
+    <a class="ui violet button" onclick="clearTable()" style="position:relative;left:20px;">
+        <i class="fa fa-edit fa-lg" aria-hidden="true"></i>
+    Update
+    </a>
+
+    <button class="ui red button" onclick="clearTable()" style="position:relative;left:30px;">
+        <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
+    Delete
+    </button>
+
+    <button class="ui blue button" onclick="clearTable()" style="position:relative;left:40px;">
+        <i class="fa fa-eye fa-lg" aria-hidden="true"></i>
+    Details
+    </button>
+ </div>
+</s:if>
+</s:if>
+<s:if test="#session.loggedInUserType != null">
+<s:if test="#session.loggedInUserType == 'User' ">
+<div class="ui buttons" id="userControls" style="position:relative;left:53%;">
+     <button class="ui violet button" onclick="clearTable()" style="position:relative;left:20px;">
+        <i class="fa fa-edit fa-lg" aria-hidden="true"></i>
+    Update
+    </button>
+    <button class="ui blue button" onclick="clearTable()" style="position:relative;left:40px;">
+        <i class="fa fa-eye fa-lg" aria-hidden="true"></i>
+    Details
+    </button>
+ </div>
+</s:if>
+</s:if>
+
 </div>
-
-
 
         <footer class="footer" style="border:none">
         <p>&copy; 2019 Unikaihatsu Software Pvt Ltd.</p>
       </footer>
+       <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<!-- Semantic UI -->
       <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 </body>

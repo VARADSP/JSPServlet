@@ -107,19 +107,35 @@ public class UserListAction extends ActionSupport implements ModelDriven<UserLis
 		loginBean.setUserName(userName);
 	}
 
+
+
 	/*
 	 * method execute implemented method for struts action class
 	 * return type : String
 	 */
 	// all struts logic here
 	public String execute() {
+
 		try {
-			users = UserLogic.fetchAllUsers(loginBean.getUserName());
+			if(loginBean.getUserName() != null){
+				users = UserLogic.fetchAllUsers(loginBean.getUserName());
+			}
+			else{ // user already logged in
+				users = UserLogic.fetchAllUsers(session.get("loginBean.userName").toString());
+			}
 			if(users.size()==1){
 				session.put("loggedInUserType", "User");
 			}
 			else{
 				session.put("loggedInUserType", "Admin");
+				if(loginBean.getUserName() != null){
+					session.put("loginBean.userName", loginBean.getUserName());
+					session.put("loginBean.password", loginBean.getPassword());
+				}
+				else{ // user already logged in
+					session.put("loginBean.userName", session.get("loginBean.userName").toString());
+					session.put("loginBean.password", session.get("loginBean.password").toString());
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

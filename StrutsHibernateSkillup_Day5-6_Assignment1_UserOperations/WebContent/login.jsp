@@ -67,6 +67,7 @@ top:10%;
 
 
     <s:form cssClass="form" action="loginAuthentication.action" method="post">
+    	<s:hidden name="loginAttempt" value="%{'1'}" />
 
 
 		<label id="username">
@@ -75,7 +76,7 @@ top:10%;
 
 		</label>
 
-  <s:textfield cssClass="input" onchange="removeWarnings()" name="userName" onclick="removeWarnings();clearcontent('errors')" placeholder="Username" />
+  <s:textfield cssClass="input" onchange="removeWarnings()" name="loginBean.userName" onclick="removeWarnings();clearcontent('errors')" placeholder="Username" />
   <br>
   <br>
   <br>
@@ -83,7 +84,7 @@ top:10%;
 		Password
 		</label>
 
-  <s:password cssClass="input" name="password" onchange="removeWarnings()" onclick="removeWarnings();clearcontent('errors')" placeholder="Password" />
+  <s:password cssClass="input" name="loginBean.password" onchange="removeWarnings()" onclick="removeWarnings();clearcontent('errors')" placeholder="Password" />
 
 	<s:submit cssClass="btn btn-primary btn-block btn-large" label="Login" name="submit" />
       </s:form>

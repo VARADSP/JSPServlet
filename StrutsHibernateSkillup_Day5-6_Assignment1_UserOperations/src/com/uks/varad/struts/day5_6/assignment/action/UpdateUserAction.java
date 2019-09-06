@@ -11,7 +11,7 @@ import com.uks.varad.struts.day5_6.assignment.bean.LoginBean;
 import com.uks.varad.struts.day5_6.assignment.bean.UserListBean;
 import com.uks.varad.struts.day5_6.assignment.logic.UserLogic;
 
-public class AddUserAction extends ActionSupport implements ModelDriven<LoginBean>,SessionAware {
+public class UpdateUserAction extends ActionSupport implements ModelDriven<LoginBean>,SessionAware {
 
 	private static final long serialVersionUID = 1L;
 	//UserDataBean
@@ -80,35 +80,35 @@ public class AddUserAction extends ActionSupport implements ModelDriven<LoginBea
 	// all struts logic here
 	public String execute() {
 
-		System.out.println("In register user " + session.get("loginBean.userName") + " " + session.get("loginBean.password") );
+		System.out.println("In update user " + session.get("loginBean.userName") + " " + session.get("loginBean.password") );
 
-		return "addUserForm";
+		return "updateUserForm";
 	}
 
 
-	public String register(){
-		System.out.println("In add user  register " + session.get("loginBean.userName") + " " + session.get("loginBean.password") );
+	public String update(){
+		System.out.println("In update user  register " + session.get("loginBean.userName") + " " + session.get("loginBean.password") );
 
 		System.out.println(userDataBean);
 
 		if(userDataBean.getName() == "" || userDataBean.getUserId() == "" || userDataBean.getAddress() == ""
 				|| userDataBean.getCategory() == null || userDataBean.getEmailId() == "" ||
 				userDataBean.getPassword() == "" ||
-				userDataBean.getSex() == null || userDataBean.getId() == ""){
-			return "addUserForm";
+				userDataBean.getSex() == null){
+			return "updateUserForm";
 
 		}
 		else{
 		//Addin new user
 		Integer isSuccessfull = 0;
 
-		isSuccessfull = UserLogic.addUser(userDataBean);
+		isSuccessfull = UserLogic.updateUser(userDataBean);
 
 		if(isSuccessfull == 1){
-			return "add-success";
+			return "update-success";
 		}
 		else{
-			return "addUserForm";
+			return "updateUserForm";
 		}
 		}
 

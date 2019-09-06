@@ -29,6 +29,8 @@ StrutsStatics{
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
 
+		System.out.println("IN session interceptor");
+
 		  Map<String,Object> session = invocation.getInvocationContext().getSession();
 		  final ActionContext context = invocation.getInvocationContext();
 		  HttpServletRequest request = (HttpServletRequest) context

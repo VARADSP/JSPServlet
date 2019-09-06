@@ -14,8 +14,25 @@ package com.uks.varad.struts.day5_6.assignment.bean;
  * Created Date: 2019/08/29
  */
 public class UserListBean {
-	private String userId,name,category,sex,address,emailId;
+	private String id,userId,name,category,sex,address,emailId,password;
 
+
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	public String getName() {
 		return name;
@@ -63,6 +80,12 @@ public class UserListBean {
 
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
+	}
+
+	@Override
+	public String toString() {
+		return "UserListBean [id=" + id + ", userId=" + userId + ", name=" + name + ", category=" + category + ", sex="
+				+ sex + ", address=" + address + ", emailId=" + emailId + ", password=" + password + "]";
 	}
 
 

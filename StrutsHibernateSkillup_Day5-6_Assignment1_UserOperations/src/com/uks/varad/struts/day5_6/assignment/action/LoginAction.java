@@ -30,42 +30,17 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginBean>
 
 
 
-	/*
-	 * method getUserName is used to return user name
-	 * return type : String
-	 */
-	public String getUserName() {
-		return loginBean.getUserName();
+
+	public LoginBean getLoginBean() {
+		return loginBean;
 	}
 
 
-	/*
-	 * method setUserName is used to set user name
-	 * @String as username
-	 * return type : void
-	 */
-	public void setUserName(String userName) {
-		loginBean.setUserName(userName);
+
+	public void setLoginBean(LoginBean loginBean) {
+		this.loginBean = loginBean;
 	}
 
-
-	/*
-	 * method getPassword returns password
-	 * return type : String
-	 */
-	public String getPassword() {
-		return loginBean.getPassword();
-	}
-
-
-	/*
-	 * method setPassword sets the password
-	 * @String as password
-	 * return type : void
-	 */
-	public void setPassword(String password) {
-		loginBean.setPassword(password);
-	}
 
 
 	/*
@@ -75,12 +50,27 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginBean>
 	// all struts logic here
 	public String execute() {
 
+		if(session.get("loginBean.userName") != null && session.get("loginBean.password") != null ){
+			System.out.println("Already logged in !");
+				loginBean.setUserName(session.get("loginBean.userName").toString());
+				loginBean.setPassword(session.get("loginBean.password").toString());
+				return "login-success";
+		}
+		else{
+
+
+		System.out.println("In login action " + loginBean.getUserName() + " " + loginBean.getPassword());
+
+		validate();
+
 		if(session.get("loggedInUser") == null){
 
 			//using session
 			session.put("loggedInUser", loginBean.getUserName());
+
 		}
 		return "login-success";
+		}
 	}
 
 
@@ -92,11 +82,14 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginBean>
 	// simple validation
 	public void validate() {
 
+		System.out.println("In validate ");
+
+		if(session.get("loginBean.userName") == null && session.get("loginBean.password") == null ){
 
 		if (StringUtils.isNotEmpty(loginBean.getUserName())
 				&& StringUtils.isNotEmpty(loginBean.getPassword())) {
 			if(CommonLogic.login(loginBean.getUserName(), loginBean.getPassword()).equalsIgnoreCase("authenticated")){
-				
+
 				addActionMessage("You are valid user!");
 			}
 			else if(CommonLogic.login(loginBean.getUserName(), loginBean.getPassword()).equalsIgnoreCase("exception")){
@@ -121,6 +114,7 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginBean>
 		}
 		else if(StringUtils.isEmpty(loginBean.getPassword())) {
 			addActionError("Please enter password !");
+		}
 		}
 
 	}

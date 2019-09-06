@@ -35,12 +35,13 @@ public class UserLogic {
 			while(resultSetOfAllUsers.next()){
 				userDataBean = new UserListBean();
 				//setting user properties
-				userDataBean.setUserId(resultSetOfAllUsers.getString(1).trim());
-				userDataBean.setName(resultSetOfAllUsers.getString(2).trim());
-				userDataBean.setCategory(resultSetOfAllUsers.getString(3).trim());
-				userDataBean.setSex(resultSetOfAllUsers.getString(4).trim());
-				userDataBean.setAddress(resultSetOfAllUsers.getString(5).trim());
-				userDataBean.setEmailId(resultSetOfAllUsers.getString(6).trim());
+				userDataBean.setId(resultSetOfAllUsers.getString(1).trim());
+				userDataBean.setUserId(resultSetOfAllUsers.getString(2).trim());
+				userDataBean.setName(resultSetOfAllUsers.getString(3).trim());
+				userDataBean.setCategory(resultSetOfAllUsers.getString(4).trim());
+				userDataBean.setSex(resultSetOfAllUsers.getString(5).trim());
+				userDataBean.setAddress(resultSetOfAllUsers.getString(6).trim());
+				userDataBean.setEmailId(resultSetOfAllUsers.getString(7).trim());
 				users.add(userDataBean);
 			}
 			return users;
@@ -53,8 +54,21 @@ public class UserLogic {
 	 * method addUser adds the user to the database and returns user id of that user
 	 * return type : String which is user id
 	 */
-	public static String addUser(){
-		return null;
+	public static Integer addUser(UserListBean userDataBean){
+		Integer isSuccessfull=0;
+
+		isSuccessfull = CommonLogic.addUser(userDataBean);
+
+		return isSuccessfull;
+
+	}
+
+	public static Integer updateUser(UserListBean userDataBean){
+		Integer isSuccessfull=0;
+
+		isSuccessfull = CommonLogic.updateUser(userDataBean);
+
+		return isSuccessfull;
 
 	}
 

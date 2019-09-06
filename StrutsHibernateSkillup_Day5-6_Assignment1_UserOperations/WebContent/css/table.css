@@ -27,9 +27,11 @@ th {
   text-align: left;
 }
 td {
+
   color: #fff;
   font-weight: 400;
   padding: 0.65em 1em;
+   word-break: break-all;
 }
 .disabled td {
   color: #4F5F64;
@@ -106,5 +108,3 @@ a.logout:hover {
   width:100%;
 }
 h1 { color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center; }
-
-
