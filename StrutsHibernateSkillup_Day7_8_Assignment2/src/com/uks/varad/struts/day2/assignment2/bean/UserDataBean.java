@@ -14,7 +14,23 @@ package com.uks.varad.struts.day2.assignment2.bean;
  * Created Date: 2019/08/29
  */
 public class UserDataBean {
-	private String firstName,middleName,lastName,gender,emailId,contactNo;
+	private String userId,firstName,middleName,lastName,gender,email,contactNo;
+
+	/*
+	 * method getUserId returns userid
+	 * return type : String
+	 */
+	public String getUserId() {
+		return userId;
+	}
+
+	/*
+	 * method setUserId sets userid
+	 * return type : String
+	 */
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
 	/*
 	 * method getFirstName returns first name
@@ -84,21 +100,23 @@ public class UserDataBean {
 		this.gender = gender;
 	}
 
-	/*
-	 * method getEmailId returns email Id
-	 * return type : String
-	 */
-	public String getEmailId() {
-		return emailId;
-	}
 
 	/*
-	 * method setEmailId sets email id
-	 * @String email id
+	 * method getEmail returns email
+	 * return type : String
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	
+	/*
+	 * method setEmail sets email
+	 * @String
 	 * return type : void
 	 */
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	/*

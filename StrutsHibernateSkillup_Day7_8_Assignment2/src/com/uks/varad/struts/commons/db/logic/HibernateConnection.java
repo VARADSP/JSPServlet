@@ -21,6 +21,10 @@ public class HibernateConnection {
 	SessionFactory factory;
 	Session session1;
 
+	/*
+	 * method getHbmconnection returns hibernate connection
+	 * return type : Session
+	 */
 	public Session getHbmConnection()
 	{
 		configuration.configure("hibernate.cfg.xml");
