@@ -12,7 +12,7 @@ package com.uks.varad.struts.day5_6.assignment.bean;
  * Created Date: 2019/08/29
  */
 public class LoginBean {
-	private Integer userid;
+	private String userid;
 	private String userName;
 	private String password;
 	/*
@@ -53,7 +53,7 @@ public class LoginBean {
 	 * method getUserid returns userid
 	 * return type : Integer
 	 */
-	public Integer getUserid() {
+	public String getUserid() {
 		return userid;
 	}
 
@@ -62,7 +62,7 @@ public class LoginBean {
 	 * @Integer
 	 * return type : void
 	 */
-	public void setUserid(Integer userid) {
-		this.userid = userid;
+	public void setUserid(String string) {
+		this.userid = string;
 	}
 }

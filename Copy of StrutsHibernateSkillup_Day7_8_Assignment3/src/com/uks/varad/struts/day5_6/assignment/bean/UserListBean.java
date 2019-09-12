@@ -13,7 +13,7 @@ package com.uks.varad.struts.day5_6.assignment.bean;
  * Created Date: 2019/9/9
  */
 public class UserListBean {
-	private String userId,name,category,sex,address,emailId,isDisabled;
+	private String userId,name,category,sex,address,password,emailId,isDisabled;
 
 	public String getIsDisabled() {
 		return isDisabled;
@@ -75,5 +75,13 @@ public class UserListBean {
 	public String toString() {
 		return "UserListBean [userId=" + userId + ", name=" + name + ", category=" + category + ", sex="
 				+ sex + ", address=" + address + ", emailId=" + emailId + "]";
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

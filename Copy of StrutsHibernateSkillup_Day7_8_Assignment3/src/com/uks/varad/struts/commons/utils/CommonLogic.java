@@ -15,6 +15,7 @@ import org.hibernate.Session;
 import com.uks.varad.struts.commons.db.logic.DbLogic;
 import com.uks.varad.struts.commons.db.logic.HibernateConnection;
 import com.uks.varad.struts.day5_6.assignment.bean.LoginBean;
+import com.uks.varad.struts.day5_6.assignment.bean.UserDataBean;
 import com.uks.varad.struts.day5_6.assignment.bean.UserListBean;
 /**
  * @author: 	Varad Paralikar
@@ -47,7 +48,7 @@ public class CommonLogic {
 		}
 		else {
 			Query query2 = session1.createQuery("from UserListBean where userId=:userid");
-			query2.setInteger("userid",loginBean.get(0).getUserid());
+			query2.setString("userid",loginBean.get(0).getUserid());
 			userDataBean = query2.list();
 		}
 		return userDataBean;
@@ -68,7 +69,7 @@ public static String login(String userName,String password){
 	loginBean = query.list();
 
 	Query query2 = session1.createQuery("from UserDataBean where userId=:userid");
-	query2.setInteger("userid",loginBean.get(0).getUserid());
+	query2.setString("userid",loginBean.get(0).getUserid());
 	userDataBean = query2.list();
 
 
@@ -99,43 +100,28 @@ public static String login(String userName,String password){
 	public static Integer addUser(UserListBean userDataBean){
 		  session1.beginTransaction();
 
-		  UserDataBean user = new UserDataBean();
+		  UserDataBean userData = new UserDataBean();
+		  LoginBean userLoginData = new LoginBean();
 
+		  userData.setUserId(userDataBean.getUserId());
+		  userData.setName(userDataBean.getName());
+		  userData.setAddress(userDataBean.getAddress());
+		  userData.setCategory(userDataBean.getCategory());
+		  userData.setEmailId(userDataBean.getEmailId());
+		  userData.setSex(userDataBean.getSex());
+		  userData.setIsDisabled(userDataBean.getIsDisabled());
+		  userLoginData.setUserid(userDataBean.getUserId());
+		  userLoginData.setPassword(userDataBean.getPassword());
+		  userLoginData.setUserName(userDataBean.getName());
 
+		//Save the user data bean in database
+	        session1.save(userData);
+	        session1.save(userLoginData);
 
+	      //Commit the transaction
+	        session1.getTransaction().commit();
 
-		try {
-			preparedStatement1 = connection.prepareStatement("INSERT INTO struts_users(username, PASSWORD) VALUES(?, ?)");
-			preparedStatement2 = connection.prepareStatement("INSERT INTO struts_userlist (userid,NAME, category, sex,address,emailid)VALUES((SELECT userid FROM struts_users WHERE username = ?),?,?,?,?,?)");
-			preparedStatement1.setString(1, userDataBean.getUserId());
-			preparedStatement1.setString(2, userDataBean.getPassword());
-			preparedStatement2.setString(1, userDataBean.getUserId());
-			preparedStatement2.setString(2, userDataBean.getName());
-			preparedStatement2.setString(3, userDataBean.getCategory());
-			preparedStatement2.setString(4, userDataBean.getSex());
-			preparedStatement2.setString(5, userDataBean.getAddress());
-			preparedStatement2.setString(6, userDataBean.getEmailId());
-
-			// executing the query for prapared statment
-			 int i1 = preparedStatement1.executeUpdate();
-				// executing the query for prapared statment
-			 int i2 = preparedStatement2.executeUpdate();
-
-			//disconnecting the database
-				DbLogic.disconnect();
-				connection.close();
-
-			 if (i1 > 0 && i2 > 0) {
-		            System.out.println("User added successfully !");
-		            return 1;
-		        } else {
-		            System.out.println("User adding operation unsuccessfull !");
-		            return 0;
-		        }
-			//successfully added user
-		} catch (Exception e) {
-			return 0;
-		}
+	        return 1;
 	}
 
 	/*
@@ -146,7 +132,6 @@ public static String login(String userName,String password){
 	public static ResultSet fillUser(String id){
 
 		UserListBean userListBean = new UserListBean();
-
 
 		//connecting to database
 		connection = DbLogic.connect();
