@@ -1,0 +1,81 @@
+package com.uks.varad.struts.day5_6.assignment.logic;
+/**
+ * @author: 	Varad Paralikar
+ * Created Date:09/10/2019
+ * Assignment:  Day 5-6
+ * Task: 		Struts And Hibernate Skillup
+ *
+ */
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.struts2.StrutsStatics;
+
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionInvocation;
+import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
+import com.uks.varad.struts.day5_6.assignment.action.LoginAction;
+
+
+/*
+ * Class LogicLogin is used to implement login logic
+ * @author: Varad Parlikar
+ * Created Date: 2019/09/9
+ */
+@SuppressWarnings("serial")
+public class LoginLogic extends AbstractInterceptor implements
+StrutsStatics{
+	private static final Log log = LogFactory.getLog(LoginLogic.class);
+	private static final String USER_HANDLE = "loggedInUser";
+	/*
+	 * method init called upon initialization
+	 * return type : void
+	 */
+	public void init() {
+		log.info("Intializing LoginInterceptor");
+	}
+	/*
+	 *	method destroy called upon destroying application
+	 * return type : void
+	 */
+	public void destroy() {
+	}
+	/*
+	 * method intercept is used as interceptor to validate the application
+	 * @ActionInvocation
+	 * return type : String
+	 */
+	public String intercept(ActionInvocation invocation) throws Exception {
+		final ActionContext context = invocation.getInvocationContext();
+		HttpServletRequest request = (HttpServletRequest) context
+				.get(HTTP_REQUEST);
+		HttpServletResponse response = (HttpServletResponse) context
+				.get(HTTP_RESPONSE);
+
+		// For Japanese letter unicode
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		HttpSession session = request.getSession(true);
+
+		// Is there a "user" object stored in the user's HttpSession?
+		Object user = session.getAttribute(USER_HANDLE);
+
+		if (user == null) {
+			// The user has not logged in yet.
+
+			/* The user is attempting to log in. */
+			if (invocation.getAction().getClass().equals(LoginAction.class))
+			{
+				return invocation.invoke();
+			}
+
+			return "login";
+		} else {
+			return invocation.invoke();
+		}
+	}
+}
