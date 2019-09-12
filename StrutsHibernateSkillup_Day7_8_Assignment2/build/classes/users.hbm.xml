@@ -6,7 +6,7 @@
 <hibernate-mapping>
 <!-- Class Mapping of LoginBean -->
 	<class name="com.uks.varad.struts.day2.assignment2.bean.LoginBean" table="struts_users">
-		<id name="id">
+		<id name="userid">
 			<generator class="increment"></generator>
 		</id>
 

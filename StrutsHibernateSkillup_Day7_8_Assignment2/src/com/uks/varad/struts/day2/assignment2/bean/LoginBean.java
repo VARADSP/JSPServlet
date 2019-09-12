@@ -1,34 +1,20 @@
 package com.uks.varad.struts.day2.assignment2.bean;
-
 /**
  * @author: 	Varad Paralikar
  * Created Date:29/08/2019
- * Assignment:  Day 2
+ * Assignment:  Day 7-8
  * Task: 		Struts And Hibernate Skillup
  *
  */
-
 /*
- * Class LoginBean is used as bean class
+ * Class LogicBean is used as bean class
  * @author: Varad Parlikar
  * Created Date: 2019/08/29
  */
 public class LoginBean {
-
-	private String id;
+	private Integer userid;
 	private String userName;
 	private String password;
-
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-
 	/*
 	 * method getUserName is used to return user name
 	 * return type : String
@@ -63,8 +49,20 @@ public class LoginBean {
 		this.password = password;
 	}
 
+	/*
+	 * method getUserid returns userid
+	 * return type : Integer
+	 */
+	public Integer getUserid() {
+		return userid;
+	}
 
-
-
-
+	/*
+	 * method setUserid sets integer id
+	 * @Integer
+	 * return type : void
+	 */
+	public void setUserid(Integer userid) {
+		this.userid = userid;
+	}
 }

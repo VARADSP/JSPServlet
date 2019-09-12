@@ -97,7 +97,7 @@ Welcome
     <td data-th="Genre"><s:property value="middleName" /></td>
     <td data-th="Year"><s:property value="lastName" /></td>
     <td data-th="Gross"><s:property value="gender" /></td>
-      <td data-th="Gross"><s:property value="emailId" /></td>
+      <td data-th="Gross"><s:property value="email" /></td>
         <td data-th="Gross"><s:property value="contactNo" /></td>
   </tr>
 

@@ -29,25 +29,7 @@ import com.uks.varad.struts.day2.assignment1.bean.LoginBean;
  * Created Date: 2019/08/29
  */
 public class CommonLogic {
-	static Connection connection;
-
-	   /*
-		 * method getRowCount returns total number of rows in a table.
-		 * return type : int
-		 */
-		public static int getRowCount(ResultSet resultSet){
-			int size = 0;
-			// calculating total resultset size
-			try {
-				resultSet.last();
-				size = resultSet.getRow();
-				resultSet.beforeFirst();
-
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-			return size;
-		}
+	
 
 
 
@@ -64,8 +46,7 @@ public class CommonLogic {
 		query.setString("username", userName);
 		query.setString("password", password);
 		List<LoginBean> fetchedData = query.list();
-
-
+			
 		if(fetchedData.size()==1){
 			//successfully authenticated user
 			return "authenticated";

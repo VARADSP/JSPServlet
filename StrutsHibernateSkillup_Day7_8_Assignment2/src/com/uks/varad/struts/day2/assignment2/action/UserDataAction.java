@@ -12,6 +12,7 @@ import java.util.ArrayList;
  */
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import com.uks.varad.struts.commons.utils.CommonLogic;
 import com.uks.varad.struts.day2.assignment2.bean.LoginBean;
 import com.uks.varad.struts.day2.assignment2.bean.UserDataBean;
 import com.uks.varad.struts.day2.assignment2.logic.UserLogic;
@@ -124,10 +125,11 @@ public class UserDataAction extends ActionSupport implements ModelDriven<UserDat
 	 */
 	// all struts logic here
 	public String execute() {
+	CommonLogic.fetchData(loginBean.getUserName());
+	
 		if(loginBean.getUserName().equals("admin")){
 			users = UserLogic.fetchAllUsers();
-		}
-		else{
+		}		else{
 			setUserDataBean(UserLogic.fetchUser(loginBean.getUserName()));
 			users.add(getUserDataBean());
 		}

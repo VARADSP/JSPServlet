@@ -14,16 +14,15 @@ package com.uks.varad.struts.day2.assignment1.bean;
  * Created Date: 2019/08/29
  */
 public class LoginBean {
-
-
-	private String id;
-
-	public String getId() {
-		return id;
+	
+	private Integer userid;
+	
+	public Integer getUserid() {
+		return userid;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUserid(Integer userid) {
+		this.userid = userid;
 	}
 
 	private String userName;
