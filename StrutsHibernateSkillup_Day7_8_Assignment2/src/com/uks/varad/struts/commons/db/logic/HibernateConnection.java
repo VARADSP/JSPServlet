@@ -30,7 +30,6 @@ public class HibernateConnection {
 		configuration.configure("hibernate.cfg.xml");
 		factory = configuration.buildSessionFactory();
 		session1 = factory.openSession();
-
 		return session1;
 	}
 }

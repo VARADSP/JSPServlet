@@ -52,10 +52,8 @@
 			<result  name="success">/WEB-INF/pages/success.jsp</result>
 			<result name="input">login.jsp</result>
 		</action>
-
-
-
-
+		
+		
 		<action class="com.uks.varad.struts.day2.assignment2.action.LogoutAction"
 			name="logout">
 			<result name="logout">login.jsp</result>
