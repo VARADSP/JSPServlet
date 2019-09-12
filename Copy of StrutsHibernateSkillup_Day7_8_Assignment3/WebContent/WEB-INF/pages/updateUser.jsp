@@ -814,32 +814,32 @@ Created Date: 2019/9/5
 					<div class="field">
 						<label class="ui olive label" id="userId"><s:text
 								name="global.searchid"></s:text></label> <input type="hidden"
-							name="userDataBean.id"
-							value="<s:property value="userDataBean.id" />" /> <input
+							name="loginBean.userName"
+							value="<s:property value="loginBean.userName" />" /> <input
 							type="text" placeholder="User ID"
-							value="<s:property value="userDataBean.userId" />"
-							name="userDataBean.userId" onmouseover="clearLabels(event)"
+							value="<s:property value="loginBean.userName" />"
+							name="loginBean.userName" onmouseover="clearLabels(event)"
 							id="searchId">
 					</div>
 					<div class="field">
 						<label class="ui olive label" id="userPassword"><s:property
 								value="getText('global.password')" /></label> <input type="password"
 							placeholder="Password" onmouseleave="togglePassword()"
-							onclick="togglePassword()" name="userDataBean.password"
-							value="<s:property value="userDataBean.password" />"
+							onclick="togglePassword()" name="loginBean.password"
+							value="<s:property value="loginBean.password" />"
 							onmouseover="clearLabels(event)" id="searchPassword">
 					</div>
 					<div class="field">
 						<label class="ui olive label" id="userCategory"><s:text
 								name="global.searchcategory"></s:text></label> <select
-							class="ui search dropdown" name="userDataBean.category" style="width:200px"
+							class="ui search dropdown" name="loginBean.userDataBean.category" style="width:200px"
 							id="searchCategory">
 							<option value="" id="searchCategory1">---</option>
 							<option value="Admin"
-								<s:if test= 'userDataBean.category == "Admin"'>selected</s:if>><s:text
+								<s:if test= 'loginBean.userDataBean.category == "Admin"'>selected</s:if>><s:text
 									name="global.searchcategory.admin"></s:text></option>
 							<option value="User"
-								<s:if test= 'userDataBean.category == "User"'>selected</s:if>><s:text
+								<s:if test= 'loginBean.userDataBean.category == "User"'>selected</s:if>><s:text
 									name="global.searchcategory.user"></s:text></option>
 						</select>
 					</div>
@@ -848,14 +848,14 @@ Created Date: 2019/9/5
 					<div class="field">
 						<label class="ui olive label" id="userName"><s:text
 								name="global.searchname"></s:text></label> <input type="text"
-							placeholder="Name" name="userDataBean.name" style="width:200px"
-							value="<s:property value="userDataBean.name" />" id="searchName">
+							placeholder="Name" name="loginBean.userDataBean.name" style="width:200px"
+							value="<s:property value="loginBean.userDataBean.name" />" id="searchName">
 					</div>
 					<div class="field">
 						<label class="ui olive label" id="userAddress"><s:text
 								name="global.searchaddress"></s:text></label> <input type="text"
-							placeholder="Address" name="userDataBean.address" style="width:200px"
-							value="<s:property value="userDataBean.address" />"
+							placeholder="Address" name="loginBean.userDataBean.address" style="width:200px"
+							value="<s:property value="loginBean.userDataBean.address" />"
 							id="searchAddress">
 					</div>
 				</div>
@@ -863,21 +863,21 @@ Created Date: 2019/9/5
 					<div class="field" style="position: relative; left: 20px;">
 						<label class="ui olive label" id="userSex"><s:text
 								name="global.searchsex"></s:text></label> <select
-							class="ui search dropdown" name="userDataBean.sex" id="searchSex" style="width:200px">
+							class="ui search dropdown" name="loginBean.userDataBean.sex" id="searchSex" style="width:200px">
 							<option value="" id="searchSex1">---</option>
 							<option value="Male"
-								<s:if test= 'userDataBean.sex == "Male"'>selected</s:if>><s:text
+								<s:if test= 'loginBean.userDataBean.sex == "Male"'>selected</s:if>><s:text
 									name="global.searchsex.male"></s:text></option>
 							<option value="Female"
-								<s:if test= 'userDataBean.sex == "Female"'>selected</s:if>><s:text
+								<s:if test= 'loginBean.userDataBean.sex == "Female"'>selected</s:if>><s:text
 									name="global.searchsex.female"></s:text></option>
 						</select>
 					</div>
 					<div class="field" style="position: relative; left: 30px;">
 						<label class="ui olive label" id="userEmailId"><s:text
 								name="global.searchemail"></s:text></label> <input type="email" style="width:200px"
-							placeholder="Email" name="userDataBean.emailId"
-							value="<s:property value="userDataBean.emailId" />"
+							placeholder="Email" name="loginBean.userDataBean.emailId"
+							value="<s:property value="loginBean.userDataBean.emailId" />"
 							id="searchEmailId">
 					</div>
 				</div>

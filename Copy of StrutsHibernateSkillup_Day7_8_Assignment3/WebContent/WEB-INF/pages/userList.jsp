@@ -1113,44 +1113,44 @@ tbody {
 								<s:if test="#session.loggedInUserType == 'User' ">
 									<s:if test="isDisabled == 'true' ">
 										<input type="checkbox" disabled checked
-											id="<s:property value="id" />" />
+											id="<s:property value="userid" />" />
 									</s:if>
 									<s:else>
-										<input type="checkbox" checked hidden id="<s:property value="id" />" />
+										<input type="checkbox" checked hidden id="<s:property value="userid" />" />
 									</s:else>
 								</s:if>
 								<s:else>
 									<s:if test="isDisabled == 'true' ">
 
 										<input type="checkbox" disabled onchange='handleChange(this);'
-											onclick='handleChange(this);' id="<s:property value="id" />" />
+											onclick='handleChange(this);' id="<s:property value="userid" />" />
 									</s:if>
 									<s:else>
 										<input type="checkbox" onchange='handleChange(this);'
-											onclick='handleChange(this);' id="<s:property value="id" />" />
+											onclick='handleChange(this);' id="<s:property value="userid" />" />
 									</s:else>
 								</s:else>
 							</s:if></td>
-						<td data-th="Movie Title"><s:property value="userId" /></td>
-						<td data-th="Movie Title"><s:property value="name" /></td>
+						<td data-th="Movie Title"><s:property value="userName" /></td>
+						<td data-th="Movie Title"><s:property value="userDataBean.name" /></td>
 						<td data-th="Genre" id="category"><s:property
-								value="category" /></td>
-						<td data-th="Year"><s:property value="sex" /></td>
-						<td data-th="Gross"><s:property value="address" /></td>
-						<td data-th="Gross"><s:property value="emailId" /></td>
+								value="userDataBean.category" /></td>
+						<td data-th="Year"><s:property value="userDataBean.sex" /></td>
+						<td data-th="Gross"><s:property value="userDataBean.address" /></td>
+						<td data-th="Gross"><s:property value="userDataBean.emailId" /></td>
 
 						<s:if test="#session.loggedInUserType != null">
 							<s:if test="#session.loggedInUserType == 'Admin' ">
-								<td data-th="Gross"><s:if test="isDisabled == 'true' ">
+								<td data-th="Gross"><s:if test="userDataBean.isDisabled == 'true' ">
 										<button class="ui green button"
-											name="<s:property value="id" />" id="enableBtn"
+											name="<s:property value="userid" />" id="enableBtn"
 											onclick="enableUser(this)"
 											style="position: relative; left: 30px;">
 											<i class="fa fa-toggle-on fa-lg" aria-hidden="true"></i>
 											<s:text name="global.enable"></s:text>
 										</button>
 									</s:if> <s:else>
-										<button class="ui red button" name="<s:property value="id" />"
+										<button class="ui red button" name="<s:property value="userid" />"
 											id="disableBtn" onclick="disableUser(this)"
 											style="position: relative; left: 30px;">
 											<i class="fa fa-ban fa-lg" aria-hidden="true"></i>

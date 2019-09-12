@@ -8,7 +8,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.uks.varad.struts.day5_6.assignment.bean.LoginBean;
-import com.uks.varad.struts.day5_6.assignment.bean.UserListBean;
+import com.uks.varad.struts.day5_6.assignment.bean.UserDataBean;
 import com.uks.varad.struts.day5_6.assignment.logic.UserLogic;
 
 /**
@@ -29,11 +29,11 @@ public class DeleteUserAction extends ActionSupport
 
 	private static final long serialVersionUID = 1L;
 	// UserDataBean
-	private UserListBean userDataBean = new UserListBean();
+	private UserDataBean userDataBean = new UserDataBean();
 	// LoginBean
 	private LoginBean loginBean = new LoginBean();
 	// array of users data
-	private ArrayList<UserListBean> users = new ArrayList<UserListBean>();
+	private ArrayList<LoginBean> users = new ArrayList<LoginBean>();
 	private Map<String, Object> session;
 
 	private HttpServletRequest request = null;
@@ -44,7 +44,7 @@ public class DeleteUserAction extends ActionSupport
 	 * method getUsers returns array of user list
 	 * return type : ArrayList
 	 */
-	public ArrayList<UserListBean> getUsers() {
+	public ArrayList<LoginBean> getUsers() {
 		return users;
 	}
 
@@ -53,7 +53,7 @@ public class DeleteUserAction extends ActionSupport
 	 * @users list of arraylist
 	 * return type : void
 	 */
-	public void setUsers(ArrayList<UserListBean> users) {
+	public void setUsers(ArrayList<LoginBean> users) {
 		this.users = users;
 	}
 
@@ -61,7 +61,7 @@ public class DeleteUserAction extends ActionSupport
 	 * method getUserDataBean returns user data bean
 	 * return type : UserDataBean
 	 */
-	public UserListBean getUserDataBean() {
+	public UserDataBean getUserDataBean() {
 		return userDataBean;
 	}
 
@@ -70,7 +70,7 @@ public class DeleteUserAction extends ActionSupport
 	 * @userDataBean class object
 	 * return type : void
 	 */
-	public void setUserDataBean(UserListBean userDataBean) {
+	public void setUserDataBean(UserDataBean userDataBean) {
 		this.userDataBean = userDataBean;
 	}
 

@@ -15,7 +15,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.uks.varad.struts.day5_6.assignment.bean.LoginBean;
-import com.uks.varad.struts.day5_6.assignment.bean.UserListBean;
+import com.uks.varad.struts.day5_6.assignment.bean.UserDataBean;
 import com.uks.varad.struts.day5_6.assignment.logic.UserLogic;
 
 /**
@@ -32,13 +32,13 @@ import com.uks.varad.struts.day5_6.assignment.logic.UserLogic;
  * Created Date: 2019/09/9
  */
 @SuppressWarnings("serial")
-public class UserListAction extends ActionSupport implements ModelDriven<UserListBean>, SessionAware {
+public class UserListAction extends ActionSupport implements ModelDriven<LoginBean>, SessionAware {
 	// UserDataBean
-	private UserListBean userDataBean = new UserListBean();
+	private UserDataBean userDataBean = new UserDataBean();
 	// LoginBean
 	private LoginBean loginBean = new LoginBean();
 	// array of users data
-	private ArrayList<UserListBean> users = new ArrayList<UserListBean>();
+	private ArrayList<LoginBean> users = new ArrayList<LoginBean>();
 	// session map
 	private Map<String, Object> session;
 
@@ -46,7 +46,7 @@ public class UserListAction extends ActionSupport implements ModelDriven<UserLis
 	 * method getUsers returns array of user list
 	 * return type : ArrayList
 	 */
-	public ArrayList<UserListBean> getUsers() {
+	public ArrayList<LoginBean> getUsers() {
 		return users;
 	}
 
@@ -55,7 +55,7 @@ public class UserListAction extends ActionSupport implements ModelDriven<UserLis
 	 * @users list of arraylist
 	 * return type : void
 	 */
-	public void setUsers(ArrayList<UserListBean> users) {
+	public void setUsers(ArrayList<LoginBean> users) {
 		this.users = users;
 	}
 
@@ -63,7 +63,7 @@ public class UserListAction extends ActionSupport implements ModelDriven<UserLis
 	 * method getUserDataBean returns user data bean
 	 * return type : UserDataBean
 	 */
-	public UserListBean getUserDataBean() {
+	public UserDataBean getUserDataBean() {
 		return userDataBean;
 	}
 
@@ -72,7 +72,7 @@ public class UserListAction extends ActionSupport implements ModelDriven<UserLis
 	 * @userDataBean class object
 	 * return type : void
 	 */
-	public void setUserDataBean(UserListBean userDataBean) {
+	public void setUserDataBean(UserDataBean userDataBean) {
 		this.userDataBean = userDataBean;
 	}
 
@@ -121,6 +121,8 @@ public class UserListAction extends ActionSupport implements ModelDriven<UserLis
 		try {
 			if (loginBean.getUserName() != null) {
 				users = UserLogic.fetchAllUsers(loginBean.getUserName());
+				
+				
 			} else { // user already logged in
 				if (session.get("loggedInUserType").toString().equals("User")) {
 					users = UserLogic.fetchAllUsers(session.get("loggedInUser").toString());
@@ -153,8 +155,8 @@ public class UserListAction extends ActionSupport implements ModelDriven<UserLis
 	 * return type : LogicBean
 	 */
 	@Override
-	public UserListBean getModel() {
-		return userDataBean;
+	public LoginBean getModel() {
+		return loginBean;
 	}
 
 	@Override

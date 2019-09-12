@@ -1,10 +1,11 @@
 package com.uks.varad.struts.day5_6.assignment.logic;
 
 import com.uks.varad.struts.commons.utils.CommonLogic;
-import com.uks.varad.struts.day5_6.assignment.bean.UserListBean;
+import com.uks.varad.struts.day5_6.assignment.bean.LoginBean;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 /**
  * @author: 	Varad Paralikar
  * Created Date:09/10/2019
@@ -22,42 +23,12 @@ public class UserLogic {
 	 * method fetchAllUsers fetches all users details from table
 	 * return type : ArrayList<UserDataBean>
 	 */
-	public static ArrayList<UserListBean> fetchAllUsers(String userName){
-
-		UserListBean userDataBean;
-		ArrayList<UserListBean> users = new ArrayList<>();
-		//clearing user list initially
-		users.clear();
-
-		ResultSet resultSetOfAllUsers = CommonLogic.fetchData(userName);
+	public static ArrayList<LoginBean> fetchAllUsers(String userName){
 		try {
-			while(resultSetOfAllUsers.next()){
-				userDataBean = new UserListBean();
-				//setting user properties
-				userDataBean.setId(resultSetOfAllUsers.getString(1).trim());
-				userDataBean.setUserId(resultSetOfAllUsers.getString(2).trim());
-				userDataBean.setName(resultSetOfAllUsers.getString(3).trim());
-				userDataBean.setCategory(resultSetOfAllUsers.getString(4).trim());
-				userDataBean.setSex(resultSetOfAllUsers.getString(5).trim());
-				userDataBean.setAddress(resultSetOfAllUsers.getString(6).trim());
-				userDataBean.setEmailId(resultSetOfAllUsers.getString(7).trim());
-				if(resultSetOfAllUsers.getString(8) == null){
-					userDataBean.setIsDisabled("false");
-				}
-				else if(resultSetOfAllUsers.getString(8).equalsIgnoreCase("false")){
-					userDataBean.setIsDisabled("false");
-				}
-				else if(resultSetOfAllUsers.getString(8).equalsIgnoreCase("true")){
-					userDataBean.setIsDisabled("true");
-				}
-				else{
-					userDataBean.setIsDisabled("false");
-				}
-				users.add(userDataBean);
-			}
-			return users;
-		} catch (SQLException e) {
-			return users;
+		ArrayList<LoginBean> resultSetOfAllUsers = (ArrayList<LoginBean>) CommonLogic.fetchData(userName);
+			return resultSetOfAllUsers;
+		} catch (Exception e) {
+			return null;
 		}
 	}
 	/*
@@ -65,7 +36,7 @@ public class UserLogic {
 	 * @UserListBean which is userlist bean class
 	 * return type : Integer
 	 */
-	public static Integer addUser(UserListBean userDataBean){
+	public static Integer addUser(LoginBean userDataBean){
 		Integer isSuccessfull=0;
 		isSuccessfull = CommonLogic.addUser(userDataBean);
 		return isSuccessfull;
@@ -75,7 +46,7 @@ public class UserLogic {
 	 * @UserListBean which is user list bean
 	 * return type : Integer
 	 */
-	public static Integer updateUser(UserListBean userDataBean){
+	public static Integer updateUser(LoginBean userDataBean){
 		Integer isSuccessfull=0;
 		isSuccessfull = CommonLogic.updateUser(userDataBean);
 		return isSuccessfull;
@@ -116,26 +87,11 @@ public class UserLogic {
 	 * @id of usere
 	 * return type : UserDataBean
 	 */
-	public static UserListBean fillBean(String id){
-
-		UserListBean userDataBean = new UserListBean();
-
-		ResultSet resultSetOfUser = CommonLogic.fillUser(id);
+	public static LoginBean fillBean(String id){
+		LoginBean userDataBean = CommonLogic.fillUser(id);
 		try {
-			while(resultSetOfUser.next()){
-
-				//setting user properties
-				userDataBean.setId(id);
-				userDataBean.setUserId(resultSetOfUser.getString(1).trim());
-				userDataBean.setPassword(resultSetOfUser.getString(2).trim());
-				userDataBean.setName(resultSetOfUser.getString(3).trim());
-				userDataBean.setCategory(resultSetOfUser.getString(4).trim());
-				userDataBean.setSex(resultSetOfUser.getString(5).trim());
-				userDataBean.setAddress(resultSetOfUser.getString(6).trim());
-				userDataBean.setEmailId(resultSetOfUser.getString(7).trim());
-			}
 			return userDataBean;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			return userDataBean;
 		}
 	}

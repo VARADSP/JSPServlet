@@ -15,6 +15,16 @@ public class LoginBean {
 	private String userid;
 	private String userName;
 	private String password;
+	private UserDataBean userDataBean;
+	
+	public UserDataBean getUserDataBean() {
+		return userDataBean;
+	}
+
+	public void setUserDataBean(UserDataBean userDataBean) {
+		this.userDataBean = userDataBean;
+	}
+
 	/*
 	 * method getUserName is used to return user name
 	 * return type : String
