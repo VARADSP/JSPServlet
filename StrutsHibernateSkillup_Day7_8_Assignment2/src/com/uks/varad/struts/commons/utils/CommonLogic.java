@@ -2,11 +2,6 @@
  *
  */
 package com.uks.varad.struts.commons.utils;
-
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
 
 import org.hibernate.Query;
