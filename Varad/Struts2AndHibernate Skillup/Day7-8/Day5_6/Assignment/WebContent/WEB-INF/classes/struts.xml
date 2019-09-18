@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <constant name="struts.devMode" value="false" />
+  	<!-- constant to define global resource bundle -->
+<!-- constant to define result path locations to project root directory -->
+	<constant name="struts.convention.result.path" value="/"></constant>
+	<!-- constant to define global resource bundle -->
+	<constant name="struts.custom.i18n.resources" value="global"></constant>
+	<package name="user" extends="struts-default"  namespace="/">
+  <!-- interceptors used to validate form and implement cross cutting -->
+		<interceptors>
+			<interceptor class="com.uks.varad.struts.day5_6.assignment.logic.LoginLogic"
+				name="loginInterceptor" />
+				  <!-- loginStack -->
+			<interceptor-stack name="loginStack">
+			  <!-- calling login interceptor -->
+				<interceptor-ref name="loginInterceptor" />
+				  <!-- calling default interceptor -->
+				<interceptor-ref name="defaultStack" >
+				</interceptor-ref>
+			</interceptor-stack>
+
+			<interceptor name="session" class="com.uks.varad.struts.day5_6.assignment.logic.SessionInterceptor" />
+			<interceptor-stack name="sessionExpirayStack">
+   			 <interceptor-ref name="defaultStack"/>
+   			 <interceptor-ref name="session"/>
+   			</interceptor-stack>
+		</interceptors>
+
+
+  <!-- Setting default stack to loginStack -->
+ 		<default-interceptor-ref name="loginStack"/>
+
+		<global-results>
+			<result name="login">login.jsp</result>
+			 <result name="session">login.jsp</result>
+			 <result name="error">login.jsp</result>
+		</global-results>
+
+
+  <!-- Actions  -->
+		<action class="com.uks.varad.struts.day5_6.assignment.action.LoginAction"
+			name="loginAuthentication">
+
+			<!-- Using Action Chaining  -->
+			<result  name="login-success" type="chain">
+			showUser
+			</result>
+			<result name="input">login.jsp</result>
+
+		</action>
+
+  <!-- Actions  -->
+		 <action name = "add">
+         <result>/WEB-INF/pages/addUser.jsp</result>
+      </action>
+
+	<action class="com.uks.varad.struts.day5_6.assignment.action.UpdateUserAction"
+			name="update" method="update">
+
+			<result name="updateUserForm">
+			/WEB-INF/pages/updateUser.jsp
+			</result>
+			<result name="error">login.jsp</result>
+
+		</action>
+
+
+  <!-- Actions  -->
+	<action class="com.uks.varad.struts.day5_6.assignment.action.DetailsUserAction"
+			name="details" method="details">
+			<result name="detailsUserForm">
+			/WEB-INF/pages/detailsUser.jsp
+			</result>
+			<result name="error">login.jsp</result>
+		</action>
+
+  <!-- Actions  -->
+		<action class="com.uks.varad.struts.day5_6.assignment.action.DeleteUserAction"
+			name="delete" method="delete">
+			<result name="delete-success" type="chain">showUser</result>
+			<result name="error">login.jsp</result>
+		</action>
+  <!-- Actions Chaining  -->
+		<action class="com.uks.varad.struts.day5_6.assignment.action.EnableUserAction"
+			name="enable" method="enable">
+			<result name="enable-success" type="chain">showUser</result>
+			<result name="error">login.jsp</result>
+		</action>
+
+
+		<action class="com.uks.varad.struts.day5_6.assignment.action.DisableUserAction"
+			name="disable" method="disable">
+			<result name="disable-success" type="chain">showUser</result>
+			<result name="error">login.jsp</result>
+		</action>
+
+
+  <!-- Actions Chaining -->
+		<action class="com.uks.varad.struts.day5_6.assignment.action.UserListAction"
+			name="showUser">
+			<!-- Using Action Chaining  -->
+			<result  name="success">/WEB-INF/pages/userList.jsp</result>
+			<result name="input">login.jsp</result>
+		</action>
+
+
+		<action class="com.uks.varad.struts.day5_6.assignment.action.LogoutAction"
+			name="logout">
+			<result name="logout">login.jsp</result>
+		</action>
+
+		<action class="com.uks.varad.struts.day5_6.assignment.action.AddUserAction"
+			name="addUser" method="register">
+
+			<result name="add-success" type="chain">showUser</result>
+			<result name="addUserForm">
+			/WEB-INF/pages/addUser.jsp
+			</result>
+			<result name="error">login.jsp</result>
+		</action>
+
+
+		<action class="com.uks.varad.struts.day5_6.assignment.action.UpdateUserAction"
+			name="updateUser" method="updateUser">
+			<result name="update-success" type="chain">showUser</result>
+				<result name="updateUserForm">
+			/WEB-INF/pages/updateUser.jsp
+			</result>
+			<result name="error">login.jsp</result>
+		</action>
+
+		<action name="welcome" class="com.uks.varad.struts.day5_6.assignment.action.WelcomeAction">
+		<interceptor-ref name="defaultStack">
+				<param name="i18n.parameterName">appLocale</param>
+			</interceptor-ref>
+			<result name="success">login.jsp</result>
+		</action>
+	</package>
+</struts>

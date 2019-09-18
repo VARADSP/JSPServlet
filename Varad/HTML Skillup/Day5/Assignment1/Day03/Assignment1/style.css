@@ -1,0 +1,66 @@
+
+table{
+  border:1px solid black;
+  margin: auto;
+  width: 120%;
+}
+#symbol{
+  color:red;
+}
+.field_name{
+  border: 1px solid black;
+  display: inline;
+  padding-right:10px;
+  margin-right: auto;
+  margin-left: 20px;
+}
+
+input[type="checkbox"]{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.header{
+  display: block;
+  width: 190%;
+  border: 1px solid black;
+  background: #ccc;
+  padding: 5px;
+  margin-top: 5px;
+  margin-left: 5px;
+  position: relative;
+}
+
+.container{
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  position: relative;
+  width: 40%;
+  min-width:400px;
+  height: auto;
+}
+/*styles for buttons*/
+.submit{
+  left: 70%;
+  padding: 5px;
+  background: none;
+  margin-right: 20px;
+  padding: 8px 8px;
+  background: green;
+  color:white;
+  border-radius: 20px;
+  border:1px solid;
+}
+.clear{
+  left: 70%;
+  padding: 5px;
+  background: none;
+  margin-right: 20px;
+  padding: 8px 8px;
+  color:white;
+  border-radius: 20px;
+  background: blue;
+  border:1px solid;
+}

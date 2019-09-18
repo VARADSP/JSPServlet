@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+      <!--For adjusting view port for responsive layout-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gradients</title>
+    <style>
+    #gradients{
+      margin-top:100px;
+    }
+    </style>
+  </head>
+  <body align="center">
+      <h1>Gradients</h1>
+    <canvas id="gradients" width="400" height="400">
+
+    </canvas>
+
+    <script>
+      var canvasId = 'gradients',
+            canvas = document.getElementById(canvasId),
+            context = canvas.getContext('2d'),
+            gradient;
+
+        // Create gradient
+        gradient = context.createLinearGradient(150.000, 0.000, 150.000, 300.000);
+
+        // Add colors
+        gradient.addColorStop(0.000, 'rgba(0, 191, 255, 1.000)');
+        gradient.addColorStop(0.500, 'rgba(255, 255, 255, 1.000)');
+        gradient.addColorStop(0.520, 'rgba(86, 186, 0, 1.000)');
+        gradient.addColorStop(0.640, 'rgba(111, 227, 0, 1.000)');
+        gradient.addColorStop(1.000, 'rgba(255, 255, 255, 1.000)');
+
+        // Fill with gradient
+        context.fillStyle = gradient;
+        context.fillRect(0, 0, 300.000, 300.000);
+
+        var gradient= context.createLinearGradient(0, 0, 0, 275);
+        gradient.addColorStop(0, "black");
+        gradient.addColorStop(1,"transparent");
+
+
+        context.lineWidth = 3;
+        context.strokeStyle = gradient;
+
+        //first line
+        context.beginPath();
+        context.moveTo(90,70);
+        context.lineTo(90,200);
+        context.stroke();
+        //second line
+        context.beginPath();
+        context.moveTo(90,70);
+        context.lineTo(210,70);
+        context.stroke();
+        //third line
+        context.beginPath();
+        context.moveTo(210,70);
+        context.lineTo(210,200);
+        context.stroke();
+
+    </script>
+  </body>
+</html>

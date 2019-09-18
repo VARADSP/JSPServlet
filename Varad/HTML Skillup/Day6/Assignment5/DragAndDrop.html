@@ -1,0 +1,39 @@
+<!DOCTYPE html utf-8>
+<html>
+<head>
+	<title>Drag An Drop</title>
+  <meta http-equiv="Content-Type"content="text/html;charset=utf-8">
+	  <!--For adjusting view port for responsive layout-->
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
+  <link rel="stylesheet" href="DragAndDrop.css">
+</head>
+<body>
+    <center>
+            <h2>HTML5 Drag An Drop</h2>
+            <div ondragstart="drag(event)"  ondragover="allowDrop(event)" draggable="true" id="drag">
+                <label style="color: white;display:inline-block;">Drag me</label>
+            </div>
+            <div id="drop" ondrop="drop(event)" ondragover="allowDrop(event)" >
+                <label >Dust bean</label>
+            </div>
+    </center>
+
+	<script type="text/javascript">
+		function drag(ev) {
+		//set dragging data
+       ev.dataTransfer.setData("text", ev.target.id);
+     }
+    function allowDrop(ev) {
+      //This is done by calling the event.preventDefault() method for the ondragover event
+  	  ev.preventDefault();
+  	}
+  	function drop(ev) {
+  		ev.preventDefault();
+        //Get the dragged data with the dataTransfer.getData() method. This method will return any data that was set to the same type in the setData() method
+  		var data = ev.dataTransfer.getData("text");
+  		//appen data to drop
+  		ev.target.appendChild(document.getElementById(data));
+  	}
+		</script>
+</body>
+</html>

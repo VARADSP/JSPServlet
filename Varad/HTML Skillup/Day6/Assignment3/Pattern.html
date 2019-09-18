@@ -1,0 +1,58 @@
+<!DOCTYPE html utf-8>
+<!--
+Day : 5-6
+Assignment :3
+Assignment : Write a HTML code that repeats the below pattern in canvas
+Author : Kailas
+Date   : 6/8/2019
+-->
+<html >
+<head>
+	<title>Canvas Pattern</title>
+   <meta http-equiv="Content-Type"content="text/html;charset=utf-8">
+</head>
+<style>
+  button{
+
+      position: relative;
+      background-color: #CFAF50;
+      border: none;
+      font-size: 13px;
+      padding: 20px;
+      width: 100px;
+      text-align: center;
+      -webkit-transition-duration: 0.4s; /* Safari */
+      transition-duration: 0.4s;
+      text-decoration: none;
+      overflow: hidden;
+      cursor: pointer;
+      border-radius: 25px;
+
+
+  }
+</style>
+<body align="center">
+    <h1>Pattern</h1>
+<img src="pattern.jpg" id="lines" width="5px" height="5px" hidden="">
+<canvas id="myCanvas" width="400" height="400" style="border:1px solid #d3d3d3;">
+</canvas>
+<br>
+<button onclick="draw('repeat')">Repeat</button>
+<button onclick="draw('repeat-x')">Repeat-x</button>
+<button onclick="draw('repeat-y')">Repeat-y</button>
+<button onclick="draw('no-repeat')">No-repeat</button>
+
+<script>
+function draw(direction) {
+  var c = document.getElementById("myCanvas");
+  var ctx = c.getContext("2d");
+  ctx.clearRect(0, 0, c.width, c.height);
+  var img = document.getElementById("lines")
+  var pat = ctx.createPattern(img, direction);
+  ctx.rect(0, 0, 400, 400);
+  ctx.fillStyle = pat;
+  ctx.fill();
+}
+</script>
+</body>
+</html>

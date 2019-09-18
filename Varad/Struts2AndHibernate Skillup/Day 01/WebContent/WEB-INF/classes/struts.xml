@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<include file="struts-default.xml" />
+	<!-- Package for struts -->
+	<package name="HibernateWithXML" extends="struts-default,json-default">
+	<!--  action to call WelcomeAction class method -->
+		<action name="insertData" class="com.uks.varad.struts.day1.assignment1.action.WelcomeAction">
+		<!--  on success redirect to welcome page -->
+			<result name="success">welcome.jsp</result>
+			<result name="error">index.jsp</result>
+		</action>
+	</package>
+</struts>

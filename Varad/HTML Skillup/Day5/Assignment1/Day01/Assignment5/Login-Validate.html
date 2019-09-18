@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+      <!--For adjusting view port for responsive layout-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="Content-Type"content="text/html;charset=utf-8">
+ <title>Login-Validate</title>
+ <!--javascript to validate form data-->
+ <script>
+//function for auto focus on login id on loading of page
+window.onload = function () {
+var x = document.getElementsByName('loginId');
+x.focus();
+}
+ //called upon submit click
+function validateForm() {
+  var loginId = document.forms["loginForm"]["loginId"].value;
+  var password = document.forms["loginForm"]["password"].value;
+  //check if login id and password is present
+  if (loginId == "" && password == "") {
+    alert("Please enter Login ID and Password");
+    return false;
+  }
+  //check if login id is present
+  else if(loginId == ""){
+    alert("Please enter Login ID");
+    return false;
+  }
+  //check if password is present
+  else if(password == ""){
+    alert('Please enter Password for ' + loginId);
+    return false;
+  }
+  else {
+    return true;
+  }
+}
+</script>
+  </head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <body>
+    <!--Creating form-->
+    <form name="loginForm" onsubmit="return validateForm()"  >
+      <!--Creating container-->
+      <div class="container">
+      <div class="header">
+        <header>
+        <!--Header-->
+      <h3 class="block header"><b>Login Details</b> </h3>
+      </header>
+      </div>
+      <!--Creating table-->
+      <table class="table">
+        <section>
+        <!--table row for login id-->
+      <tr>
+        <article class="login-id">
+          <td align='center'>
+            <p class="block"><b>Login ID</b></p>
+            </td>
+          <td><input type='text' name='loginId' size="20" maxlength="15" autofocus></td>
+      </tr>
+    </article>
+      </section>
+
+      <section>
+      <!--table row for password-->
+      <tr>
+        <article class="password">
+
+          <td><p class="block"><b>Password</b></p></td>
+          <td><input type='password' name='password' size="20" maxlength="20"></td>
+        </article>
+      </tr>
+      <!--table row for buttons-->
+    </section>
+    <section>
+      <tr>
+        <article class="buttons">
+      <td><button class="button" type="submit"><b>Submit</b></td>
+        <td><button class="button" type="reset"><b>Clear</b></td>
+
+          </article>
+      </tr>
+    </section>
+      </table>
+      <!--table end-->
+        </div>
+    </form>
+    <!--form end-->
+    </body>
+  </html>

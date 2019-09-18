@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+      <!--For adjusting view port for responsive layout-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TextAndFonts</title>
+<body align="center">
+      <h1>Text</h1>
+    <canvas id="text" width="450" height="450">
+Your browser does not support the canvas element.
+</canvas>
+
+<script>
+var canvas = document.getElementById("text");
+var context = canvas.getContext("2d");
+//font and color added to the Text
+context.font = "50px Arial";
+context.fillStyle = "blue";
+//Added text to the canvas
+context.strokeText("Hello World!",70,150);
+
+//font and color added to the Text
+context.font ="italic 50px Arial";
+context.fillStyle = "blue";
+//Added text to the canvas
+context.fillText("Hello World!",80,230);
+</script>
+
+</body>
+</html>

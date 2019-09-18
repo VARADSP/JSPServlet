@@ -1,0 +1,55 @@
+/*styles for header*/
+.header{
+  text-align: center;
+  font-weight: normal;
+}
+
+
+input{
+  height: 25px;
+}
+
+
+/*styles for table data*/
+.block{
+  display: inline-block;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+/*styles for table*/
+.table
+{
+  border: 1px solid black;
+  width:auto;
+  margin: auto;
+}
+
+/*styles for table header,data*/
+th, td {
+  padding: 20px;
+}
+
+/*styles for buttons*/
+.button{
+  border: 1px solid black;
+  position: relative;
+  left: 70px;
+  padding: 5px;
+  background: none;
+  border-radius: 20px;
+  border:2px solid green;
+}
+
+/*styles for container*/
+.container{
+    border: 1px solid black;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    position: relative;
+    width: 40%;
+    min-width:400px;
+    height: auto;
+}

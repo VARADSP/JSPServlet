@@ -1,0 +1,49 @@
+<!DOCTYPE HTML utf-8>
+<html>
+  <head>
+      <!--For adjusting view port for responsive layout-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="Content-Type"content="text/html;charset=utf-8">
+ <title>Audio Player</title>
+  <script src="js/VideoPlayer.js"></script>
+  </head>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <body>
+
+  <h1 align="center">Video Player</h1>
+
+
+<div id="container">
+
+
+  <div id="controls">
+    <button id="play" onclick="playPause()">Play/Pause</button>
+    <button id="small" onclick="makeBig()">Big </button>
+    <button id="big" onclick="makeSmall()">Small </button>
+    <button id="normal" onclick="makeNormal()">Normal </button>
+  </div>
+
+  <video width="500" id="player" controls>
+     <source id="source" src="videos/mov_bbb.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+
+
+<div class="tracker"></div>
+
+<ul class="playlist hidden" id="tracks">
+
+    <li id="movie1" onclick="movie1()" audiourl="videos/movie1.mp4"  artist="Artist 1">Movie1</li>
+
+    <li id="movie2" onclick="movie2()" audiourl="videos/movie1.mp4"  artist="Artist 2">Movie2</li>
+
+    <li id="movie3" onclick="movie3()" audiourl="videos/mov_bbb.mp4" artist="Artist 3">Movie3</li>
+
+</ul>
+
+</div>
+
+
+
+    </body>
+  </html>

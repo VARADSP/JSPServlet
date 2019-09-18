@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+      <!--For adjusting view port for responsive layout-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lines</title>
+    <style>
+    #lines{
+      margin-top:100px;
+    }
+    </style>
+  </head>
+  <body align="center">
+    <h1>Lines</h1>
+    <canvas id="lines" width="400" height="400">
+
+    </canvas>
+
+    <script>
+    var canvas = document.getElementById("lines");
+    var context = canvas.getContext("2d");
+
+    // 4. Draw grahpics.
+    context.strokeStyle = "#000000";
+    var xPosition = 0;
+    var lineWidth = 5;
+    for(var i=0;i<=9;i++){
+      context.lineWidth = lineWidth;
+      context.beginPath();
+      context.moveTo(xPosition, 0);
+      context.lineTo(xPosition, 300);
+      context.stroke();
+      lineWidth+=2;
+      xPosition+=32;
+    }
+    </script>
+  </body>
+</html>

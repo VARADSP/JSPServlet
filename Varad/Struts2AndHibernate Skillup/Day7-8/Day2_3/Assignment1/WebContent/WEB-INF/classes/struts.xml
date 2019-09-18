@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<package extends="struts-default" name="default" namespace="/">
+  <!-- interceptors used to validate form and implement cross cutting -->
+		<interceptors>
+			<interceptor class="com.uks.varad.struts.day2.assignment1.logic.LoginLogic"
+				name="loginInterceptor" />
+				  <!-- loginStack -->
+			<interceptor-stack name="loginStack">
+			  <!-- calling login interceptor -->
+				<interceptor-ref name="loginInterceptor" />
+				  <!-- calling default interceptor -->
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+  <!-- Setting default stack to loginStack -->
+ 		<default-interceptor-ref name="loginStack"/>
+
+		<global-results>
+			<result name="login">login.jsp</result>
+		</global-results>
+  <!-- Actions  -->
+		<action class="com.uks.varad.struts.day2.assignment1.action.LoginAction"
+			name="loginAuthentication">
+			<result  name="login-success">/WEB-INF/pages/success.jsp</result>
+			<result name="input">login.jsp</result>
+		</action>
+
+		<action class="com.uks.varad.struts.day2.assignment1.action.LogoutAction"
+			name="logout">
+			<result name="logout">login.jsp</result>
+		</action>
+
+	</package>
+</struts>
