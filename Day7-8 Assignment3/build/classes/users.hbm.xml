@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<!-- Class Mapping of LoginBean -->
+	<class name="com.uks.varad.struts.day5_6.assignment.bean.LoginBean" table="struts_users">
+		<id name="userid">
+			<generator class="increment"></generator>
+		</id>
+
+		<property name="userName"></property>
+		<property name="password"></property>
+
+
+		<one-to-one name="userDataBean" class="com.uks.varad.struts.day5_6.assignment.bean.UserDataBean"
+			cascade="save-update"></one-to-one>
+
+	</class>
+
+</hibernate-mapping>

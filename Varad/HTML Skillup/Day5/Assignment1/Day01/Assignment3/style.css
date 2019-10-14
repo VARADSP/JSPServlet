@@ -1,0 +1,30 @@
+a {color:#00FF00}
+
+ul {color:green}
+table
+  {
+  border: 1px solid black;
+  border-collapse: collapse;
+  table-layout: auto;
+  width: 40%;
+  }
+  th, td {
+  padding: 20px;
+  }
+
+#unique{
+  color:gold;
+  font-family: comic sans ms;
+}
+.MyName{
+  font-family: comic sans ms;
+  font-size: 20px;
+  text-decoration: underline;
+  text-decoration-color: green;
+  color: brown;
+}
+
+body {
+  background-color:pink;
+  color:blue;
+}

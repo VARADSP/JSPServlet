@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<html>
+  <head>
+      <!--For adjusting view port for responsive layout-->
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="Content-Type"content="text/html;charset=utf-8">
+ <title>User Details</title>
+  </head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <!--javascript to validate form data-->
+  <script src="UserDetails.js"></script>
+  <body>
+    <!--Container-->
+    <div class="container">
+      <!--Creating form-->
+    <form name="loginForm" onsubmit="return validateForm()">
+      <table cellspacing="5">
+        <section>
+        <tr>
+          <header>
+          <td class="header"><b>Personal Details</b></td>
+          </header>
+        </tr>
+          </section>
+          <section>
+        <tr>
+          <td class="field_name"><b>Salutation</b></td>
+          <td>
+            <select name="salutation" autofocus>
+            <option value="" disabled selected>Select Salutation</option>
+            <option value="Mr.">Mr.</option>
+            <option value="Mrs.">Mrs.</option>
+            <option value="Miss">Miss</option>
+            </select>
+          </td>
+        </tr>
+
+      </section>
+      <section>
+        <tr>
+          <td class="field_name"><b>First Name</b><i id="symbol">*</i></td>
+          <td>
+          <input type="text" name="firstName" maxlength="50" required placeholder="Enter your first name">
+          </td>
+        </tr>
+      </section>
+      <section>
+        <tr>
+          <td class="field_name"><b>Middle Name</b></td>
+          <td>
+          <input type="text" name="middleName" maxlength="50" placeholder="Enter your middle name">
+          </td>
+        </tr>
+      </section>
+      <section>
+        <tr>
+          <td class="field_name"><b>Last Name</b><i id="symbol">*</i></td>
+          <td>
+          <input type="text" name="lastName" maxlength="50" required placeholder="Enter your last name">
+          </td>
+        </tr>
+      </section>
+      <section>
+        <tr>
+          <td class="field_name"><b>Sex</b><i id="symbol">*</i></td>
+          <td>
+            <input type="radio" required name="gender" value="male"> Male
+            <input type="radio" required name="gender" value="female"> Female
+          </td>
+        </tr>
+      </section>
+      <section>
+        <tr>
+          <td class="field_name"><b>Email Id</b></td>
+          <td>
+          <input type="email" name="emailId" maxlength="50" placeholder="Enter your email id">
+          </td>
+        </tr>
+      </section>
+      <section>
+        <tr>
+          <td class="field_name"><b>Birth Date</b><i id="symbol">*</i> </td>
+
+          <td> <select required name="year" id="year" size="1">
+
+
+    						<option value="">Year</option>
+    						<option value="2000">1960</option>
+                                                    <option value="2000">1961</option>
+                                                    <option value="2000">1962</option>
+                                                    <option value="2000">1963</option>
+                                                    <option value="2000">1964</option>
+                                                    <option value="2000">1965</option>
+                                                    <option value="2000">1966</option>
+                                                    <option value="2000">1967</option>
+                                                    <option value="2000">1968</option>
+                                                    <option value="2000">1969</option>
+                                                    <option value="2000">1970</option>
+                                                    <option value="2000">1971</option>
+                                                    <option value="2000">1972</option>
+                                                    <option value="2000">1973</option>
+                                                    <option value="2000">1974</option>
+                                                    <option value="2000">1975</option>
+                                                    <option value="2000">1976</option>
+                                                    <option value="2000">1977</option>
+                                                    <option value="2000">1978</option>
+                                                    <option value="2000">1979</option>
+                                                    <option value="2000">1980</option>
+                                                    <option value="2000">1981</option>
+                                                    <option value="2000">1982</option>
+                                                    <option value="2000">1983</option>
+                                                    <option value="2000">1984</option>
+                                                    <option value="2000">1985</option>
+                                                    <option value="2000">1986</option>
+                                                    <option value="2000">1987</option>
+                                                    <option value="2000">1988</option>
+                                                    <option value="2000">1989</option>
+                                                    <option value="2000">1990</option>
+                                                    <option value="2000">1991</option>
+                                                    <option value="2000">1992</option>
+                                                    <option value="2000">1993</option>
+                                                    <option value="2000">1994</option>
+                                                    <option value="2000">1995</option>
+                                                    <option value="2000">1996</option>
+                                                    <option value="2000">1997</option>
+                                                    <option value="2000">1998</option>
+                                                    <option value="2000">1999</option>
+                                                    <option value="2000">2000</option>
+    												<option value="2001">2001</option>
+    												<option value="2002">2002</option>
+                                                    <option value="2002">2003</option>
+                                                    <option value="2002">2004</option>
+                                                    <option value="2002">2005</option>
+                                                    <option value="2002">2006</option>
+                                                    <option value="2002">2007</option>
+                                                    <option value="2002">2008</option>
+                                                    <option value="2002">2009</option>
+                                                    <option value="2002">2010</option>
+                                                    <option value="2002">2011</option>
+                                                    <option value="2002">2012</option>
+                                                    <option value="2002">2013</option>
+                                                    <option value="2002">2014</option>
+    												<option value="2002">2015</option>
+    												<option value="2002">2016</option>
+    												<option value="2002">2017</option>
+    												<option value="2002">2018</option>
+    												<option value="2002">2019</option>
+
+                          </select> <select required name="month" id="month" size="1">
+    												<option value="">Month</option>
+    												<option value="1">January</option>
+    												<option value="2">February</option>
+    												<option value="3">March</option>
+    												<option value="4">April</option>
+    												<option value="5">May</option>
+    												<option value="6">June</option>
+    												<option value="7">July</option>
+    												<option value="8">August</option>
+    												<option value="9">September</option>
+    												<option value="10">October</option>
+    												<option value="11">November</option>
+    												<option value="12">December</option>
+    												</select>
+
+                            <select required name="day" id="day" size="1">
+<option value="" disabled selected="selected">Day</option>
+<option></option>
+<option value="31">31</option> -->
+</select>
+              <script>
+
+                    // to get day in month
+                    function daysInMonth(month, year) {
+                    var dd = new Date(year, month, 0);
+                    return dd.getDate();
+                    }
+                    function setDayDrop(dyear, dmonth, dday) {
+                    var year = dyear.options[dyear.selectedIndex].value;
+                    var month = dmonth.options[dmonth.selectedIndex].value;
+                    var day = dday.options[dday.selectedIndex].value;
+                    console.log(daysInMonth(month,year));
+                    var days = (year == ' ' || month == ' ') ? 31
+                    : daysInMonth(month, year);
+                    dday.options.length = 0;
+                    dday.options[dday.options.length] = new Option('Day',
+                    ' ');
+                    // to get 1 to 31 days used loop
+                    for (var i = 1; i <= days; i++)
+                    dday.options[dday.options.length] = new Option(
+                    i, i);
+
+                    }
+                    // set date to the setDayDrop function
+                    function setDay() {
+                    var year = document.getElementById('year');
+                    var month = document.getElementById('month');
+                    var day = document.getElementById('day');
+                    console.log(day);
+                    setDayDrop(year, month, day);
+                    }
+                    document.getElementById('month').onchange = setDay;
+                    document.getElementById('year').onchange = setDay;
+
+</script></td>
+        </tr>
+          </section>
+          <section>
+        <tr>
+          <td class="field_name"><b>Address</b></td>
+          <td>
+          <textarea rows="4" cols="25" name="address" maxlength="100" placeholder="Enter your address"></textarea>
+          </td>
+        </tr>
+        </section>
+        <section>
+        <tr>
+          <td class="header"><b>Area Of Interest</b><i id="symbol">*</i></td>
+        </tr>
+        </section>
+        <section>
+        <tr>
+          <td>
+            <input  type="checkbox" name="webProgramming">Web Programming<br>
+            <input  type="checkbox" name="databaseProgramming">Database Programming<br>
+            <input  type="checkbox" name="swingProgramming">Swing Programming<br>
+            <input  type="checkbox" name="mobileProgramming">Mobile Programming<br>
+          </td>
+
+        </tr>
+      </section>
+      <section>
+        <tr>
+          <td class="field_name"><b>Other Interests</b></td>
+        </tr>
+        <tr>
+          <td>
+          <textarea  rows="4" cols="25" style="overflow-y:scroll;" maxlength="100" name="otherInterests"></textarea>
+            </td>
+        </tr>
+    </section>
+        <script>
+        var oCheckBox1 = document.loginForm.elements["webProgramming"];
+        var oCheckBox2 = document.loginForm.elements["databaseProgramming"];
+        var oCheckBox3 = document.loginForm.elements["swingProgramming"];
+        var oCheckBox4 = document.loginForm.elements["mobileProgramming"];
+
+        var otherInterests = document.loginForm.otherInterests.value;
+
+        oCheckBox1.onchange = performCheck;
+        oCheckBox2.onchange = performCheck;
+        oCheckBox3.onchange = performCheck;
+        oCheckBox4.onchange = performCheck;
+
+        otherInterests.onchange = performCheckOnTextArea;
+
+
+        function performCheck(){
+          var oCheckBox1 = document.loginForm.elements["webProgramming"];
+          var oCheckBox2   = document.loginForm.elements["databaseProgramming"];
+          var oCheckBox3 = document.loginForm.elements["swingProgramming"];
+          var oCheckBox4 = document.loginForm.elements["mobileProgramming"];
+
+          var otherInterests = document.loginForm.otherInterests.value;
+
+          if(testCheckbox(oCheckBox1) || testCheckbox(oCheckBox2) || testCheckbox(oCheckBox3) || testCheckbox(oCheckBox4) || otherInterests != ""){
+            oCheckBox1.required = false;
+          }
+          else{
+            oCheckBox1.required = true;
+            console.log("Unchecked");
+          }
+        }
+
+        function performCheckOnTextArea(){
+          var oCheckBox1 = document.loginForm.elements["webProgramming"];
+          var oCheckBox2 = document.loginForm.elements["databaseProgramming"];
+          var oCheckBox3 = document.loginForm.elements["swingProgramming"];
+          var oCheckBox4 = document.loginForm.elements["mobileProgramming"];
+
+          var otherInterests = document.loginForm.otherInterests.value;
+          if(testCheckbox(oCheckBox1) || testCheckbox(oCheckBox2) || testCheckbox(oCheckBox3) || testCheckbox(oCheckBox4) || otherInterests != ""){
+            oCheckBox1.required = false;
+          }
+          else{
+            oCheckBox1.required = true;
+          }
+        }
+        //function testCheckbox to check if text box is checked or not
+        function testCheckbox(oCheckbox)
+        {
+            var checkbox_val = oCheckbox.value;
+            if (oCheckbox.checked == true)
+            {
+              return true;
+            }
+            else
+            {
+              return false;
+            }
+        }
+
+        </script>
+
+        <section>
+        <!--table row for buttons-->
+        <tr>
+        <td colspan="2" align="center"><button class="submit" type="submit"><b>Submit</b>
+          <button class="clear" type="reset"><b>Clear</b>
+            </td>
+        </tr>
+          </section>
+      </table>
+    </form>
+    </div>
+    </body>
+  </html>

@@ -1,0 +1,51 @@
+<!DOCTYPE HTML utf-8>
+<html>
+  <head>
+      <!--For adjusting view port for responsive layout-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="Content-Type"content="text/html;charset=utf-8">
+ <title>Audio Player</title>
+  <script src="js/AudioPlayer.js"></script>
+  </head>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <body>
+
+  <h1 align="center">Audio Player</h1>
+          <div class="cover"></div>
+
+<div id="container">
+
+
+
+
+<audio controls id="player">
+  <source id="source" src="tracks/Sleep Away.mp3" type="audio/ogg">
+Your browser does not support the audio element.
+
+</audio>
+<div class="tracker"></div>
+
+<ul class="playlist hidden" id="tracks">
+
+    <li id="kalimba" onclick="kalimba()" audiourl="tracks/Kalimba.mp3"  artist="Artist 1">Kalimba</li>
+
+    <li id="maid" onclick="maid()" audiourl="tracks/Maid With the Flaxen Hair.mp3"  artist="Artist 2">Maid With The Flaxen Hair</li>
+
+    <li id="sleepAway" onclick="sleepAway()" audiourl="tracks/Sleep Away.mp3" artist="Artist 3">Sleep Away</li>
+
+</ul>
+
+</div>
+
+<div id="controls">
+  <button id="play" onclick="document.getElementById('player').play()">Play</button>
+  <button id="pause" onclick="document.getElementById('player').pause()">Pause</button>
+  <button id="volup" onclick="volUp()">Vol+ </button>
+  <button id="voldown" onclick="volDown()">Vol- </button>
+</div>
+
+
+
+
+    </body>
+  </html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html utf-8>
+<html>
+
+<head>
+  <title>PatternAnimation</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <!--For adjusting view port for responsive layout-->
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
+</head>
+
+<body>
+  <center>
+    <h2>HTML5 Pattern Animation</h2>
+    <img src="pattern.jpg" id="lamp" width="50px" height="50px"/>
+    <p>Canvas Animation </p>
+    <canvas id="myCanvas" width="500" height="400" style="border:0px solid #d3d3d3;">
+      Your browser does not support the HTML5 canvas tag.
+    </canvas>
+    <label id="text"></label>
+  </center>
+  <script>
+        var canvas = document.getElementById("myCanvas");
+        const image = new Image();
+        image.src = "pattern.jpg";
+        image.onload = () => {
+          requestAnimationFrame(mainLoop)
+        } // start when loaded
+        const can = canvas.getContext("2d");
+
+        function drawImageRotated(image, x, y, scale, rot) {
+          //setTransform() method lets you scale, rotate, move, and skew the current context
+          can.setTransform(scale, 0, 0, scale, x, y);
+          //The rotate() method rotates the current drawing
+          can.rotate(rot);
+          // drow image with giev height or width
+          can.drawImage(image, -image.width / 3, -image.height / 12);
+          can.setTransform(11, 30, 30, 71, 20, 20);
+        }
+        function mainLoop(time) {
+          /* clear rectangle*/
+          can.clearRect(0, 0, canvas.width, canvas.height);
+          /*call function drawImageRotated()*/
+          drawImageRotated(image, canvas.width / 2, canvas.height / 2, 0.7, time / 500);
+          /* rotate image infinity times*/
+          requestAnimationFrame(mainLoop);
+        }
+      </script>
+  </body>
+  </html>

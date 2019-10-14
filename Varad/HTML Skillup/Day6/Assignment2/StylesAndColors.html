@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+      <!--For adjusting view port for responsive layout-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StylesAndColors</title>
+      <style>
+      #styles{
+        margin-top:100px;
+      }
+      </style>
+      <body align="center">
+            <h1>StylesAndColors</h1>
+    <canvas id="styles" width="250" height="250"
+style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+<script type="text/javascript">
+      var canvas = document.getElementById('styles');
+      if (canvas.getContext) {
+        // use getContext to use the canvas for 2d drawing
+        var canvas = canvas.getContext('2d');
+        var canvasStyles = document.getElementById("styles");
+        for (var i = 0; i <= 12; i++) {
+          for (var j = 0; j <= 10; j++) {
+            //reset path
+            canvas.beginPath();
+            // ploting arc
+            canvas.arc((10 * j) + 20 * j, (5 * i) + 20 * i, 10, 10.5, 5 * Math.PI);
+            //change color to red
+            canvas.strokeStyle = "red";
+            // drow arc
+            canvas.stroke();
+          }
+        }
+      }
+    </script>
+
+</body>
+</html>

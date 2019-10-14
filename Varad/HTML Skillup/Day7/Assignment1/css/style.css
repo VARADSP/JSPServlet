@@ -1,0 +1,107 @@
+
+body {
+  background: linear-gradient(to bottom left, #C0CFB2 10%, #8BA989 80%);
+  display: grid;
+  overflow: auto;
+  overflow: hidden;
+}
+html {
+  min-height: 80%;
+  display: grid;
+  overflow: hidden;
+}
+
+
+.playlist {
+    background-color: #333333;
+    border-radius: 5px 5px 5px 5px;
+    list-style-type: none;
+    margin: 10px 0 0 2px;
+    padding-bottom: 10px;
+    padding-top: 15px;
+    position: relative;
+    width: 256px;
+
+    overflow: hidden;
+    z-index: 1;
+}
+.playlist li {
+    color: #EEEEEE;
+    cursor: pointer;
+    margin: 0 0 5px 15px;
+}
+.playlist li.active {
+    font-weight: bold;
+}
+li:hover{
+    font-weight: bold;
+    color:red;
+}
+
+
+.cover {
+    background: transparent url(../images/img2.png) no-repeat scroll center top;
+    border-radius: 5px 5px 5px 5px;
+    height: 250px;
+    width: 394px;
+    margin: auto;
+
+}
+
+#container {
+  background: $white;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1px;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px rgba($dark, .4);
+  -webkit-transition: all .5s ease-in-out;
+  transition:all .5s ease-in-out;
+
+}
+#player:hover {
+  transform: scale(1.05);
+}
+
+#controls {
+  display: flex;
+  align-items: center;
+  font-size: .8em;
+  justify-content: center;
+  color: #8BA989;
+}
+  #play, #pause,#volup,#voldown {
+    margin: 15px 25px;
+    color: #2BA989;
+    padding: 10px;
+
+  }
+
+.selected{
+  font-size: 25px;
+
+}
+  button {
+    position: relative;
+    background-color: #CBBF50;
+    border: none;
+    font-size: 18px;
+    padding: 20px;
+    width: 70px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  #play, #pause, #volup,#voldown {
+  transition: all .5s ease;
+}
+#play:hover,#pause:hover,#volup:hover,#voldown:hover {
+  color: #364F3C;
+  background: orange;
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Users/Varad/Downloads/poi-bin-4.1.0-20190412/poi-4.1.0/poi-4.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Varad/Downloads/poi-bin-4.1.0-20190412/poi-4.1.0/poi-ooxml-4.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Varad/Downloads/poi-bin-4.1.0-20190412/poi-4.1.0/lib/commons-codec-1.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Varad/Downloads/poi-bin-4.1.0-20190412/poi-4.1.0/poi-ooxml-schemas-4.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Varad/Downloads/poi-bin-4.1.0-20190412/poi-4.1.0/xml-apis-1.0.b2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Varad/Downloads/poi-bin-4.1.0-20190412/poi-4.1.0/stax-api-1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Varad/Downloads/poi-bin-4.1.0-20190412/poi-4.1.0/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Varad/Downloads/poi-bin-4.1.0-20190412/poi-4.1.0/xmlbeans-3.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Varad/Downloads/poi-bin-4.1.0-20190412/poi-4.1.0/commons-collections4-4.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Varad/Downloads/poi-bin-4.1.0-20190412/poi-4.1.0/commons-compress-1.18.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

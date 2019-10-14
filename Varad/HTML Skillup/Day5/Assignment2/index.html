@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Fast Food</title>
+    <meta charset="utf-8">
+      <!--For adjusting view port for responsive layout-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Style the header */
+        header {
+            background-color: #626;
+            padding: 30px;
+            text-align: center;
+            font-size: 35px;
+            color: white;
+        }
+
+        /* Create two columns/boxes that floats next to each other */
+        nav {
+            float: right;
+            width: 30%;
+            height: 300px; /* only for demonstration, should be removed */
+            background: #cbc;
+            padding: 20px;
+        }
+
+        /* Style the list inside the menu */
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        article {
+            float: left;
+            padding: 20px;
+            width: 70%;
+            background-color: #f1f1f1;
+              background-color: #fffaf2;
+            height: 300px; /* only for demonstration, should be removed */
+        }
+
+        /* Clear floats after the columns */
+        section:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Style the footer */
+        footer {
+            background-color: #577;
+            padding: 10px;
+            text-align: center;
+            color: white;
+              clear:both;
+        }
+        li{
+            color: green;
+        }
+        li:hover{
+          background-color: #fd8b00;
+          color: white;
+          cursor: pointer;
+          border-radius: 4px;
+        }
+
+        .selected {
+          background-color: #fd8b00;
+          color: white;
+      }
+
+        /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+        @media (max-width: 600px) {
+            nav, article {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+
+
+    <script>
+
+    function selectChannel(channelNumber) {
+      let listItems = document.getElementById("items").getElementsByTagName("li");
+      var length = listItems.length;
+      for (var i = 0; i < length; i++) {
+        listItems[i].className = i+1 == channelNumber ? "selected" : "";
+      }
+    }
+
+    //function for auto focus on login id on loading of page
+    window.onload = function () {
+    chat();
+    }
+        function chat() {
+            selectChannel(1);
+            document.getElementById("head").innerText="Chat Food";
+            document.getElementById("para").innerText="This is the street food image, Chaat is a savory snack that originated in India, typically served as an hors d'oeuvre at roadside tracks from stalls or food carts across the Indian subcontinent in ";
+            document.getElementById("image").src="images/chat.jpg";
+        }
+        function gujrati() {
+          selectChannel(2);
+            document.getElementById("head").innerText="Gujrati Food";
+            document.getElementById("image").src="images/Gujurati.jpg";
+            document.getElementById("para").innerText="This is the Gujurati food image. Gujarati cuisine refers to the cuisine of Gujarat state in India and it is primarily vegetarian. Let's have a look at its history, evolution, main ingredients and dishes!";
+
+        }
+        function punjabi() {
+          selectChannel(3);
+            document.getElementById("head").innerText="Punjabi Food";
+            document.getElementById("image").src="images/punjabi.jpg";
+            document.getElementById("para").innerText="This is the Punjabi food image. Punjab is home to authentic tandoori food. It is believed that the 'tandoor' originated in Persia and was introduced to India by the Arabs.";
+
+        }
+        function south() {
+            selectChannel(4);
+            document.getElementById("head").innerText="South Food";
+            document.getElementById("image").src="images/south.jpg";
+            document.getElementById("para").innerText="This is the South food image, South Indian cuisine is vastly different – think steamed, spiced and coconut-flavoured. The South Indian states of Andhra Pradesh, Telangana, Tamil Nadu, Kerala and Karnataka each have their own variants of common dishes as well as regional specialties.";
+
+        }
+        function sweet() {
+            selectChannel(5);
+            document.getElementById("head").innerText="Sweets";
+            document.getElementById("image").src="images/sweet.jpg";
+            document.getElementById("para").innerText="This is the sweet food image, a frozen sweet food made from cream or milk and sugar, often with fruit or chocolate added to flavour it.";
+        }
+        function fastFood() {
+          selectChannel(6);
+            document.getElementById("head").innerText="Fast Food";
+            document.getElementById("image").src="images/fastfood.jpg";
+            document.getElementById("para").innerText="This is the Fast food image. The fast food industry in India has evolved with the changing lifestyles of the young Indian population. The sheer variety of gastronomic preferences across the regions, hereditary or acquired, has brought about different modules across the country";
+        }
+
+
+
+        </script>
+</head>
+<body>
+
+  <!--header-->
+<header>
+    <h2> <img src="images/applelogo.png"/> Indian Food Variety</h2>
+    	<p>This the verious type of avaiable food in India and indian people like this food so much. This is easily available.</p>
+</header>
+  <!--section for nav bar-->
+<section>
+    <nav>
+        <h1>Select any </h1>
+        <ul id="items">
+            <li  id="chat"><a onclick="chat()">Chat</a></li>
+            <li id="gujrati"><a onclick="gujrati()" >Gujrati</a></li>
+            <li id="punjabi"><a onclick="punjabi()" >Punjabi</a></li>
+            <li id="south"><a onclick="south()" >South</a></li>
+            <li id="sweet"><a onclick="sweet()" >Sweet</a></li>
+            <li id="fastFood"><a onclick="fastFood()" >Fastfood</a></li>
+        </ul>
+    </nav>
+  <!--article-->
+    <article>
+        <div>
+        <h1 id="head"></h1>
+            <p id="para"></p>
+            <img id="image" width="200" height="120" align="left" alt="Select food -->">
+        </div>
+    </article>
+</section>
+  <!--Footer-->
+<footer>
+    <h1>Unikaihatsu Software Pvt Ltd. Copyright © All rights reserved</h1>
+</footer>
+
+</body>
+</html>
